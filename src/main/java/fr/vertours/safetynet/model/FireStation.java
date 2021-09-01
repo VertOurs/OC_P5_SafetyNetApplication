@@ -1,15 +1,28 @@
 package fr.vertours.safetynet.model;
 
-public class FireStation {
-    private int id;
-    private int station;
-    private Address address;
+import javax.annotation.processing.Generated;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
-    public int getId() {
+@Entity
+public class FireStation {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(unique = true, nullable = false)
+    private int station;
+
+    @OneToMany (mappedBy = "fireStation")
+    private Set<Address> address;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -21,11 +34,14 @@ public class FireStation {
         this.station = station;
     }
 
-    public Address getAddress() {
+    public Set<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Set<Address> address) {
         this.address = address;
+        for (Address address1 : this.address ) {
+            address1.setFireStation(this);
+        }
     }
 }

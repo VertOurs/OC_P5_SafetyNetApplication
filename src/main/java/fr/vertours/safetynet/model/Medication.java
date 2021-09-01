@@ -1,17 +1,29 @@
 package fr.vertours.safetynet.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.List;
+import java.util.Set;
 
+@Entity
 public class Medication {
-    private int id;
-    private String medication;
-    private List<MedicalRecord> medicalRecord;
 
-    public int getId() {
+    @Id
+    private Long id;
+
+    @Column (nullable = false, unique = true)
+    private String medication;
+
+    @ManyToMany (mappedBy = "medications")
+    private Set<MedicalRecord> medicalRecord;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -23,11 +35,11 @@ public class Medication {
         this.medication = medication;
     }
 
-    public List<MedicalRecord> getMedicalRecord() {
+    public Set<MedicalRecord> getMedicalRecord() {
         return medicalRecord;
     }
 
-    public void setMedicalRecord(List<MedicalRecord> medicalRecord) {
+    public void setMedicalRecord(Set<MedicalRecord> medicalRecord) {
         this.medicalRecord = medicalRecord;
     }
 }

@@ -1,21 +1,44 @@
 package fr.vertours.safetynet.model;
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+@Entity
 public class MedicalRecord {
 
-    private int id;
-    private Person person;
-    private Date birthDate;
-    private List<Medication> medications;
-    private List<Allergy> allergies;
+    @Id
+    private Long id;
 
-    public int getId() {
+    @OneToOne
+    private Person person;
+
+    @Column (nullable = false, columnDefinition = "DATE")
+    private LocalDate birthDate;
+
+    @ManyToMany
+    @JoinTable (
+            name = "MedicalRecord_Medication",
+            joinColumns =  @JoinColumn (name = "MedicalRecord"),
+            inverseJoinColumns = @JoinColumn (name = "Medication")
+    )
+    private Set<Medication> medications;
+
+    @ManyToMany
+    @JoinTable (
+            name = "MedicalRecord_Allergy",
+            joinColumns =  @JoinColumn (name = "MedicalRecord"),
+            inverseJoinColumns = @JoinColumn (name = "Allergy")
+    )
+    private Set<Allergy> allergies;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -27,27 +50,27 @@ public class MedicalRecord {
         this.person = person;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public List<Medication> getMedications() {
+    public Set<Medication> getMedications() {
         return medications;
     }
 
-    public void setMedications(List<Medication> medications) {
+    public void setMedications(Set<Medication> medications) {
         this.medications = medications;
     }
 
-    public List<Allergy> getAllergies() {
+    public Set<Allergy> getAllergies() {
         return allergies;
     }
 
-    public void setAllergies(List<Allergy> allergies) {
+    public void setAllergies(Set<Allergy> allergies) {
         this.allergies = allergies;
     }
 }

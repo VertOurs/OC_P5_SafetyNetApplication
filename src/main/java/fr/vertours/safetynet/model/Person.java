@@ -1,20 +1,43 @@
 package fr.vertours.safetynet.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table (uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"firstName", "lastName"})
+})
 public class Person {
-    private int id;
+
+    @Id
+    private Long id;
+
+    @Column (nullable = false)
     private String firstName;
+
+    @Column (nullable = false)
     private String lastName;
+
+    @ManyToOne
+    @JoinColumn (nullable = false)
     private Address address;
+
+    @Column (nullable = false)
     private String city;
+
+    @Column (nullable = false)
     private String zip;
+
+    @Column (nullable = false)
     private String phone;
+
+    @Column (nullable = false)
     private String email;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
