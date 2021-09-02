@@ -15,8 +15,15 @@ public class FireStation {
     @Column(unique = true, nullable = false)
     private int station;
 
-    @OneToMany (mappedBy = "fireStation")
+    @ManyToMany
+    @JoinTable (
+            name = "FireStation_Address",
+            joinColumns =  @JoinColumn (name = "FireStation"),
+            inverseJoinColumns = @JoinColumn (name = "Address")
+    )
     private Set<Address> address;
+
+
 
     public Long getId() {
         return id;

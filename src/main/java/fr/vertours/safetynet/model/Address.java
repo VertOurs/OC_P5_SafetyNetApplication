@@ -13,7 +13,7 @@ public class Address {
     private String addressName;
 
     @JoinColumn(nullable = false, unique = true)
-    @ManyToMany
+    @ManyToMany (mappedBy = "address")
     private FireStation fireStation;
 
     public Address(String addressName) {
