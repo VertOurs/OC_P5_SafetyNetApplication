@@ -2,6 +2,9 @@ package fr.vertours.safetynet.model;
 
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Address {
@@ -12,23 +15,41 @@ public class Address {
     @Column(nullable = false, unique = true)
     private String addressName;
 
-    @JoinColumn(nullable = false, unique = true)
+
     @ManyToMany
-    private FireStation fireStation;
+    private Set<FireStation> fireStation;
 
     public Address(String addressName) {
+
         this.addressName = addressName;
+        this.fireStation = new HashSet<>();
     }
     public Address() {
-        
+        this.fireStation = new HashSet<>();
     }
 
-    public FireStation getFireStation() {
+    public void addFirestation(FireStation fireStation){
+        if (!this.fireStation.contains(fireStation)) {
+            fireStation.addAdress(this);
+            this.fireStation.add(fireStation);
+        }
+    }
+
+    public void removeFirestation(FireStation fireStation) {
+        if (this.fireStation.contains(fireStation)) {
+            fireStation.removeAddress(this);
+            this.fireStation.remove(fireStation);
+        }
+    }
+    public Set<FireStation> getFireStation() {
         return fireStation;
     }
 
-    public void setFireStation(FireStation fireStation) {
-        this.fireStation = fireStation;
+    public void setFireStation(Collection<FireStation> fireStation) {
+        this.fireStation = new HashSet<>(fireStation);
+        for(FireStation fireStation1 : this.fireStation) {
+            fireStation1.addAdress(this);
+        }
     }
 
     public Long getId() {
