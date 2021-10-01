@@ -4,12 +4,14 @@ package fr.vertours.safetynet.model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -66,5 +68,19 @@ public class Address {
 
     public void setAddressName(String addressName) {
         this.addressName = addressName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(id, address.id) ||
+                addressName.equals(address.addressName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, addressName);
     }
 }

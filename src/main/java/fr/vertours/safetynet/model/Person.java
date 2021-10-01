@@ -1,5 +1,8 @@
 package fr.vertours.safetynet.model;
 
+import org.codehaus.plexus.classworlds.strategy.Strategy;
+
+import javax.annotation.processing.Generated;
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +12,7 @@ import javax.persistence.*;
 public class Person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column (nullable = false)

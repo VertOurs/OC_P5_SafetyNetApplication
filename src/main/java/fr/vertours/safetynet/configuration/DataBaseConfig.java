@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jsoniter.JsonIterator;
 import fr.vertours.safetynet.dto.FireStationDTO;
 import fr.vertours.safetynet.dto.MedicalRecordDTO;
@@ -11,6 +12,7 @@ import fr.vertours.safetynet.repository.MedicalRecordRepository;
 import fr.vertours.safetynet.repository.PersonRepository;
 import fr.vertours.safetynet.service.AddressService;
 import fr.vertours.safetynet.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -20,15 +22,17 @@ import org.springframework.core.io.Resource;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Configuration
 public class DataBaseConfig {
 
     @Value("classpath:Json/data.json")
     Resource resource;
-    
+
+    @Autowired
+    AddressService addressService;
+
     @Bean
     CommandLineRunner commandLineRunner(
             FireStationRepository fireStationRepository,
@@ -42,17 +46,27 @@ public class DataBaseConfig {
 
             Map<String, Object> map = JsonIterator.deserialize(data, Map.class);
 
-            List<PersonDTO> listOfPersonDTO = (List<PersonDTO>) map.get("persons");
-            for(PersonDTO personDTO : listOfPersonDTO){
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Object> listOfPersonDTO = (List<Object>) map.get("persons");
+            Set<Address> addressSet = new HashSet();
+
+            for(Object o : listOfPersonDTO) {
+                PersonDTO personDTO = objectMapper.convertValue(o, PersonDTO.class);
+                System.out.println(personDTO);
                 Address address = new Address();
                 address.setAddressName(personDTO.getAddress());
-                AddressService addressService;
-                addressService.saveAddress(address);
+                if (!addressSet.contains(address)) {
+                    addressSet.add(address);
+                }
+                //addressService.saveAddress(address);
             }
+            addressService.saveAll(addressSet);
 
 
-            List<MedicalRecordDTO> listOfMedicalRecordDTO = (List<MedicalRecordDTO>) map.get("medicalrecords");
-            List<FireStationDTO> listOfFireStationDTO = (List<FireStationDTO>) map.get("firestations");
+           //List<MedicalRecordDTO> listOfMedicalRecordDTO = (List<MedicalRecordDTO>) map.get("medicalrecords");
+            //List<FireStationDTO> listOfFireStationDTO = (List<FireStationDTO>) map.get("firestations");
+
+
         };
     }
 

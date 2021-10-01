@@ -1,15 +1,13 @@
 package fr.vertours.safetynet.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Allergy {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column (unique = true, nullable = false)
