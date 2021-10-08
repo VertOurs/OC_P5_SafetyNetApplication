@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class AddressService {
@@ -22,7 +23,8 @@ public class AddressService {
 
     }
 
-    public void saveAll(Collection<Address> collection) {
-        addressRepository.saveAll(collection);
+    public List<Address> saveAll(Collection<Address> collection) {
+        return addressRepository.saveAll(collection);
+
     }
 }

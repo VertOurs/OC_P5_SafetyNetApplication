@@ -2,10 +2,7 @@ package fr.vertours.safetynet.model;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table
@@ -23,6 +20,10 @@ public class FireStation {
 
     public FireStation() {
         this.address = new HashSet<>();
+    }
+    public FireStation(Set<Address> address, int station ) {
+        this.address = address;
+        this.station = station;
     }
 
     public void addAdress(Address address) {
@@ -64,5 +65,27 @@ public class FireStation {
         for (Address address1 : this.address ) {
             address1.addFirestation(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FireStation that = (FireStation) o;
+        return station == that.station ||
+                Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, station);
+    }
+
+    @Override
+    public String toString() {
+        return "FireStation{" +
+                "id=" + id +
+                ", station=" + station +
+                '}';
     }
 }

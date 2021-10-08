@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import fr.vertours.safetynet.repository.FireStationRepository;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -28,6 +29,10 @@ public class FireStationService {
 
     public FireStation findByStation(int fireStation) {
         return fireStationRepository.findByStation(fireStation);
+    }
+
+    public void saveAll(Collection<FireStation> fireStationCollection){
+        fireStationRepository.saveAll(fireStationCollection);
     }
 
 

@@ -32,7 +32,7 @@ public class Address {
 
     public void addFirestation(FireStation fireStation){
         if (!this.fireStation.contains(fireStation)) {
-            fireStation.addAdress(this);
+            //fireStation.addAdress(this);
             this.fireStation.add(fireStation);
         }
     }
