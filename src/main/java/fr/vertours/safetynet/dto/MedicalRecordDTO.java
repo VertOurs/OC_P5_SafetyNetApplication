@@ -4,11 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MedicalRecordDTO {
-    //même variable que dans Person, quand dois-je mappé mes varaible a un objet person?
+
     private String firstName;
     private String lastName;
-    //es ce que j'ai besoin d'avoir une coorespondance total? birthdate dans le Json etpasBirthDate
-    //pertinent de mettre sa en Date?
     private String birthdate;
     private Set<String> medications = new HashSet<>();
     private Set<String> allergies = new HashSet<>();

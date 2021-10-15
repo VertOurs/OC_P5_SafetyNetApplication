@@ -18,7 +18,7 @@ public class Address {
     private String addressName;
 
 
-    @ManyToMany (mappedBy = "address")
+    @ManyToMany
     private Set<FireStation> fireStation;
 
     public Address(String addressName) {

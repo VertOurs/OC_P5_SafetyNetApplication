@@ -13,7 +13,7 @@ import java.util.List;
 public class AddressService {
     private final AddressRepository addressRepository;
 
-    @Autowired
+
     public AddressService(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
