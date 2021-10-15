@@ -15,7 +15,7 @@ public class FireStation {
     @Column(unique = true, nullable = false)
     private int station;
 
-    @ManyToMany (mappedBy = "fireStation")
+    @ManyToMany
     private Set<Address> address;
 
     public FireStation() {
@@ -28,15 +28,15 @@ public class FireStation {
 
     public void addAdress(Address address) {
         if (!this.address.contains(address)) {
-            address.addFirestation(this);
             this.address.add(address);
+            address.addFirestation(this);
         }
     }
 
     public void removeAddress(Address address) {
         if (this.address.contains(address)) {
-            address.removeFirestation(this);
             this.address.remove(address);
+            address.removeFirestation(this);
         }
     }
 
@@ -72,6 +72,9 @@ public class FireStation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FireStation that = (FireStation) o;
+        if(id==null) {
+            return station == that.station;
+        }
         return station == that.station ||
                 Objects.equals(id, that.id);
     }

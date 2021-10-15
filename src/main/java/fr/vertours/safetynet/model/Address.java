@@ -18,7 +18,7 @@ public class Address {
     private String addressName;
 
 
-    @ManyToMany
+    @ManyToMany (mappedBy = "address")
     private Set<FireStation> fireStation;
 
     public Address(String addressName) {
@@ -32,15 +32,15 @@ public class Address {
 
     public void addFirestation(FireStation fireStation){
         if (!this.fireStation.contains(fireStation)) {
-            //fireStation.addAdress(this);
             this.fireStation.add(fireStation);
+            fireStation.addAdress(this);
         }
     }
 
     public void removeFirestation(FireStation fireStation) {
         if (this.fireStation.contains(fireStation)) {
-            fireStation.removeAddress(this);
             this.fireStation.remove(fireStation);
+            fireStation.removeAddress(this);
         }
     }
     public Set<FireStation> getFireStation() {

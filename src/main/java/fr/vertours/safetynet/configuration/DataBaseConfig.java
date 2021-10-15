@@ -14,6 +14,7 @@ import fr.vertours.safetynet.repository.MedicalRecordRepository;
 import fr.vertours.safetynet.repository.PersonRepository;
 import fr.vertours.safetynet.service.AddressService;
 import fr.vertours.safetynet.service.FireStationService;
+import fr.vertours.safetynet.service.MedicalRecordService;
 import fr.vertours.safetynet.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,6 +42,9 @@ public class DataBaseConfig {
 
     @Autowired
     FireStationService fireStationService;
+
+    @Autowired
+    MedicalRecordService medicalRecordService;
 
     @Bean
     CommandLineRunner commandLineRunner(
@@ -102,7 +106,12 @@ public class DataBaseConfig {
             System.out.println(listOfFireStationDTO);
             fireStationService.saveAll(fireStationsList);
 
-           //List<MedicalRecordDTO> listOfMedicalRecordDTO = (List<MedicalRecordDTO>) map.get("medicalrecords");
+           List<Object> listOfMedicalRecordDTO = (List<Object>) map.get("medicalrecords");
+
+           for(Object medicalRecord : listOfMedicalRecordDTO) {
+               MedicalRecordDTO medicalRecordDTO = objectMapper.convertValue(medicalRecord, MedicalRecordDTO.class);
+               medicalRecordService.save(medicalRecordDTO);
+           }
 
 
 

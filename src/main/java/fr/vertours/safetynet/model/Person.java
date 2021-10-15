@@ -46,6 +46,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
     }
+    public Person(){}
 
     public Long getId() {
         return id;

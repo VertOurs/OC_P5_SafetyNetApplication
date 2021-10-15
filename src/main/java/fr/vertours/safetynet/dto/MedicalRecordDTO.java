@@ -1,21 +1,24 @@
 package fr.vertours.safetynet.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class MedicalRecordDTO {
     //même variable que dans Person, quand dois-je mappé mes varaible a un objet person?
     private String firstName;
     private String lastName;
     //es ce que j'ai besoin d'avoir une coorespondance total? birthdate dans le Json etpasBirthDate
     //pertinent de mettre sa en Date?
-    private String birthDate;
-    private String medications;
-    private String allergies;
+    private String birthdate;
+    private Set<String> medications = new HashSet<>();
+    private Set<String> allergies = new HashSet<>();
 
     @Override
     public String toString() {
         return "MedicalRecordDTO{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", birthDate='" + birthDate + '\'' +
+                ", birthDate='" + birthdate + '\'' +
                 ", medications='" + medications + '\'' +
                 ", allergies='" + allergies + '\'' +
                 '}';
@@ -37,27 +40,27 @@ public class MedicalRecordDTO {
         this.lastName = lastName;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getBirthdate() {
+        return birthdate;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
     }
 
-    public String getMedications() {
+    public Set<String> getMedications() {
         return medications;
     }
 
-    public void setMedications(String medications) {
+    public void setMedications(Set<String> medications) {
         this.medications = medications;
     }
 
-    public String getAllergies() {
+    public Set<String> getAllergies() {
         return allergies;
     }
 
-    public void setAllergies(String allergies) {
+    public void setAllergies(Set<String> allergies) {
         this.allergies = allergies;
     }
 }

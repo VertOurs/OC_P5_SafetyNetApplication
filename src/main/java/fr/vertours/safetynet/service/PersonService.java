@@ -27,4 +27,8 @@ public class PersonService {
     public void saveAll(Collection<Person> collection) {
         personRepository.saveAll(collection);
     }
+
+    public Person find(String firstName, String lastName) {
+        return personRepository.findOneByFirstNameAndLastName(firstName,lastName);
+    }
 }

@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
     Person findByFirstName(String name);
+    Person findOneByFirstNameAndLastName(String firstName, String lastName);
 
 }
