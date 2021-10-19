@@ -27,4 +27,16 @@ public class AddressService {
         return addressRepository.saveAll(collection);
 
     }
+
+    public Address find(String addressName) {
+        return addressRepository.findOneByAddressName(addressName);
+    }
+    public Address save(Address address) {
+        return addressRepository.save(address);
+    }
+    public Address save(String addressName) {
+        Address address = new Address();
+        address.setAddressName(addressName);
+        return save(address);
+    }
 }

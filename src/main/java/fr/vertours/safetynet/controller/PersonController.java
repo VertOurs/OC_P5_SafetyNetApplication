@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.controller;
 
+import fr.vertours.safetynet.dto.PersonDTO;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.PersonService;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +18,10 @@ public class PersonController {
     @GetMapping
     public List<Person> getPersons() {
         return personService.getAllPersons();
-        //List<Person> personList = personService.getAllPersons();
-        //return new ResponseEntity<>(personList, HttpStatus.OK);
     }
 
     @PostMapping
-    public void registerNewPerson(@RequestBody Person person) {
+    public void registerNewPerson(@RequestBody PersonDTO person) {
         personService.addPerson(person);
     }
 
