@@ -2,12 +2,10 @@ package fr.vertours.safetynet.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jsoniter.JsonIterator;
-import fr.vertours.safetynet.dto.FireStationDTO;
 import fr.vertours.safetynet.dto.MedicalRecordDTO;
 import fr.vertours.safetynet.dto.PersonDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
-import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.repository.FireStationRepository;
 import fr.vertours.safetynet.repository.MedicalRecordRepository;
@@ -104,7 +102,7 @@ public class DataBaseConfig {
                 }
             }
 
-            fireStationService.saveAll(fireStationsList);
+            fireStationService.saveAllStations(fireStationsList);
 
            List<Object> listOfMedicalRecordDTO = (List<Object>) map.get("medicalrecords");
 

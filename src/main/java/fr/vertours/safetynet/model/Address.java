@@ -30,6 +30,12 @@ public class Address {
         this.fireStation = new HashSet<>();
     }
 
+    public Address(Long id, String addressName, Set<FireStation> fireStation) {
+        this.id = id;
+        this.addressName = addressName;
+        this.fireStation = fireStation;
+    }
+
     public void addFirestation(FireStation fireStation){
         if (!this.fireStation.contains(fireStation)) {
             this.fireStation.add(fireStation);

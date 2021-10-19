@@ -26,19 +26,7 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public void savePerson(){
-        personRepository.save(personDTO.createPerson());
-    }
 
-    public void saveAll(Collection<Person> collection) {
-        personRepository.saveAll(collection);
-    }
-    public List<Person> getAllPersons() {
-        return personRepository.findAll();
-    }
-    public Person getOnePersonByID(Long personID) {
-        return personRepository.findOneById(personID);
-    }
     public void addPerson(PersonDTO personDTO) {
         Person person = personDTO.createPerson();
         Address address = addressService.find(personDTO.getAddress());
@@ -48,6 +36,16 @@ public class PersonService {
         person.setAddress(address);
         personRepository.save(person);
     }
+    public void saveAll(Collection<Person> collection) {
+        personRepository.saveAll(collection);
+    }
+    public List<Person> getAllPersons() {
+        return personRepository.findAll();
+    }
+    public Person getOnePersonByID(Long personID) {
+        return personRepository.findOneById(personID);
+    }
+
     public void deletePerson(String firstName, String lastName) {
         personRepository.deleteByFirstNameAndLastName(firstName, lastName);
 

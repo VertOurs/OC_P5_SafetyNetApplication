@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.controller;
 
+import fr.vertours.safetynet.dto.FireStationDTO;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.service.FireStationService;
 import org.springframework.web.bind.annotation.*;
@@ -16,19 +17,23 @@ public class FireStationController {
         this.firestationService = fireStationService;
     }
 
+
     @GetMapping
     public List<FireStation> getListFireStation(){
-        return this.firestationService.findAll();
+        return this.firestationService.getListOfAllStations();
     }
-
-    @PostMapping
-    public void create(@RequestBody FireStation fireStation) {
-        this.firestationService.save(fireStation);
-    }
-
 
     @GetMapping ("/{station}")
     public FireStation getStation(@PathVariable int station){
-        return this.firestationService.findByStation(station);
+        return this.firestationService.findOneStation(station);
+    }
+
+    @PostMapping
+    public void create(@RequestBody FireStationDTO fireStation) {
+        this.firestationService.saveOneStation(fireStation);
+    }
+    @DeleteMapping(path = "{nbStation}")
+    public void deleteOneStation(@PathVariable int nbStation) {
+        this.firestationService.deleteOneFireStation(nbStation);
     }
 }
