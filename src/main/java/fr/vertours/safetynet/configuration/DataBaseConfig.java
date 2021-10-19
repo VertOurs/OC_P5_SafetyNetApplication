@@ -66,7 +66,7 @@ public class DataBaseConfig {
 
             for(Object o : listOfPersonDTO) {
                 PersonDTO personDTO = objectMapper.convertValue(o, PersonDTO.class);
-                //System.out.println(personDTO);
+
                 Address address = new Address();
                 address.setAddressName(personDTO.getAddress());
                 if (!addressSet.contains(address)) {
@@ -103,7 +103,7 @@ public class DataBaseConfig {
                     fireStation2.addAdress(address);
                 }
             }
-            System.out.println(listOfFireStationDTO);
+
             fireStationService.saveAll(fireStationsList);
 
            List<Object> listOfMedicalRecordDTO = (List<Object>) map.get("medicalrecords");

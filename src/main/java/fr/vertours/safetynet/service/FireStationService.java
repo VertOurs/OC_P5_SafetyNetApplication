@@ -11,13 +11,12 @@ import java.util.List;
 @Service
 public class FireStationService {
 
-
     private final FireStationRepository fireStationRepository;
-
 
     public FireStationService(FireStationRepository fireStationRepository) {
         this.fireStationRepository = fireStationRepository;
     }
+
 
     public void save(FireStation fireStation) {
         fireStationRepository.save(fireStation);
