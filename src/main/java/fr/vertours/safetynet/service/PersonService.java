@@ -57,7 +57,8 @@ public class PersonService {
     }
 
     @Transactional // sa fait quoi ? et pourquoi je peux pas surcharger mes methodes avec cette annotation
-    public void updatePerson(String firstName, String lastName, String address, String city, String zip, String phone, String email) {
+    public void updatePerson(String firstName, String lastName, String address,
+                             String city, String zip, String phone, String email) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
         Address addressObject = addressService.save(address);
         if(address != null && address.length() > 0 && !Objects.equals(person.getAddress(), address)) {

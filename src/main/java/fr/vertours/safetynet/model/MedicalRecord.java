@@ -32,9 +32,18 @@ public class MedicalRecord {
     @JoinTable (
             name = "MedicalRecord_Allergy",
             joinColumns =  @JoinColumn (name = "MedicalRecord"),
-            inverseJoinColumns = @JoinColumn (name = "Allergy")
-    )
+            inverseJoinColumns = @JoinColumn (name = "Allergy"))
     private Set<Allergy> allergies;
+
+
+    public MedicalRecord(){}
+
+    public MedicalRecord(Person person, LocalDate birthDate, Set<Medication> medications, Set<Allergy> allergies) {
+        this.person = person;
+        this.birthDate = birthDate;
+        this.medications = medications;
+        this.allergies = allergies;
+    }
 
     public Long getId() {
         return id;

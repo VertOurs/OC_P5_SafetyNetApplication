@@ -1,6 +1,7 @@
 package fr.vertours.safetynet.controller;
 
 import fr.vertours.safetynet.dto.FireStationDTO;
+import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.service.FireStationService;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,13 @@ public class FireStationController {
     public void create(@RequestBody FireStationDTO fireStation) {
         this.firestationService.saveOneStation(fireStation);
     }
+    //erreur 500
+    @PutMapping("/{station}")
+    public void updateNbStationForOneAddress(@PathVariable int station, @RequestBody String address) {
+         this.firestationService.updateStationForOneAddress(station, address);
+    }
+
+    //erreur 500
     @DeleteMapping(path = "{nbStation}")
     public void deleteOneStation(@PathVariable int nbStation) {
         this.firestationService.deleteOneFireStation(nbStation);

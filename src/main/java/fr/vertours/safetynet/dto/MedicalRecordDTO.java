@@ -1,5 +1,8 @@
 package fr.vertours.safetynet.dto;
 
+import fr.vertours.safetynet.model.*;
+
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +23,23 @@ public class MedicalRecordDTO {
                 ", medications='" + medications + '\'' +
                 ", allergies='" + allergies + '\'' +
                 '}';
+    }
+    public MedicalRecord createMedicalRecord() {
+        Address address = new Address("Address non renseigné");
+        Person person = new Person(getFirstName(),getLastName(),address, "city non renseigné", "zip non renseigné", "Phone non renseigné", "mail non renseigné");
+        LocalDate birthDate = LocalDate.parse(getBirthdate());
+        Set<Medication> MedicationSert = null;
+        for(String s : getMedications()) {
+            Medication medication = new Medication(s);
+            MedicationSert.add(medication);
+        }
+        Set<Allergy> allergySet = null;
+        for(String s : getAllergies()) {
+            Allergy allergy = new Allergy(s);
+            allergySet.add(allergy);
+        }
+        MedicalRecord medicalRecord = new MedicalRecord(person, birthDate, MedicationSert, allergySet);
+        return medicalRecord;
     }
 
     public String getFirstName() {

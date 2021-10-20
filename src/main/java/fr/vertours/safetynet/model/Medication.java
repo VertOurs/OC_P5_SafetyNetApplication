@@ -40,4 +40,10 @@ public class Medication {
     public void setMedicalRecord(Set<MedicalRecord> medicalRecord) {
         this.medicalRecord = medicalRecord;
     }
+
+    public Medication() {}
+
+    public Medication(String medication) {
+        this.medication = medication;
+    }
 }

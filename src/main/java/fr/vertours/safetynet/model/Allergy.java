@@ -16,6 +16,12 @@ public class Allergy {
     @ManyToMany (mappedBy = "allergies")
     private Set<MedicalRecord> medicalRecord;
 
+    public Allergy() {}
+
+    public Allergy(String allergy) {
+        this.allergy = allergy;
+    }
+
     public Long getId() {
         return id;
     }

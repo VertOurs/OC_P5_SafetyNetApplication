@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MedicalRecordRepository extends JpaRepository<MedicalRecord, Long> {
 
+
+    MedicalRecord findOneByPerson_FirstNameAndPerson_LastName(String firstName, String lastName);
+    Long findByPerson_FirstNameAndPerson_LastName(String firstName, String lastName);
 }
