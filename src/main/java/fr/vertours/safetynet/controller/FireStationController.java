@@ -7,6 +7,7 @@ import fr.vertours.safetynet.service.FireStationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping (path = "/firestation")
@@ -20,26 +21,29 @@ public class FireStationController {
 
 
     @GetMapping
-    public List<FireStation> getListFireStation(){
-        return this.firestationService.getListOfAllStations();
+    public List<FireStationDTO> getListFireStation(){
+        List<FireStation> fireStationList = this.firestationService.getListOfAllStations();
+        List<FireStationDTO> fireStationDTOList = fireStationList.stream().map(FireStationDTO::fromFireStation).collect(Collectors.toList());
+        return fireStationDTOList;
     }
 
     @GetMapping ("/{station}")
-    public FireStation getStation(@PathVariable int station){
-        return this.firestationService.findOneStation(station);
+    public FireStationDTO getStation(@PathVariable int station){
+        FireStation fireStation = this.firestationService.findOneStation(station);
+        return FireStationDTO.fromFireStation(fireStation);
     }
 
     @PostMapping
     public void create(@RequestBody FireStationDTO fireStation) {
         this.firestationService.saveOneStation(fireStation);
     }
-    //erreur 500
+
     @PutMapping("/{station}")
-    public void updateNbStationForOneAddress(@PathVariable int station, @RequestBody String address) {
+    public void updateNbStationForOneAddress(@PathVariable int station, @RequestBody Address address) {
          this.firestationService.updateStationForOneAddress(station, address);
     }
 
-    //erreur 500
+
     @DeleteMapping(path = "{nbStation}")
     public void deleteOneStation(@PathVariable int nbStation) {
         this.firestationService.deleteOneFireStation(nbStation);

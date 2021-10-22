@@ -15,7 +15,7 @@ public class FireStation {
     @Column(unique = true, nullable = false)
     private int station;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Address> address;
 
     public FireStation() {

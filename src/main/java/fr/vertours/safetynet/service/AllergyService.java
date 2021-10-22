@@ -29,4 +29,13 @@ public class AllergyService {
         return allergyRepository.save(allergy);
     }
 
+    public Allergy findOrCreate(String allergyName) {
+        Allergy allergy = find(allergyName);
+        if (allergy == null) {
+            allergy = save(allergyName);
+        }
+        return allergy;
+    }
+
+
 }

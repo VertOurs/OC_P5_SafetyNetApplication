@@ -3,8 +3,10 @@ package fr.vertours.safetynet.dto;
 import fr.vertours.safetynet.model.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MedicalRecordDTO {
 
@@ -14,12 +16,14 @@ public class MedicalRecordDTO {
     private Set<String> medications = new HashSet<>();
     private Set<String> allergies = new HashSet<>();
 
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
     @Override
     public String toString() {
         return "MedicalRecordDTO{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", birthDate='" + birthdate + '\'' +
+                ", birthDate='" + getBirthdate() + '\'' +
                 ", medications='" + medications + '\'' +
                 ", allergies='" + allergies + '\'' +
                 '}';
@@ -40,6 +44,17 @@ public class MedicalRecordDTO {
         }
         MedicalRecord medicalRecord = new MedicalRecord(person, birthDate, MedicationSert, allergySet);
         return medicalRecord;
+    }
+    public static MedicalRecordDTO fromMedicalRecord(MedicalRecord medicalRecord) {
+        MedicalRecordDTO medicalRecordDTO = new MedicalRecordDTO();
+        Set<String> allergySet = medicalRecord.getAllergies().stream().map(Allergy::getAllergy).collect(Collectors.toSet());
+        medicalRecordDTO.setAllergies(allergySet);
+        Set<String> medicationSet = medicalRecord.getMedications().stream().map(Medication::getMedication).collect(Collectors.toSet());
+        medicalRecordDTO.setMedications(medicationSet);
+        medicalRecordDTO.setBirthdate(medicalRecord.getBirthDate().format(DATE_TIME_FORMATTER));
+        medicalRecordDTO.setFirstName(medicalRecord.getPerson().getFirstName());
+        medicalRecordDTO.setLastName(medicalRecord.getPerson().getLastName());
+        return medicalRecordDTO;
     }
 
     public String getFirstName() {

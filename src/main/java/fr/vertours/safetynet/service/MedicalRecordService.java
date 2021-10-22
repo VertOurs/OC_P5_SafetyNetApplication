@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class MedicalRecordService {
@@ -43,7 +44,7 @@ public class MedicalRecordService {
         return medicalRecordRepository.findAll();
     }
     public MedicalRecord getOneMedicalRecordByLastAndFirstName(String lastName, String firstName) {
-        return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(lastName, firstName);
+        return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
     }
 
@@ -100,31 +101,32 @@ public class MedicalRecordService {
         }
     }
 
-    public void updateMedicalRecord(String lastName, String firstName, String birthDate, Set<String> medication, Set<String> allergy) {
+    public void updateMedicalRecord(String lastName, String firstName, MedicalRecordDTO medicalRecordDTO) {
         MedicalRecord medicalRecord = medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate localBirthDate = LocalDate.parse(birthDate, formatDate);
 
-
-        if(birthDate != null && birthDate.length() >0 && !Objects.equals(medicalRecord.getBirthDate(), localBirthDate)) {
+        if(medicalRecordDTO.getBirthdate() != null ) {
+            LocalDate localBirthDate = LocalDate.parse(medicalRecordDTO.getBirthdate(), DATE_TIME_FORMATTER);
+            System.out.println(medicalRecordDTO.getBirthdate());
+            System.out.println(localBirthDate);
             medicalRecord.setBirthDate(localBirthDate);
         }
-        if(medication != null && medication.size() > 0 && !Objects.equals(medicalRecord.getMedications(), medication)) {
-            Set<Medication> medicationSet = null;
-            for(String s : medication) {
-                Medication medication1 = new Medication(s);
-                medicationSet.add(medication1);
+        if(medicalRecordDTO.getMedications() != null ) {
+            if (medicalRecordDTO.getMedications().size() > 0) {
+                Set<Medication> medicationSet = medicalRecordDTO.getMedications().stream().map(medication -> medicationService.findOrCreate(medication)).collect(Collectors.toSet());
+                medicalRecord.setMedications(medicationSet);
+            } else {
+                medicalRecord.removeAllMedications();
             }
-            medicalRecord.setMedications(medicationSet);
         }
-        if(allergy != null && allergy.size() > 0 && !Objects.equals(medicalRecord.getAllergies(),allergy)) {
-            Set<Allergy> allergySet = null;
-            for(String s : allergy) {
-                Allergy allergy1 = new Allergy(s);
-                allergySet.add(allergy1);
-            }
+        if(medicalRecordDTO.getAllergies() != null ) {
+            if (medicalRecordDTO.getAllergies().size() > 0 ){
+            Set<Allergy> allergySet = medicalRecordDTO.getAllergies().stream().map(allergy -> allergyService.findOrCreate(allergy) ).collect(Collectors.toSet());
             medicalRecord.setAllergies(allergySet);
+        } else {
+            medicalRecord.removeAllAllergies();
+            }
         }
+        medicalRecordRepository.save(medicalRecord);
     }
 
     public void deleteOneMedicalRecord(String firstName, String lastName) {

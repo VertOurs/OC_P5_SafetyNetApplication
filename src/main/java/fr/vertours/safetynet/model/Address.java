@@ -18,7 +18,7 @@ public class Address {
     private String addressName;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "address")
     private Set<FireStation> fireStation;
 
     public Address(String addressName) {

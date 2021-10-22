@@ -3,6 +3,7 @@ package fr.vertours.safetynet.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ public class MedicalRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne (optional = false)
     private Person person;
 
     @Column (nullable = false, columnDefinition = "DATE")
@@ -26,14 +27,14 @@ public class MedicalRecord {
             joinColumns =  @JoinColumn (name = "MedicalRecord"),
             inverseJoinColumns = @JoinColumn (name = "Medication")
     )
-    private Set<Medication> medications;
+    private Set<Medication> medications = new HashSet<>();
 
     @ManyToMany
     @JoinTable (
             name = "MedicalRecord_Allergy",
             joinColumns =  @JoinColumn (name = "MedicalRecord"),
             inverseJoinColumns = @JoinColumn (name = "Allergy"))
-    private Set<Allergy> allergies;
+    private Set<Allergy> allergies = new HashSet<>();
 
 
     public MedicalRecord(){}
@@ -43,6 +44,13 @@ public class MedicalRecord {
         this.birthDate = birthDate;
         this.medications = medications;
         this.allergies = allergies;
+    }
+
+    public void removeAllMedications() {
+        this.medications = new HashSet<>();
+    }
+    public void removeAllAllergies() {
+        this.allergies = new HashSet<>();
     }
 
     public Long getId() {
@@ -84,4 +92,6 @@ public class MedicalRecord {
     public void setAllergies(Set<Allergy> allergies) {
         this.allergies = allergies;
     }
+
+
 }

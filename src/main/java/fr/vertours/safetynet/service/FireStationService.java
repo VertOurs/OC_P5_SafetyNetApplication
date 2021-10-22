@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import fr.vertours.safetynet.repository.FireStationRepository;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class FireStationService {
@@ -26,7 +24,9 @@ public class FireStationService {
 
 
     public void saveOneStation(FireStationDTO fireStationDTO) {
+        Set<Address> addressSet = fireStationDTO.getAddress().stream().map(address -> addressService.findOrCreate(address)).collect(Collectors.toSet());
         FireStation fireStation = fireStationDTO.createFireStation();
+        fireStation.setAddress(addressSet);
         fireStationRepository.save(fireStation);
     }
     public void saveAllStations(Collection<FireStation> fireStationCollection){
@@ -45,15 +45,14 @@ public class FireStationService {
         FireStation fireStationObject = fireStationRepository.findByStation(firestation);
         fireStationRepository.delete(fireStationObject);
     }
-    //erreur 500
-    public void updateStationForOneAddress(int station, String address) {
+
+    public void updateStationForOneAddress(int station, Address address) {
         FireStation fireStation = fireStationRepository.findByStation(station);
-        Address addressObject = addressService.save(address);
-        for(Address a : fireStation.getAddress()) {
-            if(a.getAddressName() != null && a.getAddressName().length() > 0 && !Objects.equals(a.getAddressName(), address)) {
-            fireStation.addAdress(addressObject);
-        }
-        }
+        Address addressObject = addressService.findOrCreate(address.getAddressName());
+        fireStation.addAdress(addressObject);
+        fireStationRepository.save(fireStation);
+
+
     }
 
 

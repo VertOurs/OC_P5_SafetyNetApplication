@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/medicalRecord")
@@ -23,27 +24,29 @@ public class MedicalRecordController {
 
 
     @GetMapping
-    public List<MedicalRecord> getListOfPersons() {
-        return medicalRecordService.getAllMedicalRecord();
+    public List<MedicalRecordDTO> getListOfMedicalRecord() {
+        List <MedicalRecord> medicalRecordList = medicalRecordService.getAllMedicalRecord();
+        List <MedicalRecordDTO> medicalRecordDTOList = medicalRecordList.stream().map(MedicalRecordDTO::fromMedicalRecord).collect(Collectors.toList());
+        return medicalRecordDTOList;
     }
-    // fonctionne mais me retourne toutes les infos de john boyd dupliqué
+
     @GetMapping(path = "{lastName}/{firstName}")
-    public MedicalRecord getOneMedicalRecord(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
-        return medicalRecordService.getOneMedicalRecordByLastAndFirstName(lastName, firstName) ;
+    public MedicalRecordDTO getOneMedicalRecord(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
+        MedicalRecord medicalRecord = medicalRecordService.getOneMedicalRecordByLastAndFirstName(lastName, firstName);
+        return MedicalRecordDTO.fromMedicalRecord(medicalRecord);
     }
-    //visiblement probleme de format avec la date
     @PostMapping
     public void registerNewMedicalPerson(@RequestBody MedicalRecordDTO medicalRecordDTO) {
-        medicalRecordService.addMedicalRecord(medicalRecordDTO);
+        medicalRecordService.save(medicalRecordDTO);
     }
     //ne fonctionne pas
     @PutMapping (path = "{lastName}/{firstName}")
     public void updateMedicalRecord(@PathVariable("lastName") String lastName,
                                     @PathVariable("firstName") String firstName,
-                                    @RequestParam(required = false) String birthdate,
-                                    @RequestParam(required = false) Set<String> medication,
-                                    @RequestParam(required = false) Set<String> Allergy) {
-        medicalRecordService.updateMedicalRecord(lastName, firstName, birthdate,medication,Allergy);
+                                    @RequestBody MedicalRecordDTO medicalRecordDTO) {
+        System.out.println(medicalRecordDTO);
+        medicalRecordService.updateMedicalRecord(lastName, firstName, medicalRecordDTO);
+
     }
     // Id ne doit pas etre null
     @DeleteMapping(path = "{lastName}/{firstName}")

@@ -47,7 +47,9 @@ public class PersonService {
     }
 
     public void deletePerson(String firstName, String lastName) {
-        personRepository.deleteByFirstNameAndLastName(firstName, lastName);
+        //personRepository.deleteByFirstNameAndLastName(firstName, lastName);
+        Person person = find(firstName, lastName);
+        personRepository.delete(person);
 
 
     }
@@ -56,7 +58,7 @@ public class PersonService {
         return personRepository.findOneByFirstNameAndLastName(firstName,lastName);
     }
 
-    @Transactional // sa fait quoi ? et pourquoi je peux pas surcharger mes methodes avec cette annotation
+
     public void updatePerson(String firstName, String lastName, String address,
                              String city, String zip, String phone, String email) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);

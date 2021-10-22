@@ -41,4 +41,12 @@ public class AddressService {
         address.setAddressName(addressName);
         return save(address);
     }
+
+    public Address findOrCreate(String addessName) {
+        Address address = find(addessName);
+        if(address == null) {
+            address = save(addessName);
+        }
+        return address;
+    }
 }

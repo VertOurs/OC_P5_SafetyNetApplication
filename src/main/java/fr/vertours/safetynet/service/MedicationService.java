@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.service;
 
+import fr.vertours.safetynet.model.Allergy;
 import fr.vertours.safetynet.model.Medication;
 import fr.vertours.safetynet.repository.MedicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,13 @@ public class MedicationService {
 
     public Medication save( Medication medication) {
         return medicationRepository.save(medication);
+    }
+
+    public Medication findOrCreate(String medicationName) {
+        Medication medication = find(medicationName);
+        if (medication == null) {
+            medication = save(medicationName);
+        }
+        return medication;
     }
 }
