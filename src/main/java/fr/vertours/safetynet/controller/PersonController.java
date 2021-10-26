@@ -34,14 +34,14 @@ public class PersonController {
         personService.addPerson(person);
     }
 
-    @PutMapping(path = "{lastName}/{firstName}")
-    public void updatePerson(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName, @RequestParam(required = false) String address,@RequestParam(required = false) String city, @RequestParam(required = false) String zip, @RequestParam(required = false) String phone, @RequestParam(required = false) String email) {
-        personService.updatePerson(lastName, firstName, address, city, zip, phone, email);
+    @PutMapping(path = "{firstName}/{lastName}")
+    public void updatePerson(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName, @RequestParam(required = false) String address,@RequestParam(required = false) String city, @RequestParam(required = false) String zip, @RequestParam(required = false) String phone, @RequestParam(required = false) String email) {
+        personService.updatePerson(firstName, lastName, address, city, zip, phone, email);
     }
 
 
-    @DeleteMapping(path = "{lastName}/{firstName}")
-    public void deletePerson(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName){
-        personService.deletePerson(lastName, firstName);
+    @DeleteMapping(path = "{firstName}/{lastName}")
+    public void deletePerson(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName){
+        personService.deletePerson(firstName, lastName);
     }
 }

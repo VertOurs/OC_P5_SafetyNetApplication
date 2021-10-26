@@ -2,13 +2,10 @@ package fr.vertours.safetynet.controller;
 
 import fr.vertours.safetynet.dto.MedicalRecordDTO;
 import fr.vertours.safetynet.model.MedicalRecord;
-import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.MedicalRecordService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -30,27 +27,26 @@ public class MedicalRecordController {
         return medicalRecordDTOList;
     }
 
-    @GetMapping(path = "{lastName}/{firstName}")
-    public MedicalRecordDTO getOneMedicalRecord(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
-        MedicalRecord medicalRecord = medicalRecordService.getOneMedicalRecordByLastAndFirstName(lastName, firstName);
+    @GetMapping(path = "{firstName}/{lastName}")
+    public MedicalRecordDTO getOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
+        MedicalRecord medicalRecord = medicalRecordService.getOneMedicalRecordByFirstAndLastName(firstName, lastName);
         return MedicalRecordDTO.fromMedicalRecord(medicalRecord);
     }
     @PostMapping
     public void registerNewMedicalPerson(@RequestBody MedicalRecordDTO medicalRecordDTO) {
         medicalRecordService.save(medicalRecordDTO);
     }
-    //ne fonctionne pas
-    @PutMapping (path = "{lastName}/{firstName}")
-    public void updateMedicalRecord(@PathVariable("lastName") String lastName,
-                                    @PathVariable("firstName") String firstName,
+
+    @PutMapping (path = "{firstName}/{lastName}")
+    public void updateMedicalRecord(@PathVariable("firstName") String firstName,
+                                    @PathVariable("lastName") String lastName,
                                     @RequestBody MedicalRecordDTO medicalRecordDTO) {
-        System.out.println(medicalRecordDTO);
-        medicalRecordService.updateMedicalRecord(lastName, firstName, medicalRecordDTO);
+        medicalRecordService.updateMedicalRecord(firstName, lastName, medicalRecordDTO);
 
     }
-    // Id ne doit pas etre null
-    @DeleteMapping(path = "{lastName}/{firstName}")
-    public void deleteOneMedicalRecord(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
+
+    @DeleteMapping(path = "{firstName}/{lastName}")
+    public void deleteOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         medicalRecordService.deleteOneMedicalRecord(firstName, lastName);
     }
 

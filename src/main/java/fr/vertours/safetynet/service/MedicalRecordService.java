@@ -43,7 +43,7 @@ public class MedicalRecordService {
     public List<MedicalRecord> getAllMedicalRecord() {
         return medicalRecordRepository.findAll();
     }
-    public MedicalRecord getOneMedicalRecordByLastAndFirstName(String lastName, String firstName) {
+    public MedicalRecord getOneMedicalRecordByFirstAndLastName(String firstName, String lastName) {
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
     }
@@ -101,7 +101,7 @@ public class MedicalRecordService {
         }
     }
 
-    public void updateMedicalRecord(String lastName, String firstName, MedicalRecordDTO medicalRecordDTO) {
+    public void updateMedicalRecord(String firstName, String lastName, MedicalRecordDTO medicalRecordDTO) {
         MedicalRecord medicalRecord = medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
         if(medicalRecordDTO.getBirthdate() != null ) {
