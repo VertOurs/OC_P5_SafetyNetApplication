@@ -1,14 +1,15 @@
 package fr.vertours.safetynet.controller;
 
 import fr.vertours.safetynet.dto.PersonDTO;
+import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/person")
 public class PersonController {
 
     private final PersonService personService;
@@ -18,30 +19,43 @@ public class PersonController {
     }
 
 
-    @GetMapping
-    public List<Person> getListOfPersons() {
-        return personService.getAllPersons();
+    @GetMapping("/person/all")
+    public List<PersonDTO> getListOfPersons() {
+        List<Person> personList = this.personService.getAllPersons();
+        List<PersonDTO> personDTOList = personList.stream().map(PersonDTO::fromPerson).collect(Collectors.toList());
+        return personDTOList;
     }
 
-    @GetMapping(path = "{personID}")
-    public Person getOnePerson(@PathVariable ("personID") Long personID){
-        return personService.getOnePersonByID(personID);
+    @GetMapping(path = "/person/{firstName}/{lastName}")
+    public PersonDTO getOnePerson(@PathVariable ("firstName") String firstName,
+                                  @PathVariable ("lastName") String lastName) {
+        Person person = personService.find(firstName, lastName);
+        PersonDTO personDTO = new PersonDTO(person.getFirstName(),
+                person.getLastName(),
+                person.getAddress().getAddressName(),
+                person.getCity(),
+                person.getZip(),
+                person.getPhone(),
+                person.getEmail());
+        return personDTO;
+    }
+
+    @PostMapping("/person")
+    public void registerNewPerson(@RequestBody PersonDTO personDTO) {
+        personService.addPerson(personDTO);
+    }
+    // Problème visiblement il y a un probleme (cascade)
+    @PutMapping(path = "/person/{firstName}/{lastName}")
+    public void updatePerson(@PathVariable("firstName") String firstName,
+                             @PathVariable("lastName") String lastName,
+                             @RequestBody PersonDTO personDTO ) {
+        personService.updatePerson(firstName, lastName, personDTO);
     }
 
 
-    @PostMapping
-    public void registerNewPerson(@RequestBody PersonDTO person) {
-        personService.addPerson(person);
-    }
-
-    @PutMapping(path = "{firstName}/{lastName}")
-    public void updatePerson(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName, @RequestParam(required = false) String address,@RequestParam(required = false) String city, @RequestParam(required = false) String zip, @RequestParam(required = false) String phone, @RequestParam(required = false) String email) {
-        personService.updatePerson(firstName, lastName, address, city, zip, phone, email);
-    }
-
-
-    @DeleteMapping(path = "{firstName}/{lastName}")
-    public void deletePerson(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName){
+    @DeleteMapping(path = "/person/{firstName}/{lastName}")
+    public void deletePerson(@PathVariable("firstName") String firstName,
+                             @PathVariable("lastName") String lastName) {
         personService.deletePerson(firstName, lastName);
     }
 }

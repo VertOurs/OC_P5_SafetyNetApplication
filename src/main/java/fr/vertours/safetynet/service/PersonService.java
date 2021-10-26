@@ -59,24 +59,25 @@ public class PersonService {
     }
 
 
-    public void updatePerson(String firstName, String lastName, String address,
-                             String city, String zip, String phone, String email) {
+    public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
-        Address addressObject = addressService.save(address);
-        if(address != null && address.length() > 0 && !Objects.equals(person.getAddress(), address)) {
-            person.setAddress(addressObject);
+
+        if(personDTO.getAddress() != null) {
+            Address address = new Address(personDTO.getAddress());
+            person.setAddress(address);
         }
-        if(city != null && city.length() >0 && !Objects.equals(person.getCity(), city)) {
-            person.setCity(city);
+        if (personDTO.getCity() != null) {
+            person.setCity(personDTO.getCity());
         }
-        if(zip != null && zip.length() > 0 && !Objects.equals(person.getZip(), zip)) {
-            person.setZip(zip);
+        if (personDTO.getZip() != null) {
+            person.setZip(personDTO.getZip());
         }
-        if(phone != null && phone.length() > 0 && !Objects.equals(person.getPhone(), phone)) {
-            person.setPhone(phone);
+        if (personDTO.getPhone() != null) {
+            person.setPhone(personDTO.getPhone());
         }
-        if(email != null && email.length() > 0 && !Objects.equals(person.getEmail(), email)) {
-            person.setEmail(email);
+        if (personDTO.getEmail() != null) {
+            person.setEmail(personDTO.getEmail());
         }
+        personRepository.save(person);
     }
 }

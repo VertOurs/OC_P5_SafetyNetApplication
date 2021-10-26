@@ -13,13 +13,7 @@ public class FireStationDTO {
     private Set<String> address;
     private int station;
 
-    @Override
-    public String toString() {
-        return "FireStationDTO{" +
-                "address='" + address + '\'' +
-                ", station=" + station +
-                '}';
-    }
+
 
     public FireStation createFireStation(){
         Set<Address> setAddress = address.stream().map(Address::new).collect(Collectors.toSet());
@@ -48,5 +42,13 @@ public class FireStationDTO {
 
     public void setStation(int station) {
         this.station = station;
+    }
+
+    @Override
+    public String toString() {
+        return "FireStationDTO{" +
+                "address='" + address + '\'' +
+                ", station=" + station +
+                '}';
     }
 }

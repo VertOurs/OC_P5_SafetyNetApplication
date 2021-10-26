@@ -21,8 +21,9 @@ public class Address {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "address")
     private Set<FireStation> fireStation;
 
-    public Address(String addressName) {
 
+
+    public Address(String addressName) {
         this.addressName = addressName;
         this.fireStation = new HashSet<>();
     }
@@ -36,13 +37,13 @@ public class Address {
         this.fireStation = fireStation;
     }
 
+
     public void addFirestation(FireStation fireStation){
         if (!this.fireStation.contains(fireStation)) {
             this.fireStation.add(fireStation);
             fireStation.addAdress(this);
         }
     }
-
     public void removeFirestation(FireStation fireStation) {
         if (this.fireStation.contains(fireStation)) {
             this.fireStation.remove(fireStation);
@@ -59,6 +60,7 @@ public class Address {
             fireStation1.addAdress(this);
         }
     }
+
 
     public Long getId() {
         return id;

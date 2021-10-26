@@ -12,12 +12,38 @@ public class PersonDTO {
     private String phone;
     private String email;
 
+    public PersonDTO() {
+    }
+
+    public PersonDTO(String firstName, String lastName, String address, String city, String zip, String phone, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.zip = zip;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public Person createPerson(){
         Address address1 = new Address(getAddress());
         Person person = new Person(getFirstName(),getLastName(),address1, getCity(),getZip(),getPhone(),getEmail());
 
         return person;
     }
+
+    public static PersonDTO fromPerson(Person person) {
+        PersonDTO personDTO = new PersonDTO();
+        personDTO.setFirstName(person.getFirstName());
+        personDTO.setLastName(person.getLastName());
+        personDTO.setAddress(person.getAddress().getAddressName());
+        personDTO.setCity(person.getCity());
+        personDTO.setZip(person.getZip());
+        personDTO.setPhone(person.getPhone());
+        personDTO.setEmail(person.getEmail());
+        return personDTO;
+    }
+
     @Override
     public String toString() {
         return "PersonDTO{" +
