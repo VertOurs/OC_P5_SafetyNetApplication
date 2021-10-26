@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping (path = "/firestation")
 public class FireStationController {
 
     private final  FireStationService firestationService;
@@ -20,31 +19,37 @@ public class FireStationController {
     }
 
 
-    @GetMapping
+    @GetMapping("/firestation/all")
     public List<FireStationDTO> getListFireStation(){
-        List<FireStation> fireStationList = this.firestationService.getListOfAllStations();
-        List<FireStationDTO> fireStationDTOList = fireStationList.stream().map(FireStationDTO::fromFireStation).collect(Collectors.toList());
+        List<FireStation> fireStationList = this.firestationService.
+                getListOfAllStations();
+
+        List<FireStationDTO> fireStationDTOList = fireStationList.stream()
+                .map(FireStationDTO::fromFireStation)
+                .collect(Collectors.toList());
+
         return fireStationDTOList;
     }
 
-    @GetMapping ("/{station}")
+    @GetMapping ("/firestation/{station}")
     public FireStationDTO getStation(@PathVariable int station){
         FireStation fireStation = this.firestationService.findOneStation(station);
         return FireStationDTO.fromFireStation(fireStation);
     }
-
-    @PostMapping
-    public void create(@RequestBody FireStationDTO fireStation) {
-        this.firestationService.saveOneStation(fireStation);
+    // l'objet DTO est déja null dans le requestBody selon le débuggeur
+    @PostMapping("/firestation")
+    public void create(@RequestBody FireStationDTO fireStationDTO) {
+        this.firestationService.saveOneStation(fireStationDTO);
     }
 
-    @PutMapping("/{station}")
-    public void updateNbStationForOneAddress(@PathVariable int station, @RequestBody Address address) {
+    @PutMapping("/firestation/{station}")
+    public void updateNbStationForOneAddress(@PathVariable int station,
+                                             @RequestBody Address address) {
          this.firestationService.updateStationForOneAddress(station, address);
     }
 
 
-    @DeleteMapping(path = "{nbStation}")
+    @DeleteMapping(path = "/firestation/{nbStation}")
     public void deleteOneStation(@PathVariable int nbStation) {
         this.firestationService.deleteOneFireStation(nbStation);
     }

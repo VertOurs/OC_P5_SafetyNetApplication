@@ -22,7 +22,9 @@ public class PersonController {
     @GetMapping("/person/all")
     public List<PersonDTO> getListOfPersons() {
         List<Person> personList = this.personService.getAllPersons();
-        List<PersonDTO> personDTOList = personList.stream().map(PersonDTO::fromPerson).collect(Collectors.toList());
+        List<PersonDTO> personDTOList = personList.stream()
+                .map(PersonDTO::fromPerson)
+                .collect(Collectors.toList());
         return personDTOList;
     }
 
@@ -44,7 +46,7 @@ public class PersonController {
     public void registerNewPerson(@RequestBody PersonDTO personDTO) {
         personService.addPerson(personDTO);
     }
-    // Problème visiblement il y a un probleme (cascade)
+    // visiblement il y a un probleme (cascade)                                            !!*************!!
     @PutMapping(path = "/person/{firstName}/{lastName}")
     public void updatePerson(@PathVariable("firstName") String firstName,
                              @PathVariable("lastName") String lastName,

@@ -27,6 +27,8 @@ public class FireStationService {
         Set<Address> addressSet = fireStationDTO.getAddress().stream().map(address -> addressService.findOrCreate(address)).collect(Collectors.toSet());
         FireStation fireStation = fireStationDTO.createFireStation();
         fireStation.setAddress(addressSet);
+        //rajout de cette ligne pour eviter nullpointexception sans succès
+        fireStation.setStation(fireStationDTO.getStation());
         fireStationRepository.save(fireStation);
     }
     public void saveAllStations(Collection<FireStation> fireStationCollection){
