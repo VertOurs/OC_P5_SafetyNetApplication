@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.controller;
 
+import fr.vertours.safetynet.dto.EmailDTO;
 import fr.vertours.safetynet.dto.PersonDTO;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.Person;
@@ -40,6 +41,14 @@ public class PersonController {
                 person.getPhone(),
                 person.getEmail());
         return personDTO;
+    }
+
+    @GetMapping("/communityEmail{city}")
+    public List<EmailDTO> getAllEmailForOneCity(@PathVariable("city") String city) {
+        List<Person> personList = this.personService.findByCity(city);
+        List<EmailDTO> emailDTO = personList.stream().map(EmailDTO::fromPerson).collect(Collectors.toList());
+        return emailDTO;
+
     }
 
     @PostMapping("/person")
