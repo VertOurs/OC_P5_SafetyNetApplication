@@ -40,6 +40,9 @@ public class MedicalRecordService {
         this.medicalRecordRepository = medicalRecordRepository;
     }
 
+    public MedicalRecord find(String firstName, String lastName) {
+        return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
+    }
     public List<MedicalRecord> getAllMedicalRecord() {
         return medicalRecordRepository.findAll();
     }
@@ -130,8 +133,8 @@ public class MedicalRecordService {
     }
 
     public void deleteOneMedicalRecord(String firstName, String lastName) {
-        Long id = medicalRecordRepository.findByPerson_FirstNameAndPerson_LastName(firstName, lastName);
-        medicalRecordRepository.deleteById(id);
+        MedicalRecord medicalRecord = find(firstName, lastName);
+        medicalRecordRepository.delete(medicalRecord);
     }
 }
 

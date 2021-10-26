@@ -47,7 +47,6 @@ public class PersonService {
     }
 
     public void deletePerson(String firstName, String lastName) {
-        //personRepository.deleteByFirstNameAndLastName(firstName, lastName);
         Person person = find(firstName, lastName);
         personRepository.delete(person);
 

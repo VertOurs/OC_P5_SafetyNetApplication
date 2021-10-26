@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/medicalRecord")
 public class MedicalRecordController {
 
 
@@ -20,24 +19,24 @@ public class MedicalRecordController {
     }
 
 
-    @GetMapping
+    @GetMapping("/medicalRecord/all")
     public List<MedicalRecordDTO> getListOfMedicalRecord() {
         List <MedicalRecord> medicalRecordList = medicalRecordService.getAllMedicalRecord();
         List <MedicalRecordDTO> medicalRecordDTOList = medicalRecordList.stream().map(MedicalRecordDTO::fromMedicalRecord).collect(Collectors.toList());
         return medicalRecordDTOList;
     }
 
-    @GetMapping(path = "{firstName}/{lastName}")
+    @GetMapping(path = "/medicalRecord/{firstName}/{lastName}")
     public MedicalRecordDTO getOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         MedicalRecord medicalRecord = medicalRecordService.getOneMedicalRecordByFirstAndLastName(firstName, lastName);
         return MedicalRecordDTO.fromMedicalRecord(medicalRecord);
     }
-    @PostMapping
+    @PostMapping("/medicalRecord")
     public void registerNewMedicalPerson(@RequestBody MedicalRecordDTO medicalRecordDTO) {
         medicalRecordService.save(medicalRecordDTO);
     }
 
-    @PutMapping (path = "{firstName}/{lastName}")
+    @PutMapping (path = "/medicalRecord/{firstName}/{lastName}")
     public void updateMedicalRecord(@PathVariable("firstName") String firstName,
                                     @PathVariable("lastName") String lastName,
                                     @RequestBody MedicalRecordDTO medicalRecordDTO) {
@@ -45,7 +44,7 @@ public class MedicalRecordController {
 
     }
 
-    @DeleteMapping(path = "{firstName}/{lastName}")
+    @DeleteMapping(path = "/medicalRecord/{firstName}/{lastName}")
     public void deleteOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         medicalRecordService.deleteOneMedicalRecord(firstName, lastName);
     }
