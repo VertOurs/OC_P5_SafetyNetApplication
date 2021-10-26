@@ -42,7 +42,7 @@ public class PersonController {
                 person.getEmail());
         return personDTO;
     }
-
+    /* ****************************************  ENDPOINT 7  ************************************************************ */
     @GetMapping("/communityEmail{city}")
     public List<EmailDTO> getAllEmailForOneCity(@PathVariable("city") String city) {
         List<Person> personList = this.personService.findByCity(city);
@@ -50,7 +50,6 @@ public class PersonController {
         return emailDTO;
 
     }
-
     @PostMapping("/person")
     public void registerNewPerson(@RequestBody PersonDTO personDTO) {
         personService.addPerson(personDTO);

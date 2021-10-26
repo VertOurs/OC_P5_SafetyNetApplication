@@ -13,8 +13,10 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Person findOneByFirstNameAndLastName(String firstName, String lastName);
     Person findOneById(Long ID);
     Person deleteByFirstNameAndLastName(String firstName, String lastName);
-    //List<Person> findByAddressIn();
-    List<Person> findByCity(String city);
+
+    // AU debut j'avais essayé une methode findByCity sans plus de résultat.
+    List<Person> findAllByCity(String city);
+
 
 
 }

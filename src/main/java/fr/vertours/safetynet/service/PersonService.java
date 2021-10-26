@@ -43,27 +43,17 @@ public class PersonService {
     public List<Person> getAllPersons() {
         return personRepository.findAll();
     }
-    public Person getOnePersonByID(Long personID) {
-        return personRepository.findOneById(personID);
-    }
 
     public void deletePerson(String firstName, String lastName) {
         Person person = find(firstName, lastName);
         personRepository.delete(person);
-
-
     }
-
     public Person find(String firstName, String lastName) {
         return personRepository.findOneByFirstNameAndLastName(firstName,lastName);
     }
     public List<Person> findByCity(String city) {
-        //List<Person> personList = new ArrayList<>();
-
-        return personRepository.findByCity(city);
+        return personRepository.findAllByCity(city);
     }
-
-
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
 
