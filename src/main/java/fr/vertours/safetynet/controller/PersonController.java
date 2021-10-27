@@ -51,23 +51,23 @@ public class PersonController {
         return personDTO;
     }
     /* ****************************************  ENDPOINT 7  ************************************************************ */
-    @GetMapping("/communityEmail{city}")
-    public List<EmailDTO> getAllEmailForOneCity(@PathVariable("city") String city) {
+    @GetMapping("/communityEmail")
+    public List<EmailDTO> getAllEmailForOneCity(@RequestParam("city") String city) {
         List<Person> personList = this.personService.findByCity(city);
         List<EmailDTO> emailDTO = personList.stream().map(EmailDTO::fromPerson).collect(Collectors.toList());
         return emailDTO;
     }
     /* ****************************************  ENDPOINT 6  ************************************************************* */
-    @GetMapping("/personInfo{firstName}{lastName}")
-    public PersonInfoDTO getNameAddressAgeMailMedicationsAndAllergies(@PathVariable("firstName") String firstName, @PathVariable("lastName") String LastName) {
+    @GetMapping("/personInfo")
+    public PersonInfoDTO getNameAddressAgeMailMedicationsAndAllergies(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {
         Person person = this.personService.find(firstName, LastName);
         MedicalRecord medicalRecord = new MedicalRecord(person);
         PersonInfoDTO personInfoDTO =  new PersonInfoDTO(person, medicalRecord);
         return personInfoDTO;
     }
     /* *****************************************  ENDPOINT 4  ************************************************************* */
-    @GetMapping("/fire{address}")
-    public List<FireDTO> getListOfPersonForOneAddressWithFireStation(@PathVariable("address") String address) {
+    @GetMapping("/fire")
+    public List<FireDTO> getListOfPersonForOneAddressWithFireStation(@RequestParam("address") String address) {
     List<Person> personList = this.personService.findByAddress(address);
     List<FireDTO> fireDTOList = new ArrayList<>();
     for(Person p : personList) {
