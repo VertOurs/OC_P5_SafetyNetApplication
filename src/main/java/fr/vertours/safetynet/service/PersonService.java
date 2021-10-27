@@ -51,8 +51,14 @@ public class PersonService {
     public Person find(String firstName, String lastName) {
         return personRepository.findOneByFirstNameAndLastName(firstName,lastName);
     }
+    public List<Person> findByLastName(String lastname) {
+        return personRepository.findByLastName(lastname);
+    }
     public List<Person> findByCity(String city) {
         return personRepository.findAllByCity(city);
+    }
+    public List<Person> findByAddress(String address) {
+        return personRepository.findByAddress(address);
     }
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);

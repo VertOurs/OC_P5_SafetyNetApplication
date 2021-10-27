@@ -46,6 +46,10 @@ public class MedicalRecord {
         this.allergies = allergies;
     }
 
+    public MedicalRecord(Person person) {
+        this.person = person;
+    }
+
     public void removeAllMedications() {
         this.medications = new HashSet<>();
     }
