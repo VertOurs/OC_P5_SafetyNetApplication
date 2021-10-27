@@ -5,6 +5,7 @@ import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Medication;
 import fr.vertours.safetynet.model.Person;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ public class PersonInfoDTO {
     private String firstName;
     private String lastName;
     private String address;
-    private String birthDate;
+    private LocalDate birthDate;
     private String email;
     private Set<String> Medications;
     private Set<String> Allergies;
@@ -25,7 +26,7 @@ public class PersonInfoDTO {
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();
         this.address = person.getAddress().getAddressName();
-        this.birthDate = medicalRecord.getBirthDate().toString();
+        this.birthDate = medicalRecord.getBirthDate();
         this.email = person.getEmail();
 
         Medications = medicationToString(medicalRecord.getMedications());
@@ -51,7 +52,7 @@ public class PersonInfoDTO {
     public static PersonInfoDTO fromPersonAndMedicalRecord(Person person, MedicalRecord medicalRecord) {
         PersonInfoDTO personInfoDTO = new PersonInfoDTO();
         personInfoDTO.setAddress(person.getAddress().getAddressName());
-        personInfoDTO.setBirthDate(medicalRecord.getBirthDate().toString());
+        personInfoDTO.setBirthDate(medicalRecord.getBirthDate());
         personInfoDTO.setEmail(person.getEmail());
         Set<Medication> medicationSet = medicalRecord.getMedications();
         Set<String> stringMedicationSet = new HashSet<>();
@@ -91,10 +92,10 @@ public class PersonInfoDTO {
         this.address = address;
     }
 
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

@@ -1,19 +1,16 @@
 package fr.vertours.safetynet.controller;
 
-import fr.vertours.safetynet.dto.EmailDTO;
-import fr.vertours.safetynet.dto.FireDTO;
-import fr.vertours.safetynet.dto.PersonDTO;
-import fr.vertours.safetynet.dto.PersonInfoDTO;
+import fr.vertours.safetynet.dto.*;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.MedicalRecordService;
 import fr.vertours.safetynet.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -82,6 +79,38 @@ public class PersonController {
         fireDTOList.add(fireDTO);
     }
         return fireDTOList;
+    }
+    /* *****************************************ENDPOINT 3 ****************************************************************** */
+    @GetMapping("/phoneAlert")
+    public List<String> getListPhoneNumberByFireStation(@RequestParam ("firestation") int station) {
+        List<Person> personList = personService.findByStation(station);
+        List<String> stringList =  new ArrayList<>();
+        for(Person p : personList) {
+            stringList.add(p.getPhone());
+        }
+        return stringList;
+    }
+    /* ****************************************** ENDPOINT 1 ****************************************************************** */
+    @GetMapping("/firestation")
+    public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
+        List<Person> personList = personService.findByStation(station);
+        List<PersonForFireInfoDTO> personInfoList = new ArrayList<>();
+        FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO();
+        for(Person p : personList) {
+            PersonForFireInfoDTO personFireInfo = new PersonForFireInfoDTO(p.getFirstName(), p.getLastName(),p.getAddress().getAddressName(), p.getPhone());
+            MedicalRecord medicalRecord = medicalRecordService.find(p.getFirstName(), p.getLastName());
+            LocalDate now = LocalDate.now();
+            Period period = Period.between(now, medicalRecord.getBirthDate());
+            int age = Math.abs(period.getYears());
+            if(age >= 18) {
+                fireStationInfoDTO.setNbAdultes(fireStationInfoDTO.getNbAdultes()+1);
+            } else {
+                fireStationInfoDTO.setNbEnfants(fireStationInfoDTO.getNbEnfants()+1);
+            }
+            personInfoList.add(personFireInfo);
+        }
+        fireStationInfoDTO.setPersonList(personInfoList);
+        return fireStationInfoDTO;
     }
 
 
