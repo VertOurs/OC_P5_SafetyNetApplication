@@ -60,11 +60,15 @@ public class PersonService {
     public List<Person> findByAddress(String address) {
         return personRepository.findByAddress(address);
     }
+    public List<Person> findByStation(int station) {
+        return personRepository.findByAddress_FireStation(station);
+    }
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
 
         if(personDTO.getAddress() != null) {
             Address address = new Address(personDTO.getAddress());
+            addressService.save(address);
             person.setAddress(address);
         }
         if (personDTO.getCity() != null) {

@@ -3,6 +3,7 @@ package fr.vertours.safetynet.controller;
 import fr.vertours.safetynet.dto.FireStationDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
+import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.FireStationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,8 @@ public class FireStationController {
     public FireStationController(FireStationService fireStationService) {
         this.firestationService = fireStationService;
     }
+
+
 
 
     @GetMapping("/firestation/all")
@@ -36,7 +39,7 @@ public class FireStationController {
         FireStation fireStation = this.firestationService.findOneStation(station);
         return FireStationDTO.fromFireStation(fireStation);
     }
-    // l'objet DTO est déja null dans le requestBody selon le débuggeur
+
     @PostMapping("/firestation")
     public void create(@RequestBody FireStationDTO fireStationDTO) {
         this.firestationService.saveOneStation(fireStationDTO);
