@@ -5,6 +5,7 @@ import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.MedicalRecordService;
 import fr.vertours.safetynet.service.PersonService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -24,14 +25,25 @@ public class PersonController {
         this.personService = personService;
     }
 
-
+    /*
+    Dois-je utilisez ResponseEntity partout? pourquoi?
+    es ce que l'utilisation du try/catch est pertinente?
+    es ce la bonne utilisation du try/catch?
+    dois-je faire plusieurs bloc catch pour ou un gros Exception est suffisant (bonne pratique)?
+    pourquoi j'ai besoin de rajouter build() pour que cela marche?
+    Et les loggger dans tous ça ?
+    */
     @GetMapping("/person/all")
-    public List<PersonDTO> getListOfPersons() {
+    public ResponseEntity<List<PersonDTO>> getListOfPersons() {
         List<Person> personList = this.personService.getAllPersons();
-        List<PersonDTO> personDTOList = personList.stream()
-                .map(PersonDTO::fromPerson)
-                .collect(Collectors.toList());
-        return personDTOList;
+        try {
+            List<PersonDTO> personDTOList = personList.stream()
+                    .map(PersonDTO::fromPerson)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(personDTOList);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping(path = "/person/{firstName}/{lastName}")
@@ -89,7 +101,7 @@ public class PersonController {
     }
     /* *****************************************ENDPOINT 3 ****************************************************************** */
     @GetMapping("/phoneAlert")
-    public List<String> getListPhoneNumberByFireStation(@RequestParam ("firestation") int station) {
+    public List<String> getListPhoneNumberByFireStation(@RequestParam ("firestation") String station) {
         List<Person> personList = personService.findByStation(station);
         List<String> stringList =  new ArrayList<>();
         for(Person p : personList) {
@@ -99,7 +111,7 @@ public class PersonController {
     }
     /* ****************************************** ENDPOINT 1 ****************************************************************** */
     @GetMapping("/firestation")
-    public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
+    public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") String station) {
         List<Person> personList = personService.findByStation(station);
         List<PersonForFireInfoDTO> personInfoList = new ArrayList<>();
         FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO();

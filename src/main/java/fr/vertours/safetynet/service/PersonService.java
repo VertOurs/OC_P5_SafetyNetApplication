@@ -60,7 +60,7 @@ public class PersonService {
     public List<Person> findByAddress(String address) {
         return personRepository.findByAddress(address);
     }
-    public List<Person> findByStation(int station) {
+    public List<Person> findByStation(String station) {
         return personRepository.findByAddress_FireStation(station);
     }
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {

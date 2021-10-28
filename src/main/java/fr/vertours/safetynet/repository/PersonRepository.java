@@ -17,7 +17,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     List<Person> findByAddress(String address);
 // AU debut j'avais essayé une methode findByCity sans plus de résultat.
     List<Person> findAllByCity(String city);
-    List<Person> findByAddress_FireStation(int station);
+    List<Person> findByAddress_FireStation(String station);
 
 
 
