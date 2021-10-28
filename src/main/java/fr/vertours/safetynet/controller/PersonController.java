@@ -47,6 +47,13 @@ public class PersonController {
                 person.getEmail());
         return personDTO;
     }
+    /* ****************************************  ENDPOINT 7 = Armel  ************************************************************ */
+    @GetMapping("/communityEmail/{city}")
+    public List<EmailDTO> getAllEmailOneCity(@PathVariable("city") String city) {
+        List<Person> personList = this.personService.findByCity(city);
+        List<EmailDTO> emailDTO = personList.stream().map(EmailDTO::fromPerson).collect(Collectors.toList());
+        return emailDTO;
+    }
     /* ****************************************  ENDPOINT 7  ************************************************************ */
     @GetMapping("/communityEmail")
     public List<EmailDTO> getAllEmailForOneCity(@RequestParam("city") String city) {
