@@ -1,5 +1,7 @@
 package fr.vertours.safetynet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +16,8 @@ public class Medication {
     @Column (nullable = false, unique = true)
     private String medication;
 
-    @ManyToMany (mappedBy = "medications")
+    @ManyToMany (mappedBy = "medications", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<MedicalRecord> medicalRecord;
 
     public Long getId() {

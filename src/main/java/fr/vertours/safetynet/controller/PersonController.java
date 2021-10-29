@@ -5,6 +5,8 @@ import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.MedicalRecordService;
 import fr.vertours.safetynet.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 public class PersonController {
 
     private final PersonService personService;
+
+    @Autowired
     private MedicalRecordService medicalRecordService;
 
 
@@ -25,14 +29,6 @@ public class PersonController {
         this.personService = personService;
     }
 
-    /*
-    Dois-je utilisez ResponseEntity partout? pourquoi?
-    es ce que l'utilisation du try/catch est pertinente?
-    es ce la bonne utilisation du try/catch?
-    dois-je faire plusieurs bloc catch pour ou un gros Exception est suffisant (bonne pratique)?
-    pourquoi j'ai besoin de rajouter build() pour que cela marche?
-    Et les loggger dans tous ça ?
-    */
     @GetMapping("/person/all")
     public ResponseEntity<List<PersonDTO>> getListOfPersons() {
         List<Person> personList = this.personService.getAllPersons();
@@ -40,7 +36,7 @@ public class PersonController {
             List<PersonDTO> personDTOList = personList.stream()
                     .map(PersonDTO::fromPerson)
                     .collect(Collectors.toList());
-            return ResponseEntity.ok(personDTOList);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(personDTOList);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
@@ -84,24 +80,12 @@ public class PersonController {
     /* *****************************************  ENDPOINT 4  ************************************************************* */
     @GetMapping("/fire")
     public List<FireDTO> getListOfPersonForOneAddressWithFireStation(@RequestParam("address") String address) {
-    List<Person> personList = this.personService.findByAddress(address);
-    List<FireDTO> fireDTOList = new ArrayList<>();
-    for(Person p : personList) {
-        MedicalRecord medicalRecord = new MedicalRecord(p);
-        FireDTO fireDTO = new FireDTO();
-        fireDTO.setFirstName(p.getFirstName());
-        fireDTO.setLastName(p.getLastName());
-        fireDTO.setPhone(p.getPhone());
-        fireDTO.setAge(medicalRecord.getBirthDate().toString());
-        fireDTO.setMedicationSet(medicalRecord.getMedications());
-        fireDTO.setAllergySet((medicalRecord.getAllergies()));
-        fireDTOList.add(fireDTO);
-    }
-        return fireDTOList;
+
+        return this.medicalRecordService.getFireURL(address);
     }
     /* *****************************************ENDPOINT 3 ****************************************************************** */
     @GetMapping("/phoneAlert")
-    public List<String> getListPhoneNumberByFireStation(@RequestParam ("firestation") String station) {
+    public List<String> getListPhoneNumberByFireStation(@RequestParam ("firestation") int station) {
         List<Person> personList = personService.findByStation(station);
         List<String> stringList =  new ArrayList<>();
         for(Person p : personList) {
@@ -110,27 +94,16 @@ public class PersonController {
         return stringList;
     }
     /* ****************************************** ENDPOINT 2 ****************************************************************** */
-   /*
+/*
     @GetMapping("/childAlert")
     public List<String> getListOfChildrenAtThisAddress(@RequestParam ("address") String address) {
         List<Person> allPersonList = personService.findByAddress(address);
-        List<PersonInfoDTO> allPersonListWithBirthDate = new ArrayList<>();
-        for(Person p : allPersonList) {
-            MedicalRecord mR = new MedicalRecord(p);
-            PersonInfoDTO personInfoDTO = new PersonInfoDTO();
-            personInfoDTO.setFirstName(p.getFirstName());
-            personInfoDTO.setLastName(p.getLastName());
-            personInfoDTO.setAddress(p.getAddress().getAddressName());
-            personInfoDTO.setBirthDate(mR.getBirthDate());
-            personInfoDTO.set
-        }
-
-        List<String> childrenList = allPersonList.stream().filter(x -> )
+        List<String> childrenList = allPersonList.stream().filter(x -> {})
     }*/
 
     /* ****************************************** ENDPOINT 1 ****************************************************************** */
     @GetMapping("/firestation")
-    public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") String station) {
+    public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
         List<Person> personList = personService.findByStation(station);
         List<PersonForFireInfoDTO> personInfoList = new ArrayList<>();
         FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO();

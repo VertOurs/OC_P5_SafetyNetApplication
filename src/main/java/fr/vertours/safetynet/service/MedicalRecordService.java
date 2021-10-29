@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.service;
 
+import fr.vertours.safetynet.dto.FireDTO;
 import fr.vertours.safetynet.dto.MedicalRecordDTO;
 import fr.vertours.safetynet.model.Allergy;
 import fr.vertours.safetynet.model.MedicalRecord;
@@ -11,10 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,6 +47,21 @@ public class MedicalRecordService {
     public MedicalRecord getOneMedicalRecordByFirstAndLastName(String firstName, String lastName) {
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
+    }
+    public List<FireDTO> getFireURL(String address) {
+        List<MedicalRecord> medicalRecordList = this.medicalRecordRepository.findByPerson_Address_AddressName(address);
+        List<FireDTO> fireDTOList = new ArrayList<>();
+        for(MedicalRecord medicalRecord : medicalRecordList) {
+            FireDTO fireDTO = new FireDTO();
+            fireDTO.setFirstName(medicalRecord.getPerson().getFirstName());
+            fireDTO.setLastName(medicalRecord.getPerson().getLastName());
+            fireDTO.setPhone(medicalRecord.getPerson().getPhone());
+            fireDTO.setAge(medicalRecord.getBirthDate().toString());
+            fireDTO.setMedicationSet(medicalRecord.getMedications());
+            fireDTO.setAllergySet((medicalRecord.getAllergies()));
+            fireDTOList.add(fireDTO);
+        }
+        return fireDTOList;
     }
 
     public MedicalRecord save(MedicalRecordDTO medicalRecord) {

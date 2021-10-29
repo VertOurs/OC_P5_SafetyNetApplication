@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import fr.vertours.safetynet.model.Allergy;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Medication;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 public class PersonInfoDTO {
 
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private String firstName;
     private String lastName;
     private String address;

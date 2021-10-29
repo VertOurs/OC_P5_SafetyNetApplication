@@ -1,5 +1,7 @@
 package fr.vertours.safetynet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +15,8 @@ public class Allergy {
     @Column (unique = true, nullable = false)
     private String allergy;
 
-    @ManyToMany (mappedBy = "allergies")
+    @ManyToMany (mappedBy = "allergies", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<MedicalRecord> medicalRecord;
 
     public Allergy() {}

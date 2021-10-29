@@ -2,16 +2,14 @@ package fr.vertours.safetynet.service;
 
 import fr.vertours.safetynet.dto.PersonDTO;
 import fr.vertours.safetynet.model.Address;
+import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class PersonService {
@@ -22,6 +20,9 @@ public class PersonService {
 
     @Autowired
     AddressService addressService;
+
+    @Autowired
+    FireStationService fireStationService;
 
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
@@ -58,10 +59,12 @@ public class PersonService {
         return personRepository.findAllByCity(city);
     }
     public List<Person> findByAddress(String address) {
-        return personRepository.findByAddress(address);
+        return personRepository.findByAddress_AddressName(address);
     }
-    public List<Person> findByStation(String station) {
-        return personRepository.findByAddress_FireStation(station);
+    public List<Person> findByStation(int station) {
+        FireStation fireStation = fireStationService.findOneStation(station);
+        Set<Address> addressSet = fireStation.getAddress();
+        return personRepository.findByAddressIn(addressSet);
     }
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
