@@ -109,6 +109,25 @@ public class PersonController {
         }
         return stringList;
     }
+    /* ****************************************** ENDPOINT 2 ****************************************************************** */
+   /*
+    @GetMapping("/childAlert")
+    public List<String> getListOfChildrenAtThisAddress(@RequestParam ("address") String address) {
+        List<Person> allPersonList = personService.findByAddress(address);
+        List<PersonInfoDTO> allPersonListWithBirthDate = new ArrayList<>();
+        for(Person p : allPersonList) {
+            MedicalRecord mR = new MedicalRecord(p);
+            PersonInfoDTO personInfoDTO = new PersonInfoDTO();
+            personInfoDTO.setFirstName(p.getFirstName());
+            personInfoDTO.setLastName(p.getLastName());
+            personInfoDTO.setAddress(p.getAddress().getAddressName());
+            personInfoDTO.setBirthDate(mR.getBirthDate());
+            personInfoDTO.set
+        }
+
+        List<String> childrenList = allPersonList.stream().filter(x -> )
+    }*/
+
     /* ****************************************** ENDPOINT 1 ****************************************************************** */
     @GetMapping("/firestation")
     public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") String station) {
@@ -131,9 +150,6 @@ public class PersonController {
         fireStationInfoDTO.setPersonList(personInfoList);
         return fireStationInfoDTO;
     }
-
-
-
 
 
     @PostMapping("/person")
