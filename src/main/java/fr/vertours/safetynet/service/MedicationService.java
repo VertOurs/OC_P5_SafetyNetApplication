@@ -6,6 +6,9 @@ import fr.vertours.safetynet.repository.MedicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class MedicationService {
 
@@ -32,5 +35,14 @@ public class MedicationService {
             medication = save(medicationName);
         }
         return medication;
+    }
+
+    public Set<String> makeStringSetFromMedication(Set<Medication> medicationSet) {
+        Set<String> stringSet = new HashSet<>();
+        for(Medication m : medicationSet) {
+            String stringMedication = m.getMedication();
+            stringSet.add(stringMedication);
+        }
+        return stringSet;
     }
 }

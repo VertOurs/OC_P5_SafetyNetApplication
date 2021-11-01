@@ -1,8 +1,10 @@
 package fr.vertours.safetynet.service;
 
+import fr.vertours.safetynet.dto.AllInfoPersonDTO;
 import fr.vertours.safetynet.dto.PersonDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
+import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,14 @@ public class PersonService {
 
     @Autowired
     AddressService addressService;
-
     @Autowired
     FireStationService fireStationService;
+    @Autowired
+    MedicalRecordService medicalRecordService;
+    @Autowired
+    MedicationService medicationService;
+    @Autowired
+    AllergyService allergyService;
 
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
@@ -88,4 +95,23 @@ public class PersonService {
         }
         personRepository.save(person);
     }
+    public AllInfoPersonDTO createAllInfoPersonDTO(String firstName, String lastName) {
+        Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
+        MedicalRecord medicalRecord = medicalRecordService.find(firstName, lastName);
+        FireStation fireStation = fireStationService.findOneStationByAddress(person.getAddress());
+        AllInfoPersonDTO MyDTO = new AllInfoPersonDTO(person.getFirstName(),
+                person.getLastName(),
+                person.getAddress().getAddressName(),
+                person.getCity(),
+                person.getZip(),
+                person.getPhone(),
+                person.getEmail(),
+                medicalRecord.getBirthDate(),
+                medicationService.makeStringSetFromMedication(medicalRecord.getMedications()),
+                allergyService.makeStringSetFromAllergy(medicalRecord.getAllergies()),
+                fireStation.getStation());
+        return MyDTO;
+    }
+
+
 }

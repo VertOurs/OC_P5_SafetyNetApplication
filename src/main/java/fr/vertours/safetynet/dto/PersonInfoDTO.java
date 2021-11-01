@@ -10,9 +10,9 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class PersonInfoDTO {
 
-    @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private String firstName;
     private String lastName;
     private String address;

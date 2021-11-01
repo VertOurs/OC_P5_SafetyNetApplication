@@ -1,6 +1,7 @@
 package fr.vertours.safetynet.controller;
 
 import fr.vertours.safetynet.dto.*;
+import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.MedicalRecordService;
@@ -54,13 +55,6 @@ public class PersonController {
                 person.getPhone(),
                 person.getEmail());
         return personDTO;
-    }
-    /* ****************************************  ENDPOINT 7 = Armel  ************************************************************ */
-    @GetMapping("/communityEmail/{city}")
-    public List<EmailDTO> getAllEmailOneCity(@PathVariable("city") String city) {
-        List<Person> personList = this.personService.findByCity(city);
-        List<EmailDTO> emailDTO = personList.stream().map(EmailDTO::fromPerson).collect(Collectors.toList());
-        return emailDTO;
     }
     /* ****************************************  ENDPOINT 7  ************************************************************ */
     @GetMapping("/communityEmail")
@@ -123,6 +117,15 @@ public class PersonController {
         fireStationInfoDTO.setPersonList(personInfoList);
         return fireStationInfoDTO;
     }
+
+/* *************************************************PERSO ************************************************************************ */
+    @GetMapping("/arthur")
+    public AllInfoPersonDTO getAllInfoPerson(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {
+
+        return personService.createAllInfoPersonDTO(firstName, LastName);
+    }
+
+
 
 
     @PostMapping("/person")

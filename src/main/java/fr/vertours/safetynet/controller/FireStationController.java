@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.controller;
 
+import fr.vertours.safetynet.dto.AllInfoPersonDTO;
 import fr.vertours.safetynet.dto.FireStationDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
@@ -18,8 +19,6 @@ public class FireStationController {
     public FireStationController(FireStationService fireStationService) {
         this.firestationService = fireStationService;
     }
-
-
 
 
     @GetMapping("/firestation/all")

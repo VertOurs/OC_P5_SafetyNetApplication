@@ -37,5 +37,13 @@ public class AllergyService {
         return allergy;
     }
 
+    public Set<String> makeStringSetFromAllergy(Set<Allergy> medicationSet) {
+        Set<String> stringSet = new HashSet<>();
+        for(Allergy a : medicationSet) {
+            String stringMedication = a.getAllergy();
+            stringSet.add(stringMedication);
+        }
+        return stringSet;
+    }
 
 }

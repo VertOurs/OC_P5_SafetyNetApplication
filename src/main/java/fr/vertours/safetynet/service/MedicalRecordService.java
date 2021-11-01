@@ -94,6 +94,7 @@ public class MedicalRecordService {
         return setMedication;
     }
 
+
     private Set<Allergy> makeAllergy(Set<String> allergyName) {
         Set<Allergy> setAllergy = new HashSet<>();
         for(String s : allergyName){

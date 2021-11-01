@@ -42,6 +42,9 @@ public class FireStationService {
     public FireStation findOneStation(int fireStation) {
         return fireStationRepository.findByStation(fireStation);
     }
+    public FireStation findOneStationByAddress(Address address) {
+        return fireStationRepository.findFireStationByAddress(address);
+    }
 
     public void deleteOneFireStation(int firestation) {
         FireStation fireStationObject = fireStationRepository.findByStation(firestation);
