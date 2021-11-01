@@ -44,6 +44,19 @@ public class MedicalRecordService {
     public List<MedicalRecord> getAllMedicalRecord() {
         return medicalRecordRepository.findAll();
     }
+
+    public List<MedicalRecord> getMedicalRecordByListOfPerson(List<Person> personList) {
+        List<MedicalRecord> allMedicalRecordList = medicalRecordRepository.findAll();
+        List<MedicalRecord>  medicalRecordList = new ArrayList<>();
+        for(Person p : personList) {
+            for(MedicalRecord mR : allMedicalRecordList) {
+                if(p.equals(mR.getPerson())){
+                    medicalRecordList.add(mR);
+                }
+            }
+        }
+        return medicalRecordList;
+    }
     public MedicalRecord getOneMedicalRecordByFirstAndLastName(String firstName, String lastName) {
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 

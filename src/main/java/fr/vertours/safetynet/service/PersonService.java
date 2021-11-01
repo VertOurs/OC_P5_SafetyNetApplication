@@ -1,8 +1,6 @@
 package fr.vertours.safetynet.service;
 
-import fr.vertours.safetynet.dto.AllInfoPersonDTO;
-import fr.vertours.safetynet.dto.FireDTO;
-import fr.vertours.safetynet.dto.PersonDTO;
+import fr.vertours.safetynet.dto.*;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.MedicalRecord;
@@ -12,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -123,6 +124,29 @@ public class PersonService {
 
     public List<FireDTO> getListOfPersonForOneAddressWithFireStation(String address) {
         return medicalRecordService.getFireURL(address);
+    }
+    public List<PersonForFireInfoDTO> personFromFireStation(List<Person> personList) {
+       List<PersonForFireInfoDTO> infoDTOS = personList.stream().map(PersonForFireInfoDTO::fromPerson).collect(Collectors.toList());
+      return infoDTOS;
+    }
+
+    public FireStationInfoDTO getFireStationInfoDTOFromList (List<PersonForFireInfoDTO> personInfoList, List<Person> personList) {
+        FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO();
+        for(Person p : personList) {
+            PersonForFireInfoDTO personFireInfo = new PersonForFireInfoDTO(p.getFirstName(), p.getLastName(),p.getAddress().getAddressName(), p.getPhone());
+            MedicalRecord medicalRecord = medicalRecordService.find(p.getFirstName(), p.getLastName());
+            LocalDate now = LocalDate.now();
+            Period period = Period.between(now, medicalRecord.getBirthDate());
+            int age = Math.abs(period.getYears());
+            if(age >= 18) {
+                fireStationInfoDTO.setNbAdultes(fireStationInfoDTO.getNbAdultes()+1);
+            } else {
+                fireStationInfoDTO.setNbEnfants(fireStationInfoDTO.getNbEnfants()+1);
+            }
+            personInfoList.add(personFireInfo);
+        }
+        fireStationInfoDTO.setPersonList(personInfoList);
+        return fireStationInfoDTO;
     }
 
 }

@@ -1,10 +1,15 @@
 package fr.vertours.safetynet.dto;
 
+import fr.vertours.safetynet.model.Person;
+
 public class PersonForFireInfoDTO {
     private String firstName;
     private String lastName;
     private String address;
     private String phone;
+
+    public PersonForFireInfoDTO() {
+    }
 
     public PersonForFireInfoDTO(String firstName, String lastName, String address, String phone) {
         this.firstName = firstName;
@@ -12,6 +17,18 @@ public class PersonForFireInfoDTO {
         this.address = address;
         this.phone = phone;
     }
+
+
+    public static PersonForFireInfoDTO fromPerson(Person person) {
+        PersonForFireInfoDTO personDTO = new PersonForFireInfoDTO();
+        personDTO.setFirstName(person.getFirstName());
+        personDTO.setLastName(person.getLastName());
+        personDTO.setAddress(person.getAddress().getAddressName());
+        personDTO.setPhone(person.getPhone());
+
+        return personDTO;
+    }
+
 
     public String getFirstName() {
         return firstName;

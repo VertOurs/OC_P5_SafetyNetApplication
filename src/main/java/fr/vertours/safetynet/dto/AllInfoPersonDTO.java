@@ -1,6 +1,7 @@
 package fr.vertours.safetynet.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import fr.vertours.safetynet.model.Person;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -20,6 +21,8 @@ public class AllInfoPersonDTO {
     private Set<String> medications = new HashSet<>();
     private Set<String> allergies = new HashSet<>();
     private Set<Integer> station;
+
+
 
 
 

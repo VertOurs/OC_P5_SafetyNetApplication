@@ -1,7 +1,6 @@
 package fr.vertours.safetynet.controller;
 
 import fr.vertours.safetynet.dto.*;
-import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.MedicalRecordService;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,23 +77,8 @@ public class PersonController {
     @GetMapping("/firestation")
     public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
         List<Person> personList = personService.findByStation(station);
-        List<PersonForFireInfoDTO> personInfoList = new ArrayList<>();
-        FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO();
-        for(Person p : personList) {
-            PersonForFireInfoDTO personFireInfo = new PersonForFireInfoDTO(p.getFirstName(), p.getLastName(),p.getAddress().getAddressName(), p.getPhone());
-            MedicalRecord medicalRecord = medicalRecordService.find(p.getFirstName(), p.getLastName());
-            LocalDate now = LocalDate.now();
-            Period period = Period.between(now, medicalRecord.getBirthDate());
-            int age = Math.abs(period.getYears());
-            if(age >= 18) {
-                fireStationInfoDTO.setNbAdultes(fireStationInfoDTO.getNbAdultes()+1);
-            } else {
-                fireStationInfoDTO.setNbEnfants(fireStationInfoDTO.getNbEnfants()+1);
-            }
-            personInfoList.add(personFireInfo);
-        }
-        fireStationInfoDTO.setPersonList(personInfoList);
-        return fireStationInfoDTO;
+        List<PersonForFireInfoDTO> personInfoList = personService.personFromFireStation(personList);
+        return personService.getFireStationInfoDTOFromList(personInfoList,personList);
     }
 
     /* ****************************************** ENDPOINT 2 ****************************************************************** */                      // acrée
