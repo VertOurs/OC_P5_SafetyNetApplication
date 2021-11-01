@@ -19,34 +19,9 @@ public class AllInfoPersonDTO {
     private LocalDate birthdate;
     private Set<String> medications = new HashSet<>();
     private Set<String> allergies = new HashSet<>();
-    private int station;
+    private Set<Integer> station;
 
 
-
-
-    public AllInfoPersonDTO(String firstName,
-                            String lastName,
-                            String address,
-                            String city,
-                            String zip,
-                            String phone,
-                            String email,
-                            LocalDate birthdate,
-                            Set<String> medications,
-                            Set<String> allergies,
-                            int station) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.zip = zip;
-        this.phone = phone;
-        this.email = email;
-        this.birthdate = birthdate;
-        this.medications = medications;
-        this.allergies = allergies;
-        this.station = station;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -118,10 +93,10 @@ public class AllInfoPersonDTO {
         this.allergies = allergies;
     }
 
-    public int getStation() {
+    public Set<Integer> getStation() {
         return station;
     }
-    public void setStation(int station) {
+    public void setStation(Set<Integer> station) {
         this.station = station;
     }
 }

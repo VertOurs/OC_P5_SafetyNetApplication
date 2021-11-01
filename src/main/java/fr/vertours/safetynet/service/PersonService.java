@@ -1,6 +1,7 @@
 package fr.vertours.safetynet.service;
 
 import fr.vertours.safetynet.dto.AllInfoPersonDTO;
+import fr.vertours.safetynet.dto.FireDTO;
 import fr.vertours.safetynet.dto.PersonDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
@@ -98,20 +99,30 @@ public class PersonService {
     public AllInfoPersonDTO createAllInfoPersonDTO(String firstName, String lastName) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
         MedicalRecord medicalRecord = medicalRecordService.find(firstName, lastName);
-        FireStation fireStation = fireStationService.findOneStationByAddress(person.getAddress());
-        AllInfoPersonDTO MyDTO = new AllInfoPersonDTO(person.getFirstName(),
-                person.getLastName(),
-                person.getAddress().getAddressName(),
-                person.getCity(),
-                person.getZip(),
-                person.getPhone(),
-                person.getEmail(),
-                medicalRecord.getBirthDate(),
-                medicationService.makeStringSetFromMedication(medicalRecord.getMedications()),
-                allergyService.makeStringSetFromAllergy(medicalRecord.getAllergies()),
-                fireStation.getStation());
-        return MyDTO;
+        Collection<FireStation> fireStationSet = fireStationService.findOneStationByAddress(person.getAddress());
+        Set<Integer> stationSet = new HashSet<>();
+        for(FireStation fireStation : fireStationSet) {
+            stationSet.add(fireStation.getStation());
+        }
+
+        AllInfoPersonDTO dto = new AllInfoPersonDTO();
+
+        dto.setFirstName(person.getFirstName());
+        dto.setLastName(person.getLastName());
+        dto.setAddress(person.getAddress().getAddressName());
+        dto.setCity(person.getCity());
+        dto.setZip(person.getZip());
+        dto.setPhone(person.getPhone());
+        dto.setEmail(person.getEmail());
+        dto.setBirthdate(medicalRecord.getBirthDate());
+        dto.setMedications(medicationService.makeStringSetFromMedication(medicalRecord.getMedications()));
+        dto.setAllergies(allergyService.makeStringSetFromAllergy(medicalRecord.getAllergies()));
+        dto.setStation(stationSet);
+        return dto;
     }
 
+    public List<FireDTO> getListOfPersonForOneAddressWithFireStation(String address) {
+        return medicalRecordService.getFireURL(address);
+    }
 
 }

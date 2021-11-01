@@ -56,46 +56,26 @@ public class PersonController {
                 person.getEmail());
         return personDTO;
     }
-    /* ****************************************  ENDPOINT 7  ************************************************************ */
-    @GetMapping("/communityEmail")
-    public List<EmailDTO> getAllEmailForOneCity(@RequestParam("city") String city) {
-        List<Person> personList = this.personService.findByCity(city);
-        List<EmailDTO> emailDTO = personList.stream().map(EmailDTO::fromPerson).collect(Collectors.toList());
-        return emailDTO;
+    @PostMapping("/person")
+    public void registerNewPerson(@RequestBody PersonDTO personDTO) {
+        personService.addPerson(personDTO);
     }
-    /* ****************************************  ENDPOINT 6  ************************************************************* */
-    @GetMapping("/personInfo")
-    public PersonInfoDTO getNameAddressAgeMailMedicationsAndAllergies(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {
-        Person person = this.personService.find(firstName, LastName);
-        MedicalRecord medicalRecord = new MedicalRecord(person);
-        PersonInfoDTO personInfoDTO =  new PersonInfoDTO(person, medicalRecord);
-        return personInfoDTO;
-    }
-    /* *****************************************  ENDPOINT 4  ************************************************************* */
-    @GetMapping("/fire")
-    public List<FireDTO> getListOfPersonForOneAddressWithFireStation(@RequestParam("address") String address) {
 
-        return this.medicalRecordService.getFireURL(address);
+    @PutMapping(path = "/person/{firstName}/{lastName}")
+    public void updatePerson(@PathVariable("firstName") String firstName,
+                             @PathVariable("lastName") String lastName,
+                             @RequestBody PersonDTO personDTO ) {
+        personService.updatePerson(firstName, lastName, personDTO);
     }
-    /* *****************************************ENDPOINT 3 ****************************************************************** */
-    @GetMapping("/phoneAlert")
-    public List<String> getListPhoneNumberByFireStation(@RequestParam ("firestation") int station) {
-        List<Person> personList = personService.findByStation(station);
-        List<String> stringList =  new ArrayList<>();
-        for(Person p : personList) {
-            stringList.add(p.getPhone());
-        }
-        return stringList;
-    }
-    /* ****************************************** ENDPOINT 2 ****************************************************************** */
-/*
-    @GetMapping("/childAlert")
-    public List<String> getListOfChildrenAtThisAddress(@RequestParam ("address") String address) {
-        List<Person> allPersonList = personService.findByAddress(address);
-        List<String> childrenList = allPersonList.stream().filter(x -> {})
-    }*/
 
-    /* ****************************************** ENDPOINT 1 ****************************************************************** */
+
+    @DeleteMapping(path = "/person/{firstName}/{lastName}")
+    public void deletePerson(@PathVariable("firstName") String firstName,
+                             @PathVariable("lastName") String lastName) {
+        personService.deletePerson(firstName, lastName);
+    }
+
+    /* ****************************************** ENDPOINT 1 ****************************************************************** */                      // a refocto
     @GetMapping("/firestation")
     public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
         List<Person> personList = personService.findByStation(station);
@@ -118,6 +98,48 @@ public class PersonController {
         return fireStationInfoDTO;
     }
 
+    /* ****************************************** ENDPOINT 2 ****************************************************************** */                      // acrée
+/*
+    @GetMapping("/childAlert")
+    public List<String> getListOfChildrenAtThisAddress(@RequestParam ("address") String address) {
+        List<Person> allPersonList = personService.findByAddress(address);
+        List<String> childrenList = allPersonList.stream().filter(x -> {})
+    }*/
+
+    /* *****************************************ENDPOINT 3 ****************************************************************** */                        // OK
+    @GetMapping("/phoneAlert")
+    public List<String> getListPhoneNumberByFireStation(@RequestParam ("firestation") int station) {
+        List<Person> personList = this.personService.findByStation(station);
+        return  personList.stream().map(Person::getPhone).collect(Collectors.toList());
+    }
+
+    /* *****************************************  ENDPOINT 4  ************************************************************* */                          // OK
+    @GetMapping("/fire")
+    public List<FireDTO> getListOfPersonForOneAddressWithFireStation(@RequestParam("address") String address) {
+        return this.personService.getListOfPersonForOneAddressWithFireStation(address);
+
+    }
+
+    /*  ***************************************  ENDPOINT 5  ************************************************************ */                        //a crée
+    /*
+
+
+     */
+    /* ****************************************  ENDPOINT 6  ************************************************************* */                           //OK
+    @GetMapping("/personInfo")
+    public PersonInfoDTO getNameAddressAgeMailMedicationsAndAllergies(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {
+        Person person = this.personService.find(firstName, LastName);
+        MedicalRecord medicalRecord = new MedicalRecord(person);
+        PersonInfoDTO personInfoDTO =  new PersonInfoDTO(person, medicalRecord);
+        return personInfoDTO;
+    }
+
+    /* ****************************************  ENDPOINT 7  ************************************************************ */                        //OK
+    @GetMapping("/communityEmail")
+    public List<String> getAllEmailForOneCity(@RequestParam("city") String city) {
+        List<Person> personList = this.personService.findByCity(city);
+         return personList.stream().map(Person::getEmail).collect(Collectors.toList());
+    }
 /* *************************************************PERSO ************************************************************************ */
     @GetMapping("/arthur")
     public AllInfoPersonDTO getAllInfoPerson(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {
@@ -128,22 +150,5 @@ public class PersonController {
 
 
 
-    @PostMapping("/person")
-    public void registerNewPerson(@RequestBody PersonDTO personDTO) {
-        personService.addPerson(personDTO);
-    }
 
-    @PutMapping(path = "/person/{firstName}/{lastName}")
-    public void updatePerson(@PathVariable("firstName") String firstName,
-                             @PathVariable("lastName") String lastName,
-                             @RequestBody PersonDTO personDTO ) {
-        personService.updatePerson(firstName, lastName, personDTO);
-    }
-
-
-    @DeleteMapping(path = "/person/{firstName}/{lastName}")
-    public void deletePerson(@PathVariable("firstName") String firstName,
-                             @PathVariable("lastName") String lastName) {
-        personService.deletePerson(firstName, lastName);
-    }
 }

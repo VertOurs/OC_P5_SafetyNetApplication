@@ -42,7 +42,7 @@ public class FireStationService {
     public FireStation findOneStation(int fireStation) {
         return fireStationRepository.findByStation(fireStation);
     }
-    public FireStation findOneStationByAddress(Address address) {
+    public Collection<FireStation> findOneStationByAddress(Address address) {
         return fireStationRepository.findFireStationByAddress(address);
     }
 
