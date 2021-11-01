@@ -9,10 +9,16 @@ public class FireStationInfoDTO {
     private int nbEnfants = 0;
     private int nbAdultes = 0;
 
+
+    public FireStationInfoDTO(List<PersonForFireInfoDTO> personList, int nbEnfants, int nbAdultes) {
+        this.personList = personList;
+        this.nbEnfants = nbEnfants;
+        this.nbAdultes = nbAdultes;
+    }
+
     public List<PersonForFireInfoDTO> getPersonList() {
         return personList;
     }
-
     public void setPersonList(List<PersonForFireInfoDTO> personList) {
         this.personList = personList;
     }
@@ -20,7 +26,6 @@ public class FireStationInfoDTO {
     public int getNbEnfants() {
         return nbEnfants;
     }
-
     public void setNbEnfants(int nbEnfants) {
         this.nbEnfants = nbEnfants;
     }
@@ -28,7 +33,6 @@ public class FireStationInfoDTO {
     public int getNbAdultes() {
         return nbAdultes;
     }
-
     public void setNbAdultes(int nbAdultes) {
         this.nbAdultes = nbAdultes;
     }

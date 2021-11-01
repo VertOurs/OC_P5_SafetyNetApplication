@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PersonService {
@@ -131,22 +132,18 @@ public class PersonService {
     }
 
     public FireStationInfoDTO getFireStationInfoDTOFromList (List<PersonForFireInfoDTO> personInfoList, List<Person> personList) {
-        FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO();
-        for(Person p : personList) {
-            PersonForFireInfoDTO personFireInfo = new PersonForFireInfoDTO(p.getFirstName(), p.getLastName(),p.getAddress().getAddressName(), p.getPhone());
-            MedicalRecord medicalRecord = medicalRecordService.find(p.getFirstName(), p.getLastName());
-            LocalDate now = LocalDate.now();
-            Period period = Period.between(now, medicalRecord.getBirthDate());
-            int age = Math.abs(period.getYears());
-            if(age >= 18) {
-                fireStationInfoDTO.setNbAdultes(fireStationInfoDTO.getNbAdultes()+1);
-            } else {
-                fireStationInfoDTO.setNbEnfants(fireStationInfoDTO.getNbEnfants()+1);
-            }
-            personInfoList.add(personFireInfo);
-        }
-        fireStationInfoDTO.setPersonList(personInfoList);
+
+        List<MedicalRecord> mRList = medicalRecordService.getMedicalRecordByListOfPerson(personList);
+        int nbAdultes = (int) mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) >= 18).count();
+        int nbEnfants = (int) mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) < 18).count();
+
+        FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO(personInfoList, nbEnfants, nbAdultes);
+
         return fireStationInfoDTO;
     }
-
+    public int calculateAgewithLocalDate (LocalDate date) {
+        LocalDate now = LocalDate.now();
+        Period period = Period.between(now, date);
+        return Math.abs(period.getYears());
+    }
 }

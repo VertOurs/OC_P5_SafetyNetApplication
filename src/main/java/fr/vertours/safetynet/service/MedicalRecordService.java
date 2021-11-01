@@ -163,5 +163,17 @@ public class MedicalRecordService {
         MedicalRecord medicalRecord = find(firstName, lastName);
         medicalRecordRepository.delete(medicalRecord);
     }
+    public List<MedicalRecord> findByPersonList(List<Person> personList) {
+        return medicalRecordRepository.findByPersonIn(personList);
+    }
+    public MedicalRecord findMedicalRecordInListOfMR(String firstName, String lastName, List<MedicalRecord> medicalRecordList) {
+        MedicalRecord medicalRecord = new MedicalRecord();
+        for (MedicalRecord mR : medicalRecordList) {
+            if(firstName.equals(mR.getPerson().getFirstName()) && lastName.equals(mR.getPerson().getLastName())){
+                medicalRecord = mR;
+            }
+        }
+        return medicalRecord;
+    }
 }
 
