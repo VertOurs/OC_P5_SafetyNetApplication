@@ -74,6 +74,7 @@ public class PersonService {
         Set<Address> addressSet = fireStation.getAddress();
         return personRepository.findByAddressIn(addressSet);
     }
+
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
 
@@ -157,4 +158,18 @@ public class PersonService {
        List<AdultDTO> adults = mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) >= 18).map(AdultDTO::AdultfromMedicalRecord).collect(Collectors.toList());
         return getChildAlertDTOfromTwoList(childs,adults);
     }
+
+    List<Person> ok(List<FireStation> fireStationList) {
+        for(FireStation f : fireStationList) {
+            for (Address a : f.getAddress()) {
+                Person person = personRepository.findByAddress(a);
+        }
+        }
+    }
+    public List<FloodDTO> getFloodByListOfStation(List<String> stationList) {
+        List<FireStation> fireStationList = fireStationService.getListFireStationByNb(stationList); // une liste de firestation (comprenant un set d'adresse et un nom)
+        List<AddressDTO> addressList =                                                                                            //une liste de personn a partir d'une firestation
+
+    }
+
 }

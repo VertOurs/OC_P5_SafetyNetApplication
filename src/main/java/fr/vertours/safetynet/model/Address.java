@@ -23,6 +23,7 @@ public class Address {
 
 
 
+
     public Address(String addressName) {
         this.addressName = addressName;
         this.fireStation = new HashSet<>();
@@ -36,6 +37,8 @@ public class Address {
         this.addressName = addressName;
         this.fireStation = fireStation;
     }
+
+
 
 
     public void addFirestation(FireStation fireStation){

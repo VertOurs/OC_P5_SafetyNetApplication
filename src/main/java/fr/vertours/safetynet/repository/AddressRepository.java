@@ -8,5 +8,6 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     Address findOneByAddressName(String addressName);
 
+
     
 }

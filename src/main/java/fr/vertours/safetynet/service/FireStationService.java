@@ -56,10 +56,11 @@ public class FireStationService {
         Address addressObject = addressService.findOrCreate(address.getAddressName());
         fireStation.addAdress(addressObject);
         fireStationRepository.save(fireStation);
-
-
     }
 
+    public List<FireStation> getListFireStationByNb(List<String> stations) {
+        return fireStationRepository.findByStation(stations);
+    }
 
 
 

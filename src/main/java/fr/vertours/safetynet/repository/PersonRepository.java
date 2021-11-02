@@ -17,9 +17,9 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Person findOneById(Long ID);
     Person deleteByFirstNameAndLastName(String firstName, String lastName);
     List<Person> findByAddress_AddressName(String address);
-// AU debut j'avais essayé une methode findByCity sans plus de résultat.
     List<Person> findAllByCity(String city);
     List<Person> findByAddressIn(Collection<Address> addresseCollections);
+    List<Person> findByAddress(Address address);
 
 
 
