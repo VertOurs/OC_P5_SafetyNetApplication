@@ -73,7 +73,7 @@ public class PersonController {
         personService.deletePerson(firstName, lastName);
     }
 
-    /* ****************************************** ENDPOINT 1 ****************************************************************** */                      // a refocto
+    /* ****************************************** ENDPOINT 1 ****************************************************************** */                      // OK
     @GetMapping("/firestation")
     public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
         List<Person> personList = personService.findByStation(station);
@@ -81,13 +81,12 @@ public class PersonController {
         return personService.getFireStationInfoDTOFromList(personInfoList,personList);
     }
 
-    /* ****************************************** ENDPOINT 2 ****************************************************************** */                      // acrée
-/*
+    /* ****************************************** ENDPOINT 2 ****************************************************************** */                      // Ok
+
     @GetMapping("/childAlert")
-    public List<String> getListOfChildrenAtThisAddress(@RequestParam ("address") String address) {
-        List<Person> allPersonList = personService.findByAddress(address);
-        List<String> childrenList = allPersonList.stream().filter(x -> {})
-    }*/
+    public ChildAlertDTO getListOfChildrenAtThisAddress(@RequestParam ("address") String address) {
+        return personService.getChildrenAtThisAdress(address);
+    }
 
     /* *****************************************ENDPOINT 3 ****************************************************************** */                        // OK
     @GetMapping("/phoneAlert")
@@ -104,10 +103,9 @@ public class PersonController {
     }
 
     /*  ***************************************  ENDPOINT 5  ************************************************************ */                        //a crée
-    /*
 
 
-     */
+
     /* ****************************************  ENDPOINT 6  ************************************************************* */                           //OK
     @GetMapping("/personInfo")
     public PersonInfoDTO getNameAddressAgeMailMedicationsAndAllergies(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {

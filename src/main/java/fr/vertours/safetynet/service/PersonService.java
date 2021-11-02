@@ -8,13 +8,11 @@ import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class PersonService {
@@ -145,5 +143,18 @@ public class PersonService {
         LocalDate now = LocalDate.now();
         Period period = Period.between(now, date);
         return Math.abs(period.getYears());
+    }
+    public ChildAlertDTO getChildAlertDTOfromTwoList(List<ChildrenDTO> childs, List<AdultDTO> adults) {
+        ChildAlertDTO childAlertDTO = new ChildAlertDTO();
+        childAlertDTO.setEnfants(childs);
+        childAlertDTO.setAutresMenbresDuFoyer(adults);
+        return childAlertDTO;
+    }
+    public ChildAlertDTO getChildrenAtThisAdress(String address) {
+       List<Person> allPersoninAddress = personRepository.findByAddress_AddressName(address);
+       List<MedicalRecord> mRList = medicalRecordService.getMedicalRecordByListOfPerson(allPersoninAddress);
+       List<ChildrenDTO> childs = mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) < 18).map(ChildrenDTO::ChildrenfromMedicalRecord).collect(Collectors.toList());
+       List<AdultDTO> adults = mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) >= 18).map(AdultDTO::AdultfromMedicalRecord).collect(Collectors.toList());
+        return getChildAlertDTOfromTwoList(childs,adults);
     }
 }
