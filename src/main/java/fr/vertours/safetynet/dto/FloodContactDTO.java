@@ -1,19 +1,51 @@
 package fr.vertours.safetynet.dto;
 
 import fr.vertours.safetynet.model.Allergy;
+import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Medication;
+import fr.vertours.safetynet.model.Person;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class FloodContactDTO {
 
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private int age;
-    private List<Medication> medications;
-    private List<Allergy> allergies;
+    private String age;
+    private Set<Medication> medications;
+    private Set<Allergy> allergies;
 
+
+    public static FloodContactDTO fromPersonandMedicalRecord(Person person, MedicalRecord medicalRecord) {
+        FloodContactDTO contactDTO = new FloodContactDTO();
+        contactDTO.setFirstName(person.getFirstName());
+        contactDTO.setLastName(person.getLastName());
+        contactDTO.setPhoneNumber(person.getPhone());
+        contactDTO.setAge(String.valueOf(contactDTO.calculateAgewithLocalDate(medicalRecord.getBirthDate())));
+        contactDTO.setMedications(medicalRecord.getMedications());
+        contactDTO.setAllergies(medicalRecord.getAllergies());
+        return contactDTO;
+    }
+    public static List<FloodContactDTO> fromListPersonMr(List<Person> personList, List<MedicalRecord> medicalRecordList) {
+        List<FloodContactDTO> floodContactDTOList = new ArrayList<>();
+        for (Person p : personList) {
+            MedicalRecord medicalRecord = (MedicalRecord) medicalRecordList.stream().filter(mr -> mr.getPerson().equals(p));
+            FloodContactDTO floodDTO = fromPersonandMedicalRecord(p,medicalRecord);
+            floodContactDTOList.add(floodDTO);
+        }
+        return floodContactDTOList;
+    }
+
+    public int calculateAgewithLocalDate (LocalDate date) {
+        LocalDate now = LocalDate.now();
+        Period period = Period.between(now, date);
+        return Math.abs(period.getYears());
+    }
 
     public String getFirstName() {
         return firstName;
@@ -36,24 +68,24 @@ public class FloodContactDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public List<Medication> getMedications() {
+    public Set<Medication> getMedications() {
         return medications;
     }
-    public void setMedications(List<Medication> medications) {
+    public void setMedications(Set<Medication> medications) {
         this.medications = medications;
     }
 
-    public List<Allergy> getAllergies() {
+    public Set<Allergy> getAllergies() {
         return allergies;
     }
-    public void setAllergies(List<Allergy> allergies) {
+    public void setAllergies(Set<Allergy> allergies) {
         this.allergies = allergies;
     }
 }

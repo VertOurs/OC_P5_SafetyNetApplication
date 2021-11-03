@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface MedicalRecordRepository extends JpaRepository<MedicalRecord, Long> {
 
 

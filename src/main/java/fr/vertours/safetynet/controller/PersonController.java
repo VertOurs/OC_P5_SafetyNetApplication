@@ -20,9 +20,6 @@ public class PersonController {
 
     private final PersonService personService;
 
-    @Autowired
-    private MedicalRecordService medicalRecordService;
-
 
     public PersonController(PersonService personService, MedicalRecordController medicalRecordController) {
         this.personService = personService;
@@ -105,6 +102,7 @@ public class PersonController {
     /*  ***************************************  ENDPOINT 5  ************************************************************ */                        //a crée
     @GetMapping("/flood/stations")
     public List<?> endPoint5Flood(@RequestParam("stations") List<String> stationList) {
+        return personService.getFloodByListOfStation(stationList);
 
     }
 

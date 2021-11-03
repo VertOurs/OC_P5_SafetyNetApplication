@@ -4,16 +4,16 @@ import java.util.List;
 
 public class FloodDTO {
 
-    String station;
+    int station;
     String address;
     List<FloodContactDTO> contacts;
 
 
 
-    public String getStation() {
+    public int getStation() {
         return station;
     }
-    public void setStation(String station) {
+    public void setStation(int station) {
         this.station = station;
     }
 

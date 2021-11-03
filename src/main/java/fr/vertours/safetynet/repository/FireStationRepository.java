@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.List;
 
-@Repository // a supprimer
+
 public interface FireStationRepository extends JpaRepository<FireStation, Long> {
 
     FireStation findByStation (int station);

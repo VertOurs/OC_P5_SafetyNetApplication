@@ -19,7 +19,6 @@ public class PersonService {
 
     private final PersonRepository personRepository;
 
-    PersonDTO personDTO;
 
     @Autowired
     AddressService addressService;
@@ -97,6 +96,7 @@ public class PersonService {
         }
         personRepository.save(person);
     }
+
     public AllInfoPersonDTO createAllInfoPersonDTO(String firstName, String lastName) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
         MedicalRecord medicalRecord = medicalRecordService.find(firstName, lastName);
@@ -159,16 +159,31 @@ public class PersonService {
         return getChildAlertDTOfromTwoList(childs,adults);
     }
 
-    List<Person> ok(List<FireStation> fireStationList) {
-        for(FireStation f : fireStationList) {
+    List<FloodDTO> getListFloodDTOWithFireStationList(List<FireStation> fireStationList) {
+        List<FloodDTO> floodDTOList = new ArrayList<>();
+        for (FireStation f: fireStationList) {
             for (Address a : f.getAddress()) {
-                Person person = personRepository.findByAddress(a);
+                List<Person> personList = findListOfPersonByAddress(a) ;
+                List<MedicalRecord> medicalRecordList = medicalRecordService.getMedicalRecordByListOfPerson(personList);
+                List<FloodContactDTO> floodContactDTOList = FloodContactDTO.fromListPersonMr(personList,medicalRecordList);
+                FloodDTO floodDTO = new FloodDTO();
+                floodDTO.setStation(f.getStation());
+                floodDTO.setAddress(a.getAddressName());
+                floodDTO.setContacts(floodContactDTOList);
+                floodDTOList.add(floodDTO);
+            }
         }
-        }
+        return floodDTOList;
     }
+    public List<Person> findListOfPersonByAddress(Address address) {
+        List<Person> personList = personRepository.findByAddress_AddressName(address.getAddressName());
+        return personList;
+    }
+
     public List<FloodDTO> getFloodByListOfStation(List<String> stationList) {
-        List<FireStation> fireStationList = fireStationService.getListFireStationByNb(stationList); // une liste de firestation (comprenant un set d'adresse et un nom)
-        List<AddressDTO> addressList =                                                                                            //une liste de personn a partir d'une firestation
+        List<FireStation> fireStationList = fireStationService.getListFireStationByNb(stationList);
+        List<FloodDTO> floodDTOList = getListFloodDTOWithFireStationList(fireStationList);
+        return floodDTOList;
 
     }
 
