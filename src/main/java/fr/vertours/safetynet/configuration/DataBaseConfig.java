@@ -62,6 +62,7 @@ public class DataBaseConfig {
             Set<Address> addressSet = new HashSet();
             Set<Person> personSet = new LinkedHashSet();
 
+            System.out.println(listOfPersonDTO);
             for(Object o : listOfPersonDTO) {
                 PersonDTO personDTO = objectMapper.convertValue(o, PersonDTO.class);
 
@@ -81,6 +82,7 @@ public class DataBaseConfig {
                 Address address = addressList.stream().filter((addressa)->addressa.getAddressName().equals(personAddress.getAddressName())).findFirst().get();
                 person.setAddress(address);
             }
+
             personService.saveAll(personSet);
 
             
@@ -108,6 +110,7 @@ public class DataBaseConfig {
 
            for(Object medicalRecord : listOfMedicalRecordDTO) {
                MedicalRecordDTO medicalRecordDTO = objectMapper.convertValue(medicalRecord, MedicalRecordDTO.class);
+               System.out.println(medicalRecordDTO);
                medicalRecordService.save(medicalRecordDTO);
            }
 

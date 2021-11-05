@@ -58,8 +58,8 @@ public class FireStationService {
         fireStationRepository.save(fireStation);
     }
 
-    public List<FireStation> getListFireStationByNb(List<String> stations) {
-        return fireStationRepository.findByStation(stations);
+    public List<FireStation> getListFireStationByNb(List<Integer> stations) {
+        return fireStationRepository.findByStationIn(stations);
     }
 
 

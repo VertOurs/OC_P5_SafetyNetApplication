@@ -101,7 +101,8 @@ public class PersonController {
 
     /*  ***************************************  ENDPOINT 5  ************************************************************ */                        //a crée
     @GetMapping("/flood/stations")
-    public List<?> endPoint5Flood(@RequestParam("stations") List<String> stationList) {
+    public List<?> endPoint5Flood(@RequestParam("stations") List<Integer> stationList) {
+        System.out.println(stationList);
         return personService.getFloodByListOfStation(stationList);
 
     }
@@ -116,12 +117,7 @@ public class PersonController {
         return personInfoDTO;
     }
 
-    /* ****************************************  ENDPOINT 7  ************************************************************ */                        //OK
-    @GetMapping("/communityEmail")
-    public List<String> getAllEmailForOneCity(@RequestParam("city") String city) {
-        List<Person> personList = this.personService.findByCity(city);
-         return personList.stream().map(Person::getEmail).collect(Collectors.toList());
-    }
+
 /* *************************************************PERSO ************************************************************************ */
     @GetMapping("/arthur")
     public AllInfoPersonDTO getAllInfoPerson(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {

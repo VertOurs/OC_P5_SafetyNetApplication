@@ -34,7 +34,7 @@ public class FloodContactDTO {
     public static List<FloodContactDTO> fromListPersonMr(List<Person> personList, List<MedicalRecord> medicalRecordList) {
         List<FloodContactDTO> floodContactDTOList = new ArrayList<>();
         for (Person p : personList) {
-            MedicalRecord medicalRecord = (MedicalRecord) medicalRecordList.stream().filter(mr -> mr.getPerson().equals(p));
+            MedicalRecord medicalRecord =  medicalRecordList.stream().filter( mr -> mr.getPerson().equals(p)).findFirst().get();
             FloodContactDTO floodDTO = fromPersonandMedicalRecord(p,medicalRecord);
             floodContactDTOList.add(floodDTO);
         }

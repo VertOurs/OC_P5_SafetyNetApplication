@@ -90,7 +90,7 @@ public class MedicalRecordService {
         medicalRecord1.setBirthDate(birthDate);
         medicalRecord1.setAllergies(setObjectAllergy);
         medicalRecord1.setMedications(setObjectMedication);
-
+        System.out.println(medicalRecord1);
         return medicalRecordRepository.save(medicalRecord1);
 
     }

@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class PersonService {
+public class PersonService implements IEmailService {
 
     private final PersonRepository personRepository;
 
@@ -62,6 +62,7 @@ public class PersonService {
     public List<Person> findByLastName(String lastname) {
         return personRepository.findByLastName(lastname);
     }
+    @Override
     public List<Person> findByCity(String city) {
         return personRepository.findAllByCity(city);
     }
@@ -159,7 +160,7 @@ public class PersonService {
         return getChildAlertDTOfromTwoList(childs,adults);
     }
 
-    List<FloodDTO> getListFloodDTOWithFireStationList(List<FireStation> fireStationList) {
+    private List<FloodDTO> getListFloodDTOWithFireStationList(List<FireStation> fireStationList) {
         List<FloodDTO> floodDTOList = new ArrayList<>();
         for (FireStation f: fireStationList) {
             for (Address a : f.getAddress()) {
@@ -180,7 +181,7 @@ public class PersonService {
         return personList;
     }
 
-    public List<FloodDTO> getFloodByListOfStation(List<String> stationList) {
+    public List<FloodDTO> getFloodByListOfStation(List<Integer> stationList) {
         List<FireStation> fireStationList = fireStationService.getListFireStationByNb(stationList);
         List<FloodDTO> floodDTOList = getListFloodDTOWithFireStationList(fireStationList);
         return floodDTOList;
