@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -33,90 +34,34 @@ public class DataBaseConfig {
     Resource resource;
 
     @Autowired
-    AddressService addressService;
-
+    AddressService addressService ;
     @Autowired
-    PersonService personService;
-
+    DataLoaderPerson personLoader;
     @Autowired
-    FireStationService fireStationService;
-
+    DataLoaderFireStation fireStationLoader;
     @Autowired
-    MedicalRecordService medicalRecordService;
+    DataLoaderMedicalRecord medicalRecordLoader;
+
 
     @Bean
-    CommandLineRunner commandLineRunner(
-            FireStationRepository fireStationRepository,
-            MedicalRecordRepository medicalRecordRepository,
-            PersonRepository personRepository) {
-
+    CommandLineRunner commandLineRunner() {
         return args -> {
-
-            InputStream input = resource.getInputStream();
-            String data = Files.readString(Paths.get(resource.getURI()));
-
-            Map<String, Object> map = JsonIterator.deserialize(data, Map.class);
+            Map<String, Object> map = deserializeJson();
 
             ObjectMapper objectMapper = new ObjectMapper();
-            List<Object> listOfPersonDTO = (List<Object>) map.get("persons");
-            Set<Address> addressSet = new HashSet();
-            Set<Person> personSet = new LinkedHashSet();
-
-            System.out.println(listOfPersonDTO);
-            for(Object o : listOfPersonDTO) {
-                PersonDTO personDTO = objectMapper.convertValue(o, PersonDTO.class);
-
-                Address address = new Address();
-                address.setAddressName(personDTO.getAddress());
-                if (!addressSet.contains(address)) {
-                    addressSet.add(address);
-                }
-                Person person = personDTO.createPerson();
-
-                personSet.add(person);
-
-            }
+            Set<Address> addressSet = personLoader.returnSetOfAddressInPersonDTO(map, objectMapper);
+            Set<Person> personSet = personLoader.returnSetOfPersonInPersonDTO(map, objectMapper);
             List<Address> addressList = addressService.saveAll(addressSet);
-            for(Person person : personSet){
-                Address personAddress = person.getAddress();
-                Address address = addressList.stream().filter((addressa)->addressa.getAddressName().equals(personAddress.getAddressName())).findFirst().get();
-                person.setAddress(address);
-            }
 
-            personService.saveAll(personSet);
-
-            
-            List<Object> listOfFireStationDTO = (List<Object>) map.get("firestations");
-            List<FireStation> fireStationsList = new ArrayList<>();
-
-            for(Object fireStation : listOfFireStationDTO) {
-                Map<String, String> fireStationDTO = objectMapper.convertValue(fireStation, Map.class);
-                FireStation fireStation1 = new FireStation();
-                fireStation1.setStation((Integer.valueOf(fireStationDTO.get("station"))));
-                Address address = addressList.stream().filter((addressa)->addressa.getAddressName().equals(fireStationDTO.get("address"))).findFirst().get();
-                fireStation1.addAdress(address);
-                int index = fireStationsList.indexOf(fireStation1);
-                if(index == -1){
-                    fireStationsList.add(fireStation1);
-                } else {
-                    FireStation fireStation2 = fireStationsList.get(index);
-                    fireStation2.addAdress(address);
-                }
-            }
-
-            fireStationService.saveAllStations(fireStationsList);
-
-           List<Object> listOfMedicalRecordDTO = (List<Object>) map.get("medicalrecords");
-
-           for(Object medicalRecord : listOfMedicalRecordDTO) {
-               MedicalRecordDTO medicalRecordDTO = objectMapper.convertValue(medicalRecord, MedicalRecordDTO.class);
-               System.out.println(medicalRecordDTO);
-               medicalRecordService.save(medicalRecordDTO);
-           }
-
-
-
+            personLoader.savePersonAndAddressInDB(map, objectMapper, addressList,personSet);
+            fireStationLoader.saveFireStationInDB(map, objectMapper, addressList);
+            medicalRecordLoader.saveMedicalRecordInDB(map, objectMapper);
         };
     }
-
+    public Map<String, Object> deserializeJson() throws IOException {
+        InputStream input = resource.getInputStream();
+        String data = Files.readString(Paths.get(resource.getURI()));
+        Map<String, Object> map = JsonIterator.deserialize(data, Map.class);
+        return map;
+    }
 }
