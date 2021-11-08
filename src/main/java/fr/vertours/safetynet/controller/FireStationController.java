@@ -2,6 +2,8 @@ package fr.vertours.safetynet.controller;
 
 import fr.vertours.safetynet.dto.AllInfoPersonDTO;
 import fr.vertours.safetynet.dto.FireStationDTO;
+import fr.vertours.safetynet.dto.FireStationInfoDTO;
+import fr.vertours.safetynet.dto.PersonForFireInfoDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.Person;
@@ -37,6 +39,13 @@ public class FireStationController {
     public FireStationDTO getStation(@PathVariable int station){
         FireStation fireStation = this.firestationService.findOneStation(station);
         return FireStationDTO.fromFireStation(fireStation);
+    }
+
+    @GetMapping("/firestation")
+    public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
+        List<Person> personList = firestationService.findByStation(station);
+        List<PersonForFireInfoDTO> personInfoList = firestationService.personFromFireStation(personList);
+        return firestationService.getFireStationInfoDTOFromList(personInfoList,personList);
     }
 
     @PostMapping("/firestation")

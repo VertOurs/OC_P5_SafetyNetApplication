@@ -1,7 +1,10 @@
 package fr.vertours.safetynet.service;
 import fr.vertours.safetynet.dto.FireStationDTO;
+import fr.vertours.safetynet.dto.FireStationInfoDTO;
+import fr.vertours.safetynet.dto.PersonForFireInfoDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
+import fr.vertours.safetynet.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,9 @@ public class FireStationService {
     @Autowired
     AddressService addressService;
 
+    @Autowired
+    PersonService personService;
+
     public FireStationService(FireStationRepository fireStationRepository) {
         this.fireStationRepository = fireStationRepository;
     }
@@ -27,7 +33,6 @@ public class FireStationService {
         Set<Address> addressSet = fireStationDTO.getAddress().stream().map(address -> addressService.findOrCreate(address)).collect(Collectors.toSet());
         FireStation fireStation = fireStationDTO.createFireStation();
         fireStation.setAddress(addressSet);
-        //rajout de cette ligne pour eviter nullpointexception sans succès
         fireStation.setStation(fireStationDTO.getStation());
         fireStationRepository.save(fireStation);
     }
@@ -60,6 +65,16 @@ public class FireStationService {
 
     public List<FireStation> getListFireStationByNb(List<Integer> stations) {
         return fireStationRepository.findByStationIn(stations);
+    }
+    public List<Person> findByStation(int station) {
+        return personService.findByStation(station);
+    }
+
+    public List<PersonForFireInfoDTO> personFromFireStation(List<Person> personList) {
+        return  personService.personFromFireStation(personList);
+    }
+    public FireStationInfoDTO getFireStationInfoDTOFromList( List<PersonForFireInfoDTO> personInfoList, List<Person> personList) {
+        return personService.getFireStationInfoDTOFromList(personInfoList,personList);
     }
 
 

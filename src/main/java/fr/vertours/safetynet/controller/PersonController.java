@@ -71,62 +71,22 @@ public class PersonController {
     }
 
     /* ****************************************** ENDPOINT 1 ****************************************************************** */                      // OK
-    @GetMapping("/firestation")
-    public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
-        List<Person> personList = personService.findByStation(station);
-        List<PersonForFireInfoDTO> personInfoList = personService.personFromFireStation(personList);
-        return personService.getFireStationInfoDTOFromList(personInfoList,personList);
-    }
+
 
     /* ****************************************** ENDPOINT 2 ****************************************************************** */                      // Ok
 
-    @GetMapping("/childAlert")
-    public ChildAlertDTO getListOfChildrenAtThisAddress(@RequestParam ("address") String address) {
-        return personService.getChildrenAtThisAdress(address);
-    }
+
 
     /* *****************************************ENDPOINT 3 ****************************************************************** */                        // OK
-    @GetMapping("/phoneAlert")
-    public List<String> getListPhoneNumberByFireStation(@RequestParam ("firestation") int station) {
-        List<Person> personList = this.personService.findByStation(station);
-        return  personList.stream().map(Person::getPhone).collect(Collectors.toList());
-    }
+
 
     /* *****************************************  ENDPOINT 4  ************************************************************* */                          // OK
-    @GetMapping("/fire")
-    public List<FireDTO> getListOfPersonForOneAddressWithFireStation(@RequestParam("address") String address) {
-        return this.personService.getListOfPersonForOneAddressWithFireStation(address);
 
-    }
 
     /*  ***************************************  ENDPOINT 5  ************************************************************ */                        //a crée
-    @GetMapping("/flood/stations")
-    public List<?> endPoint5Flood(@RequestParam("stations") List<Integer> stationList) {
-        System.out.println(stationList);
-        return personService.getFloodByListOfStation(stationList);
 
-    }
 
 
     /* ****************************************  ENDPOINT 6  ************************************************************* */                           //OK
-    @GetMapping("/personInfo")
-    public PersonInfoDTO getNameAddressAgeMailMedicationsAndAllergies(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {
-        Person person = this.personService.find(firstName, LastName);
-        MedicalRecord medicalRecord = new MedicalRecord(person);
-        PersonInfoDTO personInfoDTO =  new PersonInfoDTO(person, medicalRecord);
-        return personInfoDTO;
-    }
-
-
-/* *************************************************PERSO ************************************************************************ */
-    @GetMapping("/arthur")
-    public AllInfoPersonDTO getAllInfoPerson(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {
-
-        return personService.createAllInfoPersonDTO(firstName, LastName);
-    }
-
-
-
-
 
 }

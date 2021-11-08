@@ -58,6 +58,8 @@ public class DataBaseConfig {
             medicalRecordLoader.saveMedicalRecordInDB(map, objectMapper);
         };
     }
+
+
     public Map<String, Object> deserializeJson() throws IOException {
         InputStream input = resource.getInputStream();
         String data = Files.readString(Paths.get(resource.getURI()));
