@@ -20,10 +20,16 @@ public class Medication {
     @JsonIgnore
     private Set<MedicalRecord> medicalRecord;
 
+
+    public Medication() {}
+    public Medication(String medication) {
+        this.medication = medication;
+    }
+
+
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -31,7 +37,6 @@ public class Medication {
     public String getMedication() {
         return medication;
     }
-
     public void setMedication(String medication) {
         this.medication = medication;
     }
@@ -39,14 +44,10 @@ public class Medication {
     public Set<MedicalRecord> getMedicalRecord() {
         return medicalRecord;
     }
-
     public void setMedicalRecord(Set<MedicalRecord> medicalRecord) {
         this.medicalRecord = medicalRecord;
     }
 
-    public Medication() {}
-
-    public Medication(String medication) {
-        this.medication = medication;
-    }
 }
+
+

@@ -25,8 +25,7 @@ public class MedicalRecord {
     @JoinTable (
             name = "MedicalRecord_Medication",
             joinColumns =  @JoinColumn (name = "MedicalRecord"),
-            inverseJoinColumns = @JoinColumn (name = "Medication")
-    )
+            inverseJoinColumns = @JoinColumn (name = "Medication"))
     private Set<Medication> medications = new HashSet<>();
 
     @ManyToMany
@@ -38,17 +37,17 @@ public class MedicalRecord {
 
 
     public MedicalRecord(){}
-
-    public MedicalRecord(Person person, LocalDate birthDate, Set<Medication> medications, Set<Allergy> allergies) {
+    public MedicalRecord(Person person, LocalDate birthDate,
+                         Set<Medication> medications, Set<Allergy> allergies) {
         this.person = person;
         this.birthDate = birthDate;
         this.medications = medications;
         this.allergies = allergies;
     }
-
     public MedicalRecord(Person person) {
         this.person = person;
     }
+
 
     public void removeAllMedications() {
         this.medications = new HashSet<>();
@@ -57,10 +56,10 @@ public class MedicalRecord {
         this.allergies = new HashSet<>();
     }
 
+
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -68,7 +67,6 @@ public class MedicalRecord {
     public Person getPerson() {
         return person;
     }
-
     public void setPerson(Person person) {
         this.person = person;
     }
@@ -76,7 +74,6 @@ public class MedicalRecord {
     public LocalDate getBirthDate() {
         return birthDate;
     }
-
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
@@ -84,7 +81,6 @@ public class MedicalRecord {
     public Set<Medication> getMedications() {
         return medications;
     }
-
     public void setMedications(Set<Medication> medications) {
         this.medications = medications;
     }
@@ -92,7 +88,6 @@ public class MedicalRecord {
     public Set<Allergy> getAllergies() {
         return allergies;
     }
-
     public void setAllergies(Set<Allergy> allergies) {
         this.allergies = allergies;
     }

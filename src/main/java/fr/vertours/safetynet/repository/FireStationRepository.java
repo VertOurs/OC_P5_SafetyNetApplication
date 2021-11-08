@@ -10,7 +10,8 @@ import java.util.Collection;
 import java.util.List;
 
 
-public interface FireStationRepository extends JpaRepository<FireStation, Long> {
+public interface FireStationRepository extends JpaRepository<FireStation,
+        Long> {
 
     FireStation findByStation (int station);
     Collection<FireStation> findFireStationByAddress(Address address);

@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 public class Allergy {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,16 +20,16 @@ public class Allergy {
     @JsonIgnore
     private Set<MedicalRecord> medicalRecord;
 
-    public Allergy() {}
 
+    public Allergy() {}
     public Allergy(String allergy) {
         this.allergy = allergy;
     }
 
+
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -36,7 +37,6 @@ public class Allergy {
     public String getAllergy() {
         return allergy;
     }
-
     public void setAllergy(String allergy) {
         this.allergy = allergy;
     }
@@ -44,7 +44,6 @@ public class Allergy {
     public Set<MedicalRecord> getMedicalRecord() {
         return medicalRecord;
     }
-
     public void setMedicalRecord(Set<MedicalRecord> medicalRecord) {
         this.medicalRecord = medicalRecord;
     }
