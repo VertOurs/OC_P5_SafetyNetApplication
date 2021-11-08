@@ -3,19 +3,13 @@ package fr.vertours.safetynet.dto;
 import fr.vertours.safetynet.model.Person;
 
 public class PersonForFireInfoDTO {
+
     private String firstName;
     private String lastName;
     private String address;
     private String phone;
 
     public PersonForFireInfoDTO() {
-    }
-
-    public PersonForFireInfoDTO(String firstName, String lastName, String address, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phone = phone;
     }
 
 
@@ -25,7 +19,6 @@ public class PersonForFireInfoDTO {
         personDTO.setLastName(person.getLastName());
         personDTO.setAddress(person.getAddress().getAddressName());
         personDTO.setPhone(person.getPhone());
-
         return personDTO;
     }
 
@@ -33,7 +26,6 @@ public class PersonForFireInfoDTO {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -41,7 +33,6 @@ public class PersonForFireInfoDTO {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -49,7 +40,6 @@ public class PersonForFireInfoDTO {
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
@@ -57,7 +47,6 @@ public class PersonForFireInfoDTO {
     public String getPhone() {
         return phone;
     }
-
     public void setPhone(String phone) {
         this.phone = phone;
     }

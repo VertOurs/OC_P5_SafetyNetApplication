@@ -8,7 +8,6 @@ import java.util.List;
 public class ChildAlertDTO {
 
     private List<ChildrenDTO> enfants;
-
     private List<AdultDTO> autresMenbresDuFoyer;
 
 

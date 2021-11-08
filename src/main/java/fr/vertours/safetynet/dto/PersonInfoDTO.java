@@ -21,8 +21,6 @@ public class PersonInfoDTO {
     private Set<String> Medications;
     private Set<String> Allergies;
 
-    public PersonInfoDTO() {
-    }
 
     public PersonInfoDTO(Person person, MedicalRecord medicalRecord) {
         this.firstName = person.getFirstName();
@@ -30,19 +28,19 @@ public class PersonInfoDTO {
         this.address = person.getAddress().getAddressName();
         this.birthDate = medicalRecord.getBirthDate();
         this.email = person.getEmail();
-
         Medications = medicationToString(medicalRecord.getMedications());
         Allergies = allergyToString(medicalRecord.getAllergies());
     }
 
-    public Set<String> medicationToString(Set<Medication> medicationSet) {
+
+    private Set<String> medicationToString(Set<Medication> medicationSet) {
         Set<String> stringSet = new HashSet<>();
         for(Medication m : medicationSet) {
             stringSet.add(m.getMedication());
         }
         return stringSet;
     }
-    public Set<String> allergyToString(Set<Allergy> allergySet) {
+    private Set<String> allergyToString(Set<Allergy> allergySet) {
         Set<String> stringSet= new HashSet<>();
         for(Allergy a : allergySet) {
             stringSet.add(a.getAllergy());
@@ -51,26 +49,7 @@ public class PersonInfoDTO {
     }
 
 
-    public static PersonInfoDTO fromPersonAndMedicalRecord(Person person, MedicalRecord medicalRecord) {
-        PersonInfoDTO personInfoDTO = new PersonInfoDTO();
-        personInfoDTO.setAddress(person.getAddress().getAddressName());
-        personInfoDTO.setBirthDate(medicalRecord.getBirthDate());
-        personInfoDTO.setEmail(person.getEmail());
-        Set<Medication> medicationSet = medicalRecord.getMedications();
-        Set<String> stringMedicationSet = new HashSet<>();
-        for(Medication m : medicationSet) {
-            stringMedicationSet.add(m.getMedication());
-        }
-        personInfoDTO.setMedications(stringMedicationSet);
-        Set<Allergy> allergySet = medicalRecord.getAllergies();
-        Set<String> stringAllergySet = new HashSet<>();
-        for(Allergy a : allergySet) {
-            stringAllergySet.add(a.getAllergy());
-        }
-        personInfoDTO.setAllergies((stringAllergySet));
 
-        return personInfoDTO;
-    }
 
 
     public String getFirstName() {

@@ -5,16 +5,20 @@ import fr.vertours.safetynet.model.Person;
 import java.util.List;
 
 public class FireStationInfoDTO {
+
     private List<PersonForFireInfoDTO> personList;
     private int nbEnfants = 0;
     private int nbAdultes = 0;
 
 
-    public FireStationInfoDTO(List<PersonForFireInfoDTO> personList, int nbEnfants, int nbAdultes) {
+    public FireStationInfoDTO(List<PersonForFireInfoDTO> personList,
+                              int nbEnfants,
+                              int nbAdultes) {
         this.personList = personList;
         this.nbEnfants = nbEnfants;
         this.nbAdultes = nbAdultes;
     }
+
 
     public List<PersonForFireInfoDTO> getPersonList() {
         return personList;

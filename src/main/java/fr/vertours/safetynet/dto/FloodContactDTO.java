@@ -4,6 +4,7 @@ import fr.vertours.safetynet.model.Allergy;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Medication;
 import fr.vertours.safetynet.model.Person;
+import fr.vertours.safetynet.util.CustomTools;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -21,31 +22,33 @@ public class FloodContactDTO {
     private Set<Allergy> allergies;
 
 
-    public static FloodContactDTO fromPersonandMedicalRecord(Person person, MedicalRecord medicalRecord) {
+    public static FloodContactDTO fromPersonandMedicalRecord(
+            Person person, MedicalRecord medicalRecord) {
         FloodContactDTO contactDTO = new FloodContactDTO();
         contactDTO.setFirstName(person.getFirstName());
         contactDTO.setLastName(person.getLastName());
         contactDTO.setPhoneNumber(person.getPhone());
-        contactDTO.setAge(String.valueOf(contactDTO.calculateAgewithLocalDate(medicalRecord.getBirthDate())));
+        contactDTO.setAge(String.valueOf(
+                CustomTools.calculateAgewithLocalDate(
+                        medicalRecord.getBirthDate())));
         contactDTO.setMedications(medicalRecord.getMedications());
         contactDTO.setAllergies(medicalRecord.getAllergies());
         return contactDTO;
     }
-    public static List<FloodContactDTO> fromListPersonMr(List<Person> personList, List<MedicalRecord> medicalRecordList) {
+    public static List<FloodContactDTO> fromListPersonMr(
+            List<Person> personList,
+            List<MedicalRecord> medicalRecordList) {
         List<FloodContactDTO> floodContactDTOList = new ArrayList<>();
         for (Person p : personList) {
-            MedicalRecord medicalRecord =  medicalRecordList.stream().filter( mr -> mr.getPerson().equals(p)).findFirst().get();
-            FloodContactDTO floodDTO = fromPersonandMedicalRecord(p,medicalRecord);
+            MedicalRecord medicalRecord =  medicalRecordList.stream()
+                    .filter( mr -> mr.getPerson().equals(p)).findFirst().get();
+            FloodContactDTO floodDTO =
+                    fromPersonandMedicalRecord(p,medicalRecord);
             floodContactDTOList.add(floodDTO);
         }
         return floodContactDTOList;
     }
 
-    public int calculateAgewithLocalDate (LocalDate date) {
-        LocalDate now = LocalDate.now();
-        Period period = Period.between(now, date);
-        return Math.abs(period.getYears());
-    }
 
     public String getFirstName() {
         return firstName;

@@ -2,6 +2,7 @@ package fr.vertours.safetynet.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import fr.vertours.safetynet.model.MedicalRecord;
+import fr.vertours.safetynet.util.CustomTools;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -10,25 +11,21 @@ import java.time.Period;
 public class ChildrenDTO {
 
     private String firstName;
-
     private String lastName;
-
     private int age;
 
 
-
-    public static ChildrenDTO ChildrenfromMedicalRecord(MedicalRecord medicalRecord) {
+    public static ChildrenDTO ChildrenfromMedicalRecord(
+            MedicalRecord medicalRecord) {
         ChildrenDTO menberFamilyDTO = new ChildrenDTO();
         menberFamilyDTO.setFirstName(medicalRecord.getPerson().getFirstName());
         menberFamilyDTO.setLastName(medicalRecord.getPerson().getLastName());
-        menberFamilyDTO.setAge(menberFamilyDTO.calculateAgewithLocalDate(medicalRecord.getBirthDate()));
+        menberFamilyDTO.setAge(
+                CustomTools.calculateAgewithLocalDate(
+                        medicalRecord.getBirthDate()));
         return menberFamilyDTO;
     }
-    private int calculateAgewithLocalDate (LocalDate date) {
-        LocalDate now = LocalDate.now();
-        Period period = Period.between(now, date);
-        return Math.abs(period.getYears());
-    }
+
 
     public String getFirstName() {
         return firstName;

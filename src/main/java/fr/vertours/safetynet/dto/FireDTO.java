@@ -17,7 +17,6 @@ public class FireDTO {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -25,7 +24,6 @@ public class FireDTO {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -33,7 +31,6 @@ public class FireDTO {
     public String getPhone() {
         return phone;
     }
-
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -41,7 +38,6 @@ public class FireDTO {
     public String getAge() {
         return age;
     }
-
     public void setAge(String age) {
         this.age = age;
     }
@@ -49,7 +45,6 @@ public class FireDTO {
     public Set<Medication> getMedicationSet() {
         return medicationSet;
     }
-
     public void setMedicationSet(Set<Medication> medicationSet) {
         this.medicationSet = medicationSet;
     }
@@ -57,7 +52,6 @@ public class FireDTO {
     public Set<Allergy> getAllergySet() {
         return allergySet;
     }
-
     public void setAllergySet(Set<Allergy> allergySet) {
         this.allergySet = allergySet;
     }

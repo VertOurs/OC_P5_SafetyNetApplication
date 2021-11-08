@@ -9,7 +9,6 @@ public class FloodDTO {
     List<FloodContactDTO> contacts;
 
 
-
     public int getStation() {
         return station;
     }
