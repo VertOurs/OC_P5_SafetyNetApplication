@@ -17,26 +17,24 @@ import java.util.stream.Collectors;
 import static fr.vertours.safetynet.util.CustomTools.calculateAgewithLocalDate;
 
 @Service
-public class PersonService implements IEmailService {
+public class PersonService {
 
     private final PersonRepository personRepository;
 
-
     @Autowired
     AddressService addressService;
+
     @Autowired
     FireStationService fireStationService;
+
     @Autowired
     MedicalRecordService medicalRecordService;
-    @Autowired
-    MedicationService medicationService;
-    @Autowired
-    AllergyService allergyService;
+
+
 
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
-
 
     public void addPerson(PersonDTO personDTO) {
         Person person = personDTO.createPerson();
@@ -47,9 +45,11 @@ public class PersonService implements IEmailService {
         person.setAddress(address);
         personRepository.save(person);
     }
+
     public void saveAll(Collection<Person> collection) {
         personRepository.saveAll(collection);
     }
+
     public List<Person> getAllPersons() {
         return personRepository.findAll();
     }
@@ -61,16 +61,15 @@ public class PersonService implements IEmailService {
     public Person find(String firstName, String lastName) {
         return personRepository.findOneByFirstNameAndLastName(firstName,lastName);
     }
-    public List<Person> findByLastName(String lastname) {
-        return personRepository.findByLastName(lastname);
-    }
-    @Override
+
     public List<Person> findByCity(String city) {
         return personRepository.findAllByCity(city);
     }
+
     public List<Person> findByAddress(String address) {
         return personRepository.findByAddress_AddressName(address);
     }
+
     public List<Person> findByAddressIn(Collection<Address> addresseCollections) {
         return personRepository.findByAddressIn(addresseCollections);
     }
@@ -83,7 +82,6 @@ public class PersonService implements IEmailService {
 
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
-
         if(personDTO.getAddress() != null) {
             Address address = new Address(personDTO.getAddress());
             addressService.save(address);
@@ -116,21 +114,14 @@ public class PersonService implements IEmailService {
         List<MedicalRecord> mRList = medicalRecordService.getMedicalRecordByListOfPerson(personList);
         int nbAdultes = (int) mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) >= 18).count();
         int nbEnfants = (int) mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) < 18).count();
-
         FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO(personInfoList, nbEnfants, nbAdultes);
-
         return fireStationInfoDTO;
     }
-
-
-
-
 
     public List<Person> findListOfPersonByAddress(Address address) {
         List<Person> personList = personRepository.findByAddress_AddressName(address.getAddressName());
         return personList;
     }
-
 
 
 }

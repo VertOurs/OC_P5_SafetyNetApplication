@@ -18,6 +18,7 @@ public class PhoneAlertService implements IPhoneAlertService {
     @Autowired
     PersonService personService;
 
+    @Override
     public List<Person> findByStation(int station) {
         FireStation fireStation = fireStationService.findOneStation(station);
         Set<Address> addressSet = fireStation.getAddress();

@@ -24,6 +24,7 @@ public class ChildAlertService implements IChildAlertService {
     @Autowired
     MedicalRecordService medicalRecordService;
 
+    @Override
     public ChildAlertDTO getChildrenAtThisAdress(String address) {
         List<Person> allPersoninAddress =  personService.findByAddress(address);
         List<MedicalRecord> mRList = medicalRecordService.getMedicalRecordByListOfPerson(allPersoninAddress);

@@ -11,15 +11,11 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    Person findByFirstName(String firstName);
-    List<Person> findByLastName(String lastName);
-    Person findOneByFirstNameAndLastName(String firstName, String lastName);
-    Person findOneById(Long ID);
-    Person deleteByFirstNameAndLastName(String firstName, String lastName);
-    List<Person> findByAddress_AddressName(String address);
-    List<Person> findAllByCity(String city);
-    List<Person> findByAddressIn(Collection<Address> addresseCollections);
-    List<Person> findByAddress(Address address);
+   Person findOneByFirstNameAndLastName(String firstName, String lastName);
+   List<Person> findByAddress_AddressName(String address);
+   List<Person> findAllByCity(String city);
+   List<Person> findByAddressIn(Collection<Address> addressCollection);
+
 
 
 

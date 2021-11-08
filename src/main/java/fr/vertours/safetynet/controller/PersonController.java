@@ -20,10 +20,10 @@ public class PersonController {
 
     private final PersonService personService;
 
-
-    public PersonController(PersonService personService, MedicalRecordController medicalRecordController) {
+    public PersonController(PersonService personService) {
         this.personService = personService;
     }
+
 
     @GetMapping("/person/all")
     public ResponseEntity<List<PersonDTO>> getListOfPersons() {
@@ -51,6 +51,7 @@ public class PersonController {
                 person.getEmail());
         return personDTO;
     }
+
     @PostMapping("/person")
     public void registerNewPerson(@RequestBody PersonDTO personDTO) {
         personService.addPerson(personDTO);
@@ -63,30 +64,9 @@ public class PersonController {
         personService.updatePerson(firstName, lastName, personDTO);
     }
 
-
     @DeleteMapping(path = "/person/{firstName}/{lastName}")
     public void deletePerson(@PathVariable("firstName") String firstName,
                              @PathVariable("lastName") String lastName) {
         personService.deletePerson(firstName, lastName);
     }
-
-    /* ****************************************** ENDPOINT 1 ****************************************************************** */                      // OK
-
-
-    /* ****************************************** ENDPOINT 2 ****************************************************************** */                      // Ok
-
-
-
-    /* *****************************************ENDPOINT 3 ****************************************************************** */                        // OK
-
-
-    /* *****************************************  ENDPOINT 4  ************************************************************* */                          // OK
-
-
-    /*  ***************************************  ENDPOINT 5  ************************************************************ */                        //a crée
-
-
-
-    /* ****************************************  ENDPOINT 6  ************************************************************* */                           //OK
-
 }

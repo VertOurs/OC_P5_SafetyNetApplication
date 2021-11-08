@@ -11,6 +11,7 @@ public class FireService implements IFireService {
     @Autowired
     MedicalRecordService medicalRecordService;
 
+    @Override
     public List<FireDTO> getListOfPersonForOneAddressWithFireStation(String address) {
         return medicalRecordService.getFireURL(address);
     }
