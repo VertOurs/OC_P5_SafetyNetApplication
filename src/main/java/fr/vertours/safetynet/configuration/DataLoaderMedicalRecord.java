@@ -16,9 +16,12 @@ public class DataLoaderMedicalRecord {
     MedicalRecordService medicalRecordService;
 
     public void saveMedicalRecordInDB (Map<String, Object> map, ObjectMapper objectMapper) {
-        List<Object> listOfMedicalRecordDTO = (List<Object>) map.get("medicalrecords");
+        List<Object> listOfMedicalRecordDTO =
+                (List<Object>) map.get("medicalrecords");
         for(Object medicalRecord : listOfMedicalRecordDTO) {
-            MedicalRecordDTO medicalRecordDTO = objectMapper.convertValue(medicalRecord, MedicalRecordDTO.class);
+            MedicalRecordDTO medicalRecordDTO =
+                    objectMapper.convertValue(medicalRecord,
+                            MedicalRecordDTO.class);
             medicalRecordService.save(medicalRecordDTO);
         }
     }

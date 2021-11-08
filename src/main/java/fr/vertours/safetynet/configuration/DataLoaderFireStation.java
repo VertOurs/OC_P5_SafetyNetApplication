@@ -17,14 +17,22 @@ public class DataLoaderFireStation {
     @Autowired
     FireStationService fireStationService;
 
-    public void saveFireStationInDB (Map<String, Object> map, ObjectMapper objectMapper, List<Address> addressList) {
-        List<Object> listOfFireStationDTO = (List<Object>) map.get("firestations");
+    public void saveFireStationInDB (Map<String,
+            Object> map, ObjectMapper objectMapper,
+                                     List<Address> addressList) {
+        List<Object> listOfFireStationDTO =
+                (List<Object>) map.get("firestations");
         List<FireStation> fireStationsList = new ArrayList<>();
         for(Object fireStation : listOfFireStationDTO) {
-            Map<String, String> fireStationDTO = objectMapper.convertValue(fireStation, Map.class);
+            Map<String, String> fireStationDTO =
+                    objectMapper.convertValue(fireStation, Map.class);
             FireStation fireStation1 = new FireStation();
-            fireStation1.setStation((Integer.valueOf(fireStationDTO.get("station"))));
-            Address address = addressList.stream().filter((addressa)->addressa.getAddressName().equals(fireStationDTO.get("address"))).findFirst().get();
+            fireStation1.setStation((
+                    Integer.valueOf(fireStationDTO.get("station"))));
+            Address address = addressList.stream().
+                    filter((addressa)->addressa.getAddressName().
+                            equals(fireStationDTO.get("address"))).
+                    findFirst().get();
             fireStation1.addAdress(address);
             int index = fireStationsList.indexOf(fireStation1);
             if(index == -1){

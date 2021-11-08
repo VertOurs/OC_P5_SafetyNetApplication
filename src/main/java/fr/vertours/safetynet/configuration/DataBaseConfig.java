@@ -49,16 +49,19 @@ public class DataBaseConfig {
             Map<String, Object> map = deserializeJson();
 
             ObjectMapper objectMapper = new ObjectMapper();
-            Set<Address> addressSet = personLoader.returnSetOfAddressInPersonDTO(map, objectMapper);
-            Set<Person> personSet = personLoader.returnSetOfPersonInPersonDTO(map, objectMapper);
+            Set<Address> addressSet = personLoader.
+                    returnSetOfAddressInPersonDTO(map, objectMapper);
+            Set<Person> personSet = personLoader.
+                    returnSetOfPersonInPersonDTO(map, objectMapper);
             List<Address> addressList = addressService.saveAll(addressSet);
 
-            personLoader.savePersonAndAddressInDB(map, objectMapper, addressList,personSet);
-            fireStationLoader.saveFireStationInDB(map, objectMapper, addressList);
+            personLoader.savePersonAndAddressInDB(map,
+                    objectMapper, addressList,personSet);
+            fireStationLoader.saveFireStationInDB(map,
+                    objectMapper, addressList);
             medicalRecordLoader.saveMedicalRecordInDB(map, objectMapper);
         };
     }
-
 
     public Map<String, Object> deserializeJson() throws IOException {
         InputStream input = resource.getInputStream();

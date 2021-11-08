@@ -20,7 +20,8 @@ public class DataLoaderPerson {
     @Autowired
     PersonService personService;
 
-    public Set<Person> returnSetOfPersonInPersonDTO(Map<String, Object> map, ObjectMapper objectMapper){
+    public Set<Person> returnSetOfPersonInPersonDTO(Map<String,
+            Object> map, ObjectMapper objectMapper){
         Set<Person> personSet = new LinkedHashSet();
         List<Object> listOfPersonDTO = (List<Object>) map.get("persons");
         for(Object o : listOfPersonDTO) {
@@ -30,7 +31,8 @@ public class DataLoaderPerson {
         }
         return personSet;
     }
-    public Set<Address> returnSetOfAddressInPersonDTO(Map<String, Object> map, ObjectMapper objectMapper){
+    public Set<Address> returnSetOfAddressInPersonDTO(Map<String,
+            Object> map, ObjectMapper objectMapper){
         Set<Address> addressSet = new HashSet();
         List<Object> listOfPersonDTO = (List<Object>) map.get("persons");
         for(Object o : listOfPersonDTO) {
@@ -45,7 +47,10 @@ public class DataLoaderPerson {
         return addressSet;
     }
 
-    public void savePersonAndAddressInDB (Map<String, Object> map, ObjectMapper objectMapper, List<Address> addressList, Set<Person> personSet) {
+    public void savePersonAndAddressInDB (Map<String, Object> map,
+                                          ObjectMapper objectMapper,
+                                          List<Address> addressList,
+                                          Set<Person> personSet) {
         for(Person person : personSet){
             Address personAddress = person.getAddress();
 
