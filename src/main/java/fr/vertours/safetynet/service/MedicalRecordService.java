@@ -90,7 +90,7 @@ public class MedicalRecordService {
         medicalRecord1.setBirthDate(birthDate);
         medicalRecord1.setAllergies(setObjectAllergy);
         medicalRecord1.setMedications(setObjectMedication);
-        System.out.println(medicalRecord1);
+
         return medicalRecordRepository.save(medicalRecord1);
 
     }
@@ -120,24 +120,13 @@ public class MedicalRecordService {
         return setAllergy;
     }
 
-    public void addMedicalRecord(MedicalRecordDTO medicalRecordDTO) {
-        MedicalRecord medicalRecord = medicalRecordDTO.createMedicalRecord();
-        Person person = personService.find(medicalRecordDTO.getFirstName(), medicalRecordDTO.getLastName());
-        if(person == null) {
-            System.out.println("Merci de crée d'abord une personne avant de créé le dossier lui corespondant !!");
-        } else {
-            medicalRecord.setPerson(person);
-            medicalRecordRepository.save(medicalRecord);
-        }
-    }
+
 
     public void updateMedicalRecord(String firstName, String lastName, MedicalRecordDTO medicalRecordDTO) {
         MedicalRecord medicalRecord = medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
         if(medicalRecordDTO.getBirthdate() != null ) {
             LocalDate localBirthDate = LocalDate.parse(medicalRecordDTO.getBirthdate(), DATE_TIME_FORMATTER);
-            System.out.println(medicalRecordDTO.getBirthdate());
-            System.out.println(localBirthDate);
             medicalRecord.setBirthDate(localBirthDate);
         }
         if(medicalRecordDTO.getMedications() != null ) {

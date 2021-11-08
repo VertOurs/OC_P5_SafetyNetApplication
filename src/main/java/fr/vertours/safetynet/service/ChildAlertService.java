@@ -27,13 +27,26 @@ public class ChildAlertService implements IChildAlertService {
     @Override
     public ChildAlertDTO getChildrenAtThisAdress(String address) {
         List<Person> allPersoninAddress =  personService.findByAddress(address);
-        List<MedicalRecord> mRList = medicalRecordService.getMedicalRecordByListOfPerson(allPersoninAddress);
-        List<ChildrenDTO> childs = mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) < 18).map(ChildrenDTO::ChildrenfromMedicalRecord).collect(Collectors.toList());
-        List<AdultDTO> adults = mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) >= 18).map(AdultDTO::AdultfromMedicalRecord).collect(Collectors.toList());
+        List<MedicalRecord> mRList =
+                medicalRecordService.
+                        getMedicalRecordByListOfPerson(allPersoninAddress);
+        List<ChildrenDTO> childs =
+                mRList.stream().
+                        filter(mr -> calculateAgewithLocalDate(
+                                mr.getBirthDate()) < 18).
+                        map(ChildrenDTO::ChildrenfromMedicalRecord).
+                        collect(Collectors.toList());
+        List<AdultDTO> adults =
+                mRList.stream().
+                        filter(mr -> calculateAgewithLocalDate(
+                                mr.getBirthDate()) >= 18).
+                        map(AdultDTO::AdultfromMedicalRecord).
+                        collect(Collectors.toList());
         return getChildAlertDTOfromTwoList(childs,adults);
     }
 
-    private ChildAlertDTO getChildAlertDTOfromTwoList(List<ChildrenDTO> childs, List<AdultDTO> adults) {
+    private ChildAlertDTO getChildAlertDTOfromTwoList(List<ChildrenDTO> childs,
+                                                      List<AdultDTO> adults) {
         ChildAlertDTO childAlertDTO = new ChildAlertDTO();
         childAlertDTO.setEnfants(childs);
         childAlertDTO.setAutresMenbresDuFoyer(adults);

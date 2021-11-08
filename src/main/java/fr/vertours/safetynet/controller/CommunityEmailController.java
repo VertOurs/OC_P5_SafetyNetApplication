@@ -17,8 +17,10 @@ public class CommunityEmailController {
     IEmailService iEmailService;
 
     @GetMapping("/communityEmail")
-    public List<String> getAllEmailForOneCity(@RequestParam("city") String city) {
+    public List<String> getAllEmailForOneCity(
+            @RequestParam("city") String city) {
         List<Person> personList = this.iEmailService.findByCity(city);
-        return personList.stream().map(Person::getEmail).collect(Collectors.toList());
+        return personList.stream().
+                map(Person::getEmail).collect(Collectors.toList());
     }
 }

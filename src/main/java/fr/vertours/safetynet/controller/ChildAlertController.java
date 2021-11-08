@@ -15,7 +15,8 @@ public class ChildAlertController {
 
 
     @GetMapping("/childAlert")
-    public ChildAlertDTO getListOfChildrenAtThisAddress(@RequestParam("address") String address) {
+    public ChildAlertDTO getListOfChildrenAtThisAddress(
+            @RequestParam("address") String address) {
         return iChildAlertService.getChildrenAtThisAdress(address);
     }
 }
