@@ -56,6 +56,7 @@ public class PersonController {
                 person.getZip(),
                 person.getPhone(),
                 person.getEmail());
+        LOGGER.info("call endPoint GET /person/");
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(personDTO);
     }
 
@@ -63,6 +64,7 @@ public class PersonController {
     public ResponseEntity<String> registerNewPerson(@RequestBody PersonDTO personDTO) {
         LOGGER.info("call endPoint POST/person");
         personService.addPerson(personDTO);
+        LOGGER.info("call endPoint POST /person");
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(personDTO.getFirstName() + " " + personDTO.getFirstName() + " à bien été crée en DB.");
     }
 
@@ -71,6 +73,7 @@ public class PersonController {
                              @PathVariable("lastName") String lastName,
                              @RequestBody PersonDTO personDTO ) {
         personService.updatePerson(firstName, lastName, personDTO);
+        LOGGER.info("call endPoint PUT /person");
         return ResponseEntity.accepted().body("les Modifications de " + firstName + " " + lastName + " ont bien été prise en compte dans la DB.");
     }
 
@@ -78,7 +81,7 @@ public class PersonController {
     public ResponseEntity<String> deletePerson(@PathVariable("firstName") String firstName,
                              @PathVariable("lastName") String lastName) {
         personService.deletePerson(firstName, lastName);
-
+        LOGGER.info("call endPoint DEL /person");
         return ResponseEntity.accepted().body(firstName + " " + lastName + " a bien été supprimer de la DB.");
     }
 }
