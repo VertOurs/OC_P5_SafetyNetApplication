@@ -8,6 +8,7 @@ import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.FireStationService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class FireStationController {
 
 
     @GetMapping("/firestation/all")
-    public List<FireStationDTO> getListFireStation(){
+    public ResponseEntity<List<FireStationDTO>> getListFireStation(){
         List<FireStation> fireStationList = this.firestationService.
                 getListOfAllStations();
 
@@ -32,36 +33,39 @@ public class FireStationController {
                 .map(FireStationDTO::fromFireStation)
                 .collect(Collectors.toList());
 
-        return fireStationDTOList;
+        return ResponseEntity.accepted().body(fireStationDTOList);
     }
 
     @GetMapping ("/firestation/{station}")
-    public FireStationDTO getStation(@PathVariable int station){
+    public ResponseEntity<FireStationDTO> getStation(@PathVariable int station){
         FireStation fireStation = this.firestationService.findOneStation(station);
-        return FireStationDTO.fromFireStation(fireStation);
+        return ResponseEntity.accepted().body(FireStationDTO.fromFireStation(fireStation));
     }
 
     @GetMapping("/firestation")
-    public FireStationInfoDTO getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
+    public ResponseEntity<FireStationInfoDTO> getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
         List<Person> personList = firestationService.findByStation(station);
         List<PersonForFireInfoDTO> personInfoList = firestationService.personFromFireStation(personList);
-        return firestationService.getFireStationInfoDTOFromList(personInfoList,personList);
+        return ResponseEntity.accepted().body(firestationService.getFireStationInfoDTOFromList(personInfoList,personList));
     }
 
     @PostMapping("/firestation")
-    public void create(@RequestBody FireStationDTO fireStationDTO) {
+    public ResponseEntity<String> create(@RequestBody FireStationDTO fireStationDTO) {
         this.firestationService.saveOneStation(fireStationDTO);
+        return ResponseEntity.accepted().body("La station à bien été créé.");
     }
 
     @PutMapping("/firestation/{station}")
-    public void updateNbStationForOneAddress(@PathVariable int station,
+    public ResponseEntity<String> updateNbStationForOneAddress(@PathVariable int station,
                                              @RequestBody Address address) {
          this.firestationService.updateStationForOneAddress(station, address);
+         return ResponseEntity.accepted().body("la station à bien été modifiée.");
     }
 
 
     @DeleteMapping(path = "/firestation/{nbStation}")
-    public void deleteOneStation(@PathVariable int nbStation) {
+    public ResponseEntity<String> deleteOneStation(@PathVariable int nbStation) {
         this.firestationService.deleteOneFireStation(nbStation);
+        return ResponseEntity.accepted().body("la station à bien été supprimer.");
     }
 }

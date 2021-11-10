@@ -3,6 +3,7 @@ package fr.vertours.safetynet.controller;
 import fr.vertours.safetynet.dto.MedicalRecordDTO;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.service.MedicalRecordService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,33 +21,35 @@ public class MedicalRecordController {
 
 
     @GetMapping("/medicalRecord/all")
-    public List<MedicalRecordDTO> getListOfMedicalRecord() {
+    public ResponseEntity<List<MedicalRecordDTO>> getListOfMedicalRecord() {
         List <MedicalRecord> medicalRecordList = medicalRecordService.getAllMedicalRecord();
         List <MedicalRecordDTO> medicalRecordDTOList = medicalRecordList.stream().map(MedicalRecordDTO::fromMedicalRecord).collect(Collectors.toList());
-        return medicalRecordDTOList;
+        return ResponseEntity.accepted().body(medicalRecordDTOList);
     }
 
     @GetMapping(path = "/medicalRecord/{firstName}/{lastName}")
-    public MedicalRecordDTO getOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
+    public ResponseEntity<MedicalRecordDTO> getOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         MedicalRecord medicalRecord = medicalRecordService.getOneMedicalRecordByFirstAndLastName(firstName, lastName);
-        return MedicalRecordDTO.fromMedicalRecord(medicalRecord);
+        return ResponseEntity.accepted().body(MedicalRecordDTO.fromMedicalRecord(medicalRecord));
     }
     @PostMapping("/medicalRecord")
-    public void registerNewMedicalPerson(@RequestBody MedicalRecordDTO medicalRecordDTO) {
+    public ResponseEntity<String> registerNewMedicalPerson(@RequestBody MedicalRecordDTO medicalRecordDTO) {
         medicalRecordService.save(medicalRecordDTO);
+        return ResponseEntity.accepted().body("Le dossier médical à bien été créé.");
     }
 
     @PutMapping (path = "/medicalRecord/{firstName}/{lastName}")
-    public void updateMedicalRecord(@PathVariable("firstName") String firstName,
+    public ResponseEntity<String> updateMedicalRecord(@PathVariable("firstName") String firstName,
                                     @PathVariable("lastName") String lastName,
                                     @RequestBody MedicalRecordDTO medicalRecordDTO) {
         medicalRecordService.updateMedicalRecord(firstName, lastName, medicalRecordDTO);
-
+        return ResponseEntity.accepted().body("Le dossier médical à bien été modifié.");
     }
 
     @DeleteMapping(path = "/medicalRecord/{firstName}/{lastName}")
-    public void deleteOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
+    public ResponseEntity<String> deleteOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         medicalRecordService.deleteOneMedicalRecord(firstName, lastName);
+        return  ResponseEntity.accepted().body("Le dossier médical à bien été supprimé.");
     }
 
 
