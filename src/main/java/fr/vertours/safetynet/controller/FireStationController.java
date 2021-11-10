@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 public class FireStationController {
 
-    Logger LOGGER = LogManager.getLogger(FireStationController.class);
+    private final static Logger LOGGER = LogManager.getLogger(FireStationController.class);
 
     private final  FireStationService firestationService;
 

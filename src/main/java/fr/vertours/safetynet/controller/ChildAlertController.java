@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ChildAlertController {
 
-    Logger LOGGER = LogManager.getLogger(ChildAlertController.class);
+    private final static Logger LOGGER = LogManager.getLogger(ChildAlertController.class);
 
     @Autowired
     IChildAlertService iChildAlertService;

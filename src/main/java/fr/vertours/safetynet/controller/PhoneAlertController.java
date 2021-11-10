@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 public class PhoneAlertController {
 
-    Logger LOGGER = LogManager.getLogger(PhoneAlertController.class);
+   private final static Logger LOGGER = LogManager.getLogger(PhoneAlertController.class);
 
     @Autowired
     IPhoneAlertService iPhoneAlertService;

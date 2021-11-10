@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 public class CommunityEmailController {
 
-    Logger LOGGER = LogManager.getLogger(CommunityEmailController.class);
+    private final static Logger LOGGER = LogManager.getLogger(CommunityEmailController.class);
 
     @Autowired
     IEmailService iEmailService;

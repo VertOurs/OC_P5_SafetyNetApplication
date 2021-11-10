@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 public class FireController {
 
-    Logger LOGGER = LogManager.getLogger(FireController.class);
+    private final static Logger LOGGER = LogManager.getLogger(FireController.class);
 
     @Autowired
     IFireService ifireService;

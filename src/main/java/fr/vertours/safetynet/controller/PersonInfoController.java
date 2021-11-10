@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PersonInfoController {
 
-    Logger LOGGER = LogManager.getLogger(PersonInfoController.class);
+    private final static Logger LOGGER = LogManager.getLogger(PersonInfoController.class);
 
     @Autowired
     IPersonInfoService iPersonInfoService;

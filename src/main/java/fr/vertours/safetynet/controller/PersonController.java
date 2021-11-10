@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 public class PersonController {
 
-    Logger LOGGER = LogManager.getLogger(PersonController.class);
+    private final static Logger LOGGER = LogManager.getLogger(PersonController.class);
 
     private final PersonService personService;
 

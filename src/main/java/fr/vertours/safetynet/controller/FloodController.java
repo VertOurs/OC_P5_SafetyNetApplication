@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 public class FloodController {
 
-    Logger LOGGER = LogManager.getLogger(FloodController.class);
+    private final static Logger LOGGER = LogManager.getLogger(FloodController.class);
 
     @Autowired
     IFloodService iFloodService;
