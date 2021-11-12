@@ -51,6 +51,7 @@ public class PersonService {
     }
 
     public List<Person> getAllPersons() {
+        throw new NullPointerException("message");
         return personRepository.findAll();
     }
 

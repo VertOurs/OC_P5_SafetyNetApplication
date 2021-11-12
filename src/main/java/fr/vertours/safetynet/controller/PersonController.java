@@ -7,7 +7,8 @@ import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.MedicalRecordService;
 import fr.vertours.safetynet.service.PersonService;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 @RestController
 public class PersonController {
 
-    private final static Logger LOGGER = LogManager.getLogger(PersonController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
 
     private final PersonService personService;
 
@@ -31,18 +32,19 @@ public class PersonController {
 
 
     @GetMapping("/person/all")
-    public ResponseEntity<List<PersonDTO>> getListOfPersons() throws RestResponseEntityExceptionHandler {
+    public ResponseEntity<List<PersonDTO>> getListOfPersons() throws NullPointerException {
         List<Person> personList = this.personService.getAllPersons();
         LOGGER.info("call endPoint person/all");
-        try {
-            List<PersonDTO> personDTOList = personList.stream()
+
+        //try {
+           List<PersonDTO> personDTOList = personList.stream()
                     .map(PersonDTO::fromPerson)
                     .collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(personDTOList);
 
-        } catch (Exception e) {
+       /* } catch (Exception e) {
             return ResponseEntity.notFound().build();
-        }
+        }*/
     }
 
     @GetMapping(path = "/person/{firstName}/{lastName}")
