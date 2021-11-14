@@ -1,21 +1,15 @@
 package fr.vertours.safetynet.controller;
 
-import fr.vertours.safetynet.controller.exceptions.RestResponseEntityExceptionHandler;
 import fr.vertours.safetynet.dto.*;
-import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
-import fr.vertours.safetynet.service.MedicalRecordService;
 import fr.vertours.safetynet.service.PersonService;
-import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.Period;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

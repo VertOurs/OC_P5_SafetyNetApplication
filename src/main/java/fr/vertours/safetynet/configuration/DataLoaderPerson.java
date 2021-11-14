@@ -1,21 +1,22 @@
 package fr.vertours.safetynet.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jsoniter.JsonIterator;
 import fr.vertours.safetynet.dto.PersonDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.Person;
-import fr.vertours.safetynet.repository.PersonRepository;
 import fr.vertours.safetynet.service.PersonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 
 import java.util.*;
 
 @Component
 public class DataLoaderPerson {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(DataLoaderPerson.class);
 
     @Autowired
     PersonService personService;

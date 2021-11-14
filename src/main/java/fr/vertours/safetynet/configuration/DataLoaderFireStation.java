@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.service.FireStationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,8 @@ import java.util.Map;
 
 @Component
 public class DataLoaderFireStation {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(DataLoaderFireStation.class);
 
     @Autowired
     FireStationService fireStationService;

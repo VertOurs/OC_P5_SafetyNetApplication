@@ -3,8 +3,8 @@ package fr.vertours.safetynet.controller;
 import fr.vertours.safetynet.dto.MedicalRecordDTO;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.service.MedicalRecordService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @RestController
 public class MedicalRecordController {
 
-    private final static Logger LOGGER = LogManager.getLogger(MedicalRecordController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(MedicalRecordController.class);
 
 
     private final MedicalRecordService medicalRecordService;

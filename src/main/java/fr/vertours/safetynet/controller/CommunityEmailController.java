@@ -2,8 +2,8 @@ package fr.vertours.safetynet.controller;
 
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.IEmailService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 public class CommunityEmailController {
 
-    private final static Logger LOGGER = LogManager.getLogger(CommunityEmailController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(CommunityEmailController.class);
 
     @Autowired
     IEmailService iEmailService;

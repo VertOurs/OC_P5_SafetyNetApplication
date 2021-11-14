@@ -3,6 +3,8 @@ package fr.vertours.safetynet.configuration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.vertours.safetynet.dto.MedicalRecordDTO;
 import fr.vertours.safetynet.service.MedicalRecordService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +13,8 @@ import java.util.Map;
 
 @Component
 public class DataLoaderMedicalRecord {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(DataLoaderMedicalRecord.class);
 
     @Autowired
     MedicalRecordService medicalRecordService;

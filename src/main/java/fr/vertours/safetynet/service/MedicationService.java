@@ -1,8 +1,11 @@
 package fr.vertours.safetynet.service;
 
+import fr.vertours.safetynet.controller.ChildAlertController;
 import fr.vertours.safetynet.model.Allergy;
 import fr.vertours.safetynet.model.Medication;
 import fr.vertours.safetynet.repository.MedicationRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,8 @@ import java.util.Set;
 
 @Service
 public class MedicationService {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(MedicationService.class);
 
     @Autowired
     MedicationRepository medicationRepository;

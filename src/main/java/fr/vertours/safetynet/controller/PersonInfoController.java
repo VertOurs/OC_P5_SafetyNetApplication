@@ -4,8 +4,8 @@ import fr.vertours.safetynet.dto.PersonInfoDTO;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.IPersonInfoService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PersonInfoController {
 
-    private final static Logger LOGGER = LogManager.getLogger(PersonInfoController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(PersonInfoController.class);
 
     @Autowired
     IPersonInfoService iPersonInfoService;

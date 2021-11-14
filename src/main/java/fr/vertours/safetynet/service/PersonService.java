@@ -1,11 +1,14 @@
 package fr.vertours.safetynet.service;
 
+import fr.vertours.safetynet.controller.ChildAlertController;
 import fr.vertours.safetynet.dto.*;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.repository.PersonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,8 @@ import static fr.vertours.safetynet.util.CustomTools.calculateAgewithLocalDate;
 
 @Service
 public class PersonService {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(PersonService.class);
 
     private final PersonRepository personRepository;
 
@@ -51,7 +56,6 @@ public class PersonService {
     }
 
     public List<Person> getAllPersons() {
-        throw new NullPointerException("message");
         return personRepository.findAll();
     }
 

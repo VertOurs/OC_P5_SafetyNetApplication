@@ -1,6 +1,5 @@
 package fr.vertours.safetynet.controller;
 
-import fr.vertours.safetynet.dto.AllInfoPersonDTO;
 import fr.vertours.safetynet.dto.FireStationDTO;
 import fr.vertours.safetynet.dto.FireStationInfoDTO;
 import fr.vertours.safetynet.dto.PersonForFireInfoDTO;
@@ -8,8 +7,8 @@ import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.FireStationService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 @RestController
 public class FireStationController {
 
-    private final static Logger LOGGER = LogManager.getLogger(FireStationController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(FireStationController.class);
 
     private final  FireStationService firestationService;
 

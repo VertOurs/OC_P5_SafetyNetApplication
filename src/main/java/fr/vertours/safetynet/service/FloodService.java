@@ -1,11 +1,14 @@
 package fr.vertours.safetynet.service;
 
+import fr.vertours.safetynet.controller.ChildAlertController;
 import fr.vertours.safetynet.dto.FloodContactDTO;
 import fr.vertours.safetynet.dto.FloodDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ import java.util.List;
 
 @Service
 public class FloodService implements IFloodService {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(FloodService.class);
 
     @Autowired
     FireStationService fireStationService;
