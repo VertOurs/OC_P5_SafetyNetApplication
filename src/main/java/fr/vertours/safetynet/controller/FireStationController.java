@@ -69,11 +69,16 @@ public class FireStationController {
          return ResponseEntity.accepted().body("la station à bien été modifiée.");
     }
 
-
+    /**
+     * Endpoint that allows you to delete a FireStation from the database.
+     * @param nbStation
+     * @return a success message with ResponseEntity.
+     */
     @DeleteMapping(path = "/firestation/{nbStation}")
     public ResponseEntity<String> deleteOneStation(@PathVariable int nbStation) {
-        this.firestationService.deleteOneFireStation(nbStation);
         LOGGER.info("call endpoint DEL /firestation");
-        return ResponseEntity.accepted().body("la station à bien été supprimer.");
+        this.firestationService.deleteOneFireStation(nbStation);
+
+        return ResponseEntity.accepted().body("the FireStation has been deleted from the database.");
     }
 }

@@ -6,6 +6,7 @@ import fr.vertours.safetynet.dto.PersonForFireInfoDTO;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.Person;
+import fr.vertours.safetynet.model.exceptions.FireStationNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,16 @@ public class FireStationService {
         return fireStationRepository.findFireStationByAddress(address);
     }
 
+    /**
+     *delete a FireStation.
+     * @param firestation
+     */
     public void deleteOneFireStation(int firestation) {
+        LOGGER.info("call : deleteOneFireStation method");
+        Optional<FireStation> existingFireStation = Optional.ofNullable(fireStationRepository.findByStation(firestation));
+        if(existingFireStation.isEmpty()) {
+            throw new FireStationNotFoundException(firestation);
+        }
         FireStation fireStationObject = fireStationRepository.findByStation(firestation);
         fireStationRepository.delete(fireStationObject);
     }

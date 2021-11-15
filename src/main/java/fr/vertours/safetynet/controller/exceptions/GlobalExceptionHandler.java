@@ -1,9 +1,6 @@
 package fr.vertours.safetynet.controller.exceptions;
 
-import fr.vertours.safetynet.model.exceptions.BadRequestException;
-import fr.vertours.safetynet.model.exceptions.EmptyDBException;
-import fr.vertours.safetynet.model.exceptions.PersonAlreadyPresentException;
-import fr.vertours.safetynet.model.exceptions.PersonNotFoundException;
+import fr.vertours.safetynet.model.exceptions.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,6 +14,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    @ExceptionHandler(FireStationNotFoundException.class)
+    public final ResponseEntity<String> handleFireStationException(FireStationNotFoundException e) {
+        LOGGER.error("Handling " + e.getClass().getSimpleName() + " due to " + e.getMessage() + ". More informations : "+e.getStackTrace());
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
 
     @ExceptionHandler({BadRequestException.class, PersonNotFoundException.class, PersonAlreadyPresentException.class})
     public final ResponseEntity<String> handleException(Exception e) {
