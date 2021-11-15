@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-   Person findOneByFirstNameAndLastName(String firstName, String lastName);
+   Person findOneByFirstNameAndLastName(String firstName, String lastName) throws NullPointerException;
    List<Person> findByAddress_AddressName(String address);
    List<Person> findAllByCity(String city);
    List<Person> findByAddressIn(Collection<Address> addressCollection);

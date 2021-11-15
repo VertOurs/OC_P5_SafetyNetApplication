@@ -1,7 +1,9 @@
 package fr.vertours.safetynet.service;
 
-import fr.vertours.safetynet.controller.ChildAlertController;
 import fr.vertours.safetynet.dto.*;
+import fr.vertours.safetynet.model.exceptions.EmptyDBException;
+import fr.vertours.safetynet.model.exceptions.PersonAlreadyPresentException;
+import fr.vertours.safetynet.model.exceptions.PersonNotFoundException;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.MedicalRecord;
@@ -12,8 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,6 +41,10 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
+    /**
+     *adds a person to the database
+     * @param personDTO
+     */
     public void addPerson(PersonDTO personDTO) {
         Person person = personDTO.createPerson();
         Address address = addressService.find(personDTO.getAddress());
@@ -48,6 +52,10 @@ public class PersonService {
             address = addressService.save(personDTO.getAddress());
         }
         person.setAddress(address);
+        Optional<Person> existingPerson = Optional.ofNullable(personRepository.findOneByFirstNameAndLastName(person.getFirstName(), person.getLastName()));
+        if(existingPerson.isPresent()) {
+            throw new PersonAlreadyPresentException(person.getFirstName(), person.getLastName());
+        }
         personRepository.save(person);
     }
 
@@ -55,17 +63,44 @@ public class PersonService {
         personRepository.saveAll(collection);
     }
 
+    /**
+     * Retrieves all the people in the database
+     * @return A list of <Person> Entities.
+     */
     public List<Person> getAllPersons() {
-        return personRepository.findAll();
+       List<Person> personList = personRepository.findAll();
+       if(personList.isEmpty()) {
+           throw new EmptyDBException();
+       }
+       return personRepository.findAll();
     }
 
+    /**
+     *  deletes a person in the DataBase
+     * @param firstName
+     * @param lastName
+     */
     public void deletePerson(String firstName, String lastName) {
         Person person = find(firstName, lastName);
         personRepository.delete(person);
     }
-    public Person find(String firstName, String lastName) {
+
+    /**
+     * find a person in Database
+     * @param firstName
+     * @param lastName
+     * @return a Person Entity
+     */
+    public Person find(String firstName, String lastName)  {
+        Optional<Person> existingPerson = Optional.ofNullable(personRepository.findOneByFirstNameAndLastName(firstName, lastName));
+
+        if(existingPerson.isEmpty()) {
+            throw new PersonNotFoundException(firstName, lastName);
+        }
         return personRepository.findOneByFirstNameAndLastName(firstName,lastName);
     }
+
+
 
     public List<Person> findByCity(String city) {
         return personRepository.findAllByCity(city);
@@ -85,7 +120,17 @@ public class PersonService {
         return personRepository.findByAddressIn(addressSet);
     }
 
+    /**
+     *allows you to modify the values of a person in the database
+     * @param firstName
+     * @param lastName
+     * @param personDTO
+     */
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
+        Optional<Person> existingPerson = Optional.ofNullable(personRepository.findOneByFirstNameAndLastName(firstName, lastName));
+        if(existingPerson.isEmpty()) {
+            throw new PersonNotFoundException(firstName, lastName);
+        }
         Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
         if(personDTO.getAddress() != null) {
             Address address = new Address(personDTO.getAddress());
