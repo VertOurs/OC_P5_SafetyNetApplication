@@ -20,12 +20,19 @@ public class PersonInfoController {
     @Autowired
     IPersonInfoService iPersonInfoService;
 
+    /**
+     * Endpoint that allows to return the information of a person according to the requirements of the project.
+     * @param firstName
+     * @param LastName
+     * @return personInfoDTO
+     */
     @GetMapping("/personInfo")
     public ResponseEntity<PersonInfoDTO> getNameAddressAgeMailMedicationsAndAllergies(@RequestParam("firstName") String firstName, @RequestParam("lastName") String LastName) {
+        LOGGER.info("call endpoint /personInfo");
         Person person = this.iPersonInfoService.find(firstName, LastName);
         MedicalRecord medicalRecord = new MedicalRecord(person);
         PersonInfoDTO personInfoDTO =  new PersonInfoDTO(person, medicalRecord);
-        LOGGER.info("call endpoint /personInfo");
+
         return ResponseEntity.accepted().body(personInfoDTO);
     }
 }

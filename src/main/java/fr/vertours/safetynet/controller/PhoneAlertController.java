@@ -21,6 +21,11 @@ public class PhoneAlertController {
     @Autowired
     IPhoneAlertService iPhoneAlertService;
 
+    /**
+     *
+     * @param station
+     * @return
+     */
     @GetMapping("/phoneAlert")
     public ResponseEntity<List<String>> getListPhoneNumberByFireStation(@RequestParam("firestation") int station) {
         List<Person> personList = this.iPhoneAlertService.findByStation(station);

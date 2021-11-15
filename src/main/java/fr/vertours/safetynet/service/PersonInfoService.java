@@ -15,6 +15,12 @@ public class PersonInfoService implements IPersonInfoService {
     @Autowired
     PersonService personService;
 
+    /**
+     * find a person in Database.
+     * @param firstName
+     * @param lastName
+     * @return a person entity.
+     */
     @Override
     public Person find(String firstName, String lastName) {
         return personService.find(firstName, lastName);

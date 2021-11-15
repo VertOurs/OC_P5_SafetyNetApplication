@@ -110,8 +110,17 @@ public class PersonService {
         return personRepository.findByAddress_AddressName(address);
     }
 
+    /**
+     *
+     * @param addresseCollections
+     * @return
+     */
     public List<Person> findByAddressIn(Collection<Address> addresseCollections) {
-        return personRepository.findByAddressIn(addresseCollections);
+        List<Person> personList = personRepository.findByAddressIn(addresseCollections);
+        if(personList.isEmpty()) {
+            throw new EmptyDBException();
+        }
+        return personList;
     }
 
     public List<Person> findByStation(int station) {
