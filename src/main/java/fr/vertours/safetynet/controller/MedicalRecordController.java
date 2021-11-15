@@ -23,14 +23,24 @@ public class MedicalRecordController {
         this.medicalRecordService = medicalRecordService;
     }
 
-
+    /**
+     *Endpoint that allows you to retrieve all MedicalRecord.
+     * @return a list of MedicalRecordDTO entity with ResponseEntity.
+     */
     @GetMapping("/medicalRecord/all")
     public ResponseEntity<List<MedicalRecordDTO>> getListOfMedicalRecord() {
+        LOGGER.info("call endpoint : /medicalRecord/all");
         List <MedicalRecord> medicalRecordList = medicalRecordService.getAllMedicalRecord();
         List <MedicalRecordDTO> medicalRecordDTOList = medicalRecordList.stream().map(MedicalRecordDTO::fromMedicalRecord).collect(Collectors.toList());
         return ResponseEntity.accepted().body(medicalRecordDTOList);
     }
 
+    /**
+     *endpoint that allows access to the MedicalRecord of a person.
+     * @param firstName
+     * @param lastName
+     * @return a success message.
+     */
     @GetMapping(path = "/medicalRecord/{firstName}/{lastName}")
     public ResponseEntity<MedicalRecordDTO> getOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         MedicalRecord medicalRecord = medicalRecordService.getOneMedicalRecordByFirstAndLastName(firstName, lastName);

@@ -7,6 +7,7 @@ import fr.vertours.safetynet.model.Allergy;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Medication;
 import fr.vertours.safetynet.model.Person;
+import fr.vertours.safetynet.model.exceptions.EmptyDBException;
 import fr.vertours.safetynet.repository.MedicalRecordRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,17 +38,25 @@ public class MedicalRecordService {
     private AllergyService allergyService;
 
 
-
-
     public MedicalRecordService(MedicalRecordRepository medicalRecordRepository) {
         this.medicalRecordRepository = medicalRecordRepository;
     }
 
+
     public MedicalRecord find(String firstName, String lastName) {
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
     }
+
+    /**
+     * gives a list of all MedicalRecords present in the Database
+     * @return a list of MedicalRecord entity.
+     */
     public List<MedicalRecord> getAllMedicalRecord() {
-        return medicalRecordRepository.findAll();
+        List<MedicalRecord> medicalRecordList = medicalRecordRepository.findAll();
+        if(medicalRecordList.isEmpty()) {
+            throw new EmptyDBException();
+        }
+        return medicalRecordList;
     }
 
     public List<MedicalRecord> getMedicalRecordByListOfPerson(List<Person> personList) {
@@ -62,6 +71,13 @@ public class MedicalRecordService {
         }
         return medicalRecordList;
     }
+
+    /**
+     *allows to have access to a Medica Record present in the database.
+     * @param firstName
+     * @param lastName
+     * @return a MedicalRecord entity.
+     */
     public MedicalRecord getOneMedicalRecordByFirstAndLastName(String firstName, String lastName) {
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
