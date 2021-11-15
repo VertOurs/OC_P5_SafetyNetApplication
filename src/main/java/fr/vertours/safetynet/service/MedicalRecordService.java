@@ -8,6 +8,7 @@ import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Medication;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.model.exceptions.EmptyDBException;
+import fr.vertours.safetynet.model.exceptions.PersonNotFoundException;
 import fr.vertours.safetynet.repository.MedicalRecordRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +43,17 @@ public class MedicalRecordService {
         this.medicalRecordRepository = medicalRecordRepository;
     }
 
-
+    /**
+     * finds a MedicalRecord in the database.
+     * @param firstName
+     * @param lastName
+     * @return MedicalRecord Entity.
+     */
     public MedicalRecord find(String firstName, String lastName) {
+        Optional<MedicalRecord> existingMedicalRecord = Optional.ofNullable(medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName));
+        if(existingMedicalRecord.isEmpty()) {
+            throw new PersonNotFoundException(firstName, lastName);
+        }
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
     }
 
@@ -52,6 +62,7 @@ public class MedicalRecordService {
      * @return a list of MedicalRecord entity.
      */
     public List<MedicalRecord> getAllMedicalRecord() {
+        LOGGER.info("call getAllMedicalRecord Method");
         List<MedicalRecord> medicalRecordList = medicalRecordRepository.findAll();
         if(medicalRecordList.isEmpty()) {
             throw new EmptyDBException();
@@ -60,6 +71,7 @@ public class MedicalRecordService {
     }
 
     public List<MedicalRecord> getMedicalRecordByListOfPerson(List<Person> personList) {
+        LOGGER.info("call getMedicalRecordByListOfPerson Method");
         List<MedicalRecord> allMedicalRecordList = medicalRecordRepository.findAll();
         List<MedicalRecord>  medicalRecordList = new ArrayList<>();
         for(Person p : personList) {
@@ -79,10 +91,12 @@ public class MedicalRecordService {
      * @return a MedicalRecord entity.
      */
     public MedicalRecord getOneMedicalRecordByFirstAndLastName(String firstName, String lastName) {
+        LOGGER.info("call getOneMedicalRecordByFirstAndLastName Method");
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
     }
     public List<FireDTO> getFireURL(String address) {
+        LOGGER.info("call getFireURL Method");
         List<MedicalRecord> medicalRecordList = this.medicalRecordRepository.findByPerson_Address_AddressName(address);
         List<FireDTO> fireDTOList = new ArrayList<>();
         for(MedicalRecord medicalRecord : medicalRecordList) {
@@ -98,7 +112,17 @@ public class MedicalRecordService {
         return fireDTOList;
     }
 
+    /**
+     *save a medicalRecord to a person.
+     * @param medicalRecord
+     * @return MedicalRecord
+     */
     public MedicalRecord save(MedicalRecordDTO medicalRecord) {
+        LOGGER.info("call save Method");
+        Optional<Person> existingPerson = Optional.ofNullable(personService.find(medicalRecord.getFirstName(), medicalRecord.getLastName()));
+        if(existingPerson.isEmpty()) {
+            throw new PersonNotFoundException(medicalRecord.getFirstName(), medicalRecord.getLastName());
+        }
         Person person = personService.find(medicalRecord.getFirstName(), medicalRecord.getLastName());
         LocalDate birthDate = LocalDate.parse(medicalRecord.getBirthdate(), DATE_TIME_FORMATTER);
         Set<String> medicationSet = medicalRecord.getMedications();
@@ -116,7 +140,13 @@ public class MedicalRecordService {
 
     }
 
+    /**
+     * creates a Set<Medication> by using the database.
+     * @param medicationName
+     * @return a set of Medication entity.
+     */
     private Set<Medication> makeMedication(Set<String> medicationName) {
+        LOGGER.info("call : makeMedication method");
         Set<Medication> setMedication = new HashSet<>();
         for(String s : medicationName) {
             Medication medication = medicationService.find(s);
@@ -128,8 +158,13 @@ public class MedicalRecordService {
         return setMedication;
     }
 
-
+    /**
+     * creates a Set<Allergy> by using the database.
+     * @param allergyName
+     * @return a set of Allergy entity.
+     */
     private Set<Allergy> makeAllergy(Set<String> allergyName) {
+        LOGGER.info("call : makeAllergy method");
         Set<Allergy> setAllergy = new HashSet<>();
         for(String s : allergyName){
             Allergy allergy = allergyService.find(s);
@@ -142,8 +177,18 @@ public class MedicalRecordService {
     }
 
 
-
+    /**
+     * modifies an existing MedicalRecord.
+     * @param firstName
+     * @param lastName
+     * @param medicalRecordDTO
+     */
     public void updateMedicalRecord(String firstName, String lastName, MedicalRecordDTO medicalRecordDTO) {
+        LOGGER.info("call : updateMedicalRecord method");
+        Optional<MedicalRecord> existingMedicalRecord = Optional.ofNullable(medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName));
+        if(existingMedicalRecord.isEmpty()) {
+            throw new PersonNotFoundException(firstName, lastName);
+        }
         MedicalRecord medicalRecord = medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
         if(medicalRecordDTO.getBirthdate() != null ) {
@@ -169,10 +214,21 @@ public class MedicalRecordService {
         medicalRecordRepository.save(medicalRecord);
     }
 
+    /**
+     *Delete a MedicalRecord from the database.
+     * @param firstName
+     * @param lastName
+     */
     public void deleteOneMedicalRecord(String firstName, String lastName) {
+        LOGGER.info("call : deleteOneMedicalRecord method");
+
         MedicalRecord medicalRecord = find(firstName, lastName);
         medicalRecordRepository.delete(medicalRecord);
     }
+
+
+
+
     public List<MedicalRecord> findByPersonList(List<Person> personList) {
         return medicalRecordRepository.findByPersonIn(personList);
     }
