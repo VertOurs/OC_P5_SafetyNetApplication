@@ -18,18 +18,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.List;
+import java.util.Set;
+import java.util.Map;
 
 @Configuration
 public class DataBaseConfig {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DataBaseConfig.class);
 
     @Value("classpath:Json/data.json")
     Resource resource;
 
     @Autowired
-    AddressService addressService ;
+    AddressService addressService;
     @Autowired
     DataLoaderPerson personLoader;
     @Autowired
@@ -51,7 +52,7 @@ public class DataBaseConfig {
             List<Address> addressList = addressService.saveAll(addressSet);
 
             personLoader.savePersonAndAddressInDB(map,
-                    objectMapper, addressList,personSet);
+                    objectMapper, addressList, personSet);
             fireStationLoader.saveFireStationInDB(map,
                     objectMapper, addressList);
             medicalRecordLoader.saveMedicalRecordInDB(map, objectMapper);

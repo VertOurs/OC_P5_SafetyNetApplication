@@ -16,12 +16,10 @@ import java.util.Map;
 @Component
 public class DataLoaderFireStation {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DataLoaderFireStation.class);
-
     @Autowired
     FireStationService fireStationService;
 
-    public void saveFireStationInDB (Map<String,
+    public void saveFireStationInDB (final Map<String,
             Object> map, ObjectMapper objectMapper,
                                      List<Address> addressList) {
         List<Object> listOfFireStationDTO =
