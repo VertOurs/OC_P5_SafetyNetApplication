@@ -32,7 +32,7 @@ public class FireStationController {
      */
     @GetMapping("/firestation/all")
     public ResponseEntity<List<FireStationDTO>> getListFireStation(){
-        LOGGER.info("call endpoint /firestation/all");
+        LOGGER.debug("call endpoint /firestation/all");
         List<FireStation> fireStationList = this.firestationService.
                 getListOfAllStations();
 
@@ -50,7 +50,7 @@ public class FireStationController {
      */
     @GetMapping ("/firestation/{station}")
     public ResponseEntity<FireStationDTO> getStation(@PathVariable int station){
-        LOGGER.info("call endpoint  /firestation");
+        LOGGER.debug("call endpoint  /firestation");
         FireStation fireStation = this.firestationService.findOneStation(station);
         return ResponseEntity.accepted().body(FireStationDTO.fromFireStation(fireStation));
     }
@@ -62,7 +62,7 @@ public class FireStationController {
      */
     @GetMapping("/firestation")
     public ResponseEntity<FireStationInfoDTO> getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
-        LOGGER.info("call endpoint  /firestation");
+        LOGGER.debug("call endpoint  /firestation");
         List<Person> personList = firestationService.findByStation(station);
         List<PersonForFireInfoDTO> personInfoList = firestationService.personFromFireStation(personList);
 
@@ -77,7 +77,7 @@ public class FireStationController {
     @PostMapping("/firestation")
     public ResponseEntity<String> create(@RequestBody FireStationDTO fireStationDTO) {
         this.firestationService.saveOneStation(fireStationDTO);
-        LOGGER.info("call endpoint POST /firestation");
+        LOGGER.debug("call endpoint POST /firestation");
         return ResponseEntity.accepted().body("the FireStation has been created in the database.");
     }
 
@@ -90,7 +90,7 @@ public class FireStationController {
     @PutMapping("/firestation/{station}")
     public ResponseEntity<String> updateNbStationForOneAddress(@PathVariable int station,
                                              @RequestBody Address address) {
-        LOGGER.info("call endpoint PUT /firestation");
+        LOGGER.debug("call endpoint PUT /firestation");
         this.firestationService.updateStationForOneAddress(station, address);
 
         return ResponseEntity.accepted().body("la station à bien été modifiée.");

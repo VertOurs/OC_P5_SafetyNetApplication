@@ -30,7 +30,7 @@ public class PersonController {
      */
     @GetMapping("/person/all")
     public ResponseEntity<List<PersonDTO>> getListOfPersons()  {
-        LOGGER.info("Call endPoint person/all");
+        LOGGER.debug("Call endPoint person/all");
         List<Person> personList = this.personService.getAllPersons();
         List<PersonDTO> personDTOList = personList.stream()
                     .map(PersonDTO::fromPerson)
@@ -47,7 +47,7 @@ public class PersonController {
     @GetMapping(path = "/person/{firstName}/{lastName}")
     public ResponseEntity<PersonDTO> getOnePerson(@PathVariable ("firstName") String firstName,
                                   @PathVariable ("lastName") String lastName)  {
-        LOGGER.info("call endPoint GET /person/");
+        LOGGER.debug("call endPoint GET /person/");
         Person person = personService.find(firstName, lastName);
         PersonDTO personDTO = new PersonDTO(person.getFirstName(),
                 person.getLastName(),
@@ -66,9 +66,9 @@ public class PersonController {
      */
     @PostMapping("/person")
     public ResponseEntity<String> registerNewPerson(@RequestBody PersonDTO personDTO) {
-        LOGGER.info("call endPoint POST/person");
+        LOGGER.debug("call endPoint POST/person");
         personService.addPerson(personDTO);
-        LOGGER.info("call endPoint POST /person");
+        LOGGER.debug("call endPoint POST /person");
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(personDTO.getFirstName() + " " + personDTO.getFirstName() + " was created in database.");
     }
 
@@ -83,7 +83,7 @@ public class PersonController {
     public ResponseEntity<String> updatePerson(@PathVariable("firstName") String firstName,
                              @PathVariable("lastName") String lastName,
                              @RequestBody PersonDTO personDTO ) {
-        LOGGER.info("call endPoint PUT /person");
+        LOGGER.debug("call endPoint PUT /person");
 
         personService.updatePerson(firstName, lastName, personDTO);
 

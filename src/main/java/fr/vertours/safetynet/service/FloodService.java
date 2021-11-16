@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class FloodService implements IFloodService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(FloodService.class);
+
 
     @Autowired
     FireStationService fireStationService;
@@ -36,7 +36,7 @@ public class FloodService implements IFloodService {
      */
     @Override
     public List<FloodDTO> getFloodByListOfStation(List<Integer> stationList) {
-        LOGGER.info("call getFloodByListOfStation method");
+
         List<FireStation> fireStationList = fireStationService.getListFireStationByNb(stationList);
         List<FloodDTO> floodDTOList = getListFloodDTOWithFireStationList(fireStationList);
         return floodDTOList;

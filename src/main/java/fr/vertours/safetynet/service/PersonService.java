@@ -22,7 +22,7 @@ import static fr.vertours.safetynet.util.CustomTools.calculateAgewithLocalDate;
 @Service
 public class PersonService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(PersonService.class);
+
 
     private final PersonRepository personRepository;
 

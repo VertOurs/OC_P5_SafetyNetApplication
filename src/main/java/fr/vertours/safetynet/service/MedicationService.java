@@ -15,7 +15,7 @@ import java.util.Set;
 @Service
 public class MedicationService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(MedicationService.class);
+
 
     @Autowired
     MedicationRepository medicationRepository;

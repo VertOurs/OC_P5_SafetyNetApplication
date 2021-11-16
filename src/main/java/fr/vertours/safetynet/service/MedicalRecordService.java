@@ -23,8 +23,6 @@ import java.util.stream.Collectors;
 @Service
 public class MedicalRecordService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(MedicalRecordService.class);
-
     private final MedicalRecordRepository medicalRecordRepository;
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -62,7 +60,7 @@ public class MedicalRecordService {
      * @return a list of MedicalRecord entity.
      */
     public List<MedicalRecord> getAllMedicalRecord() {
-        LOGGER.info("call getAllMedicalRecord Method");
+
         List<MedicalRecord> medicalRecordList = medicalRecordRepository.findAll();
         if(medicalRecordList.isEmpty()) {
             throw new EmptyDBException();
@@ -76,7 +74,7 @@ public class MedicalRecordService {
      * @return a list of MedicalRecord.
      */
     public List<MedicalRecord> getMedicalRecordByListOfPerson(List<Person> personList) {
-        LOGGER.info("call getMedicalRecordByListOfPerson Method");
+
         List<MedicalRecord> allMedicalRecordList = getAllMedicalRecord();
         List<MedicalRecord>  medicalRecordList = new ArrayList<>();
         for(Person p : personList) {
@@ -96,7 +94,7 @@ public class MedicalRecordService {
      * @return a MedicalRecord entity.
      */
     public MedicalRecord getOneMedicalRecordByFirstAndLastName(String firstName, String lastName) {
-        LOGGER.info("call getOneMedicalRecordByFirstAndLastName Method");
+
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
     }
@@ -107,7 +105,7 @@ public class MedicalRecordService {
      * @return A list of FireDTO.
      */
     public List<FireDTO> getFireURL(String address) {
-        LOGGER.info("call getFireURL Method");
+
         List<MedicalRecord> medicalRecordList = this.medicalRecordRepository.findByPerson_Address_AddressName(address);
         if(medicalRecordList.isEmpty()) {
             throw new EmptyDBException();
@@ -132,7 +130,7 @@ public class MedicalRecordService {
      * @return MedicalRecord
      */
     public MedicalRecord save(MedicalRecordDTO medicalRecord) {
-        LOGGER.info("call save Method");
+
         Optional<Person> existingPerson = Optional.ofNullable(personService.find(medicalRecord.getFirstName(), medicalRecord.getLastName()));
         if(existingPerson.isEmpty()) {
             throw new PersonNotFoundException(medicalRecord.getFirstName(), medicalRecord.getLastName());
@@ -160,7 +158,7 @@ public class MedicalRecordService {
      * @return a set of Medication entity.
      */
     private Set<Medication> makeMedication(Set<String> medicationName) {
-        LOGGER.info("call : makeMedication method");
+
         Set<Medication> setMedication = new HashSet<>();
         for(String s : medicationName) {
             Medication medication = medicationService.find(s);
@@ -178,7 +176,7 @@ public class MedicalRecordService {
      * @return a set of Allergy entity.
      */
     private Set<Allergy> makeAllergy(Set<String> allergyName) {
-        LOGGER.info("call : makeAllergy method");
+
         Set<Allergy> setAllergy = new HashSet<>();
         for(String s : allergyName){
             Allergy allergy = allergyService.find(s);
@@ -198,7 +196,7 @@ public class MedicalRecordService {
      * @param medicalRecordDTO
      */
     public void updateMedicalRecord(String firstName, String lastName, MedicalRecordDTO medicalRecordDTO) {
-        LOGGER.info("call : updateMedicalRecord method");
+
         Optional<MedicalRecord> existingMedicalRecord = Optional.ofNullable(medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName));
         if(existingMedicalRecord.isEmpty()) {
             throw new PersonNotFoundException(firstName, lastName);
@@ -234,7 +232,7 @@ public class MedicalRecordService {
      * @param lastName
      */
     public void deleteOneMedicalRecord(String firstName, String lastName) {
-        LOGGER.info("call : deleteOneMedicalRecord method");
+
 
         MedicalRecord medicalRecord = find(firstName, lastName);
         medicalRecordRepository.delete(medicalRecord);

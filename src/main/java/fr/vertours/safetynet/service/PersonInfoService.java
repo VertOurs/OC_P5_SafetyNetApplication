@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonInfoService implements IPersonInfoService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(PersonInfoService.class);
+
 
     @Autowired
     PersonService personService;
@@ -22,7 +22,7 @@ public class PersonInfoService implements IPersonInfoService {
      */
     @Override
     public Person find(String firstName, String lastName) {
-        LOGGER.info("call find method");
+
         return personService.find(firstName, lastName);
     }
 }

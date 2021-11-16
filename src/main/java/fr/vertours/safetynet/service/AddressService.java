@@ -18,7 +18,6 @@ import java.util.Set;
 @Service
 public class AddressService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(AddressService.class);
 
     private final AddressRepository addressRepository;
 

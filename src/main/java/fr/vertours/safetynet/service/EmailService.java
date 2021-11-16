@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class EmailService implements IEmailService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
+
 
     @Autowired
     PersonService personService;
@@ -23,7 +23,7 @@ public class EmailService implements IEmailService {
      */
     @Override
     public List<Person> findByCity(String city) {
-        LOGGER.info("call findByCity method");
+
         return personService.findByCity(city);
     }
 }

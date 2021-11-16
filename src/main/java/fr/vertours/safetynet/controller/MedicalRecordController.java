@@ -29,7 +29,7 @@ public class MedicalRecordController {
      */
     @GetMapping("/medicalRecord/all")
     public ResponseEntity<List<MedicalRecordDTO>> getListOfMedicalRecord() {
-        LOGGER.info("call endpoint : /medicalRecord/all");
+        LOGGER.debug("call endpoint : /medicalRecord/all");
         List <MedicalRecord> medicalRecordList = medicalRecordService.getAllMedicalRecord();
         List <MedicalRecordDTO> medicalRecordDTOList = medicalRecordList.stream().map(MedicalRecordDTO::fromMedicalRecord).collect(Collectors.toList());
         return ResponseEntity.accepted().body(medicalRecordDTOList);
@@ -43,7 +43,7 @@ public class MedicalRecordController {
      */
     @GetMapping(path = "/medicalRecord/{firstName}/{lastName}")
     public ResponseEntity<MedicalRecordDTO> getOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
-        LOGGER.info("endpoint : GET /medicalRecord/firstName/LastName");
+        LOGGER.debug("endpoint : GET /medicalRecord/firstName/LastName");
         MedicalRecord medicalRecord = medicalRecordService.getOneMedicalRecordByFirstAndLastName(firstName, lastName);
         return ResponseEntity.accepted().body(MedicalRecordDTO.fromMedicalRecord(medicalRecord));
     }
@@ -55,7 +55,7 @@ public class MedicalRecordController {
      */
     @PostMapping("/medicalRecord")
     public ResponseEntity<String> registerNewMedicalPerson(@RequestBody MedicalRecordDTO medicalRecordDTO) {
-        LOGGER.info("endpoint : POST /medicalRecord");
+        LOGGER.debug("endpoint : POST /medicalRecord");
         medicalRecordService.save(medicalRecordDTO);
         return ResponseEntity.accepted().body("the medicalRecord has been saved in the database");
     }
@@ -71,7 +71,7 @@ public class MedicalRecordController {
     public ResponseEntity<String> updateMedicalRecord(@PathVariable("firstName") String firstName,
                                     @PathVariable("lastName") String lastName,
                                     @RequestBody MedicalRecordDTO medicalRecordDTO) {
-        LOGGER.info("Endpoint : PUT /medicalRecord/firstName/LastName");
+        LOGGER.debug("Endpoint : PUT /medicalRecord/firstName/LastName");
         medicalRecordService.updateMedicalRecord(firstName, lastName, medicalRecordDTO);
         return ResponseEntity.accepted().body("The MedicalRecord modification has been saved to the database.");
     }

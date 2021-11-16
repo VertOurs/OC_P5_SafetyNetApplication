@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class FireStationService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(FireStationService.class);
+
 
     private final FireStationRepository fireStationRepository;
 
@@ -88,7 +88,7 @@ public class FireStationService {
      * @param firestation
      */
     public void deleteOneFireStation(int firestation) {
-        LOGGER.info("call : deleteOneFireStation method");
+
         Optional<FireStation> existingFireStation = Optional.ofNullable(fireStationRepository.findByStation(firestation));
         if(existingFireStation.isEmpty()) {
             throw new FireStationNotFoundException(firestation);

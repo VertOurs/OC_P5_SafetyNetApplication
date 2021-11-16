@@ -15,7 +15,6 @@ import java.util.Set;
 @Service
 public class AllergyService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(AllergyService.class);
 
     @Autowired
     private AllergyRepository allergyRepository;

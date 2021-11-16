@@ -21,7 +21,6 @@ import static fr.vertours.safetynet.util.CustomTools.calculateAgewithLocalDate;
 @Service
 public class ChildAlertService implements IChildAlertService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(ChildAlertService.class);
 
     @Autowired
     PersonService personService;
@@ -36,7 +35,7 @@ public class ChildAlertService implements IChildAlertService {
      */
     @Override
     public ChildAlertDTO getChildrenAtThisAdress(String address) {
-        LOGGER.info("call getChildrenAtThisAddress method");
+
         List<Person> allPersoninAddress =  personService.findByAddress(address);
         List<MedicalRecord> mRList =
                 medicalRecordService.

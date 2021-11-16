@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class FireService implements IFireService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(FireService.class);
+
 
     @Autowired
     MedicalRecordService medicalRecordService;
@@ -25,7 +25,7 @@ public class FireService implements IFireService {
     @Override
     public List<FireDTO> getListOfPersonForOneAddressWithFireStation(
             String address) {
-        LOGGER.info(" call getListOfPersonForOneAddressWithFireStation method");
+
         return medicalRecordService.getFireURL(address);
     }
 }
