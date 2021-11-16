@@ -26,47 +26,74 @@ public class FireStationController {
         this.firestationService = fireStationService;
     }
 
-
+    /**
+     * Endpoint that allows you to finds all FireStations in a database.
+     * @return a list of FireStationDTO entity with ResponseEntity.
+     */
     @GetMapping("/firestation/all")
     public ResponseEntity<List<FireStationDTO>> getListFireStation(){
+        LOGGER.info("call endpoint /firestation/all");
         List<FireStation> fireStationList = this.firestationService.
                 getListOfAllStations();
 
         List<FireStationDTO> fireStationDTOList = fireStationList.stream()
                 .map(FireStationDTO::fromFireStation)
                 .collect(Collectors.toList());
-        LOGGER.info("call endpoint /firestation/all");
+
         return ResponseEntity.accepted().body(fireStationDTOList);
     }
 
+    /**
+     * Endpoint that allows you to find a FireStation a database.
+     * @param station
+     * @return a FireStationDTO with ResponseEntity.
+     */
     @GetMapping ("/firestation/{station}")
     public ResponseEntity<FireStationDTO> getStation(@PathVariable int station){
-        FireStation fireStation = this.firestationService.findOneStation(station);
         LOGGER.info("call endpoint  /firestation");
+        FireStation fireStation = this.firestationService.findOneStation(station);
         return ResponseEntity.accepted().body(FireStationDTO.fromFireStation(fireStation));
     }
 
+    /**
+     * Endpoint that allows you to find a list of people in a database.
+     * @param station
+     * @return a list of FireStationInfoDTO entity with ResponseEntity.
+     */
     @GetMapping("/firestation")
     public ResponseEntity<FireStationInfoDTO> getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
+        LOGGER.info("call endpoint  /firestation");
         List<Person> personList = firestationService.findByStation(station);
         List<PersonForFireInfoDTO> personInfoList = firestationService.personFromFireStation(personList);
-        LOGGER.info("call endpoint  /firestation");
+
         return ResponseEntity.accepted().body(firestationService.getFireStationInfoDTOFromList(personInfoList,personList));
     }
 
+    /**
+     * Endpoint that allows you to backup a Firestation in a database.
+     * @param fireStationDTO
+     * @return a success message with ResponseEntity.
+     */
     @PostMapping("/firestation")
     public ResponseEntity<String> create(@RequestBody FireStationDTO fireStationDTO) {
         this.firestationService.saveOneStation(fireStationDTO);
         LOGGER.info("call endpoint POST /firestation");
-        return ResponseEntity.accepted().body("La station à bien été créé.");
+        return ResponseEntity.accepted().body("the FireStation has been created in the database.");
     }
 
+    /**
+     * Endpoint that allows you to modify a Firestation in a database.
+     * @param station
+     * @param address
+     * @return a success message with ResponseEntity.
+     */
     @PutMapping("/firestation/{station}")
     public ResponseEntity<String> updateNbStationForOneAddress(@PathVariable int station,
                                              @RequestBody Address address) {
-         this.firestationService.updateStationForOneAddress(station, address);
         LOGGER.info("call endpoint PUT /firestation");
-         return ResponseEntity.accepted().body("la station à bien été modifiée.");
+        this.firestationService.updateStationForOneAddress(station, address);
+
+        return ResponseEntity.accepted().body("la station à bien été modifiée.");
     }
 
     /**

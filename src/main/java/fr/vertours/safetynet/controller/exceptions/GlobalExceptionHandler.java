@@ -15,7 +15,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(FireStationNotFoundException.class)
-    public final ResponseEntity<String> handleFireStationException(FireStationNotFoundException e) {
+    public final ResponseEntity<String> handleFireStationNotFoundException(FireStationNotFoundException e) {
+        LOGGER.error("Handling " + e.getClass().getSimpleName() + " due to " + e.getMessage() + ". More informations : "+e.getStackTrace());
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+    @ExceptionHandler(FireStationAlreadyPresentException.class)
+    public final ResponseEntity<String> handleFireStationAlreadyPresentException(FireStationAlreadyPresentException e) {
         LOGGER.error("Handling " + e.getClass().getSimpleName() + " due to " + e.getMessage() + ". More informations : "+e.getStackTrace());
         return ResponseEntity.badRequest().body(e.getMessage());
     }

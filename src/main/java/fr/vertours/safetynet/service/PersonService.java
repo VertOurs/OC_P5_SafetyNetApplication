@@ -123,6 +123,11 @@ public class PersonService {
         return personList;
     }
 
+    /**
+     * find a list of people in dataBase with a FireStation number.
+     * @param station
+     * @return a list of Person entity.
+     */
     public List<Person> findByStation(int station) {
         FireStation fireStation = fireStationService.findOneStation(station);
         Set<Address> addressSet = fireStation.getAddress();
