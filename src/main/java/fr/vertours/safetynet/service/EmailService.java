@@ -1,6 +1,5 @@
 package fr.vertours.safetynet.service;
 
-import fr.vertours.safetynet.controller.ChildAlertController;
 import fr.vertours.safetynet.model.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +16,14 @@ public class EmailService implements IEmailService {
     @Autowired
     PersonService personService;
 
+    /**
+     * find list of person by city.
+     * @param city
+     * @return a list of Person entity.
+     */
     @Override
     public List<Person> findByCity(String city) {
+        LOGGER.info("call findByCity method");
         return personService.findByCity(city);
     }
 }

@@ -1,6 +1,6 @@
 package fr.vertours.safetynet.service;
 
-import fr.vertours.safetynet.controller.ChildAlertController;
+
 import fr.vertours.safetynet.dto.FireDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +17,15 @@ public class FireService implements IFireService {
     @Autowired
     MedicalRecordService medicalRecordService;
 
+    /**
+     * convert à String in List of FireDTO.
+     * @param address
+     * @return A list of FireDTO.
+     */
     @Override
     public List<FireDTO> getListOfPersonForOneAddressWithFireStation(
             String address) {
+        LOGGER.info(" call getListOfPersonForOneAddressWithFireStation method");
         return medicalRecordService.getFireURL(address);
     }
 }

@@ -18,7 +18,11 @@ public class ChildAlertController {
     @Autowired
     IChildAlertService iChildAlertService;
 
-
+    /**
+     * Endpoint that returns a ChildAlertDTO according to the project requirements.
+     * @param address
+     * @return ChildAlertDTO with ResponseEntity.
+     */
     @GetMapping("/childAlert")
     public ResponseEntity<ChildAlertDTO> getListOfChildrenAtThisAddress(
             @RequestParam("address") String address) {

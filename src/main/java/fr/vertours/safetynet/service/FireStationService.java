@@ -113,8 +113,17 @@ public class FireStationService {
         fireStationRepository.save(fireStation);
     }
 
+    /**
+     * find list of FireStation.
+     * @param stations
+     * @return a list of FireStation entity.
+     */
     public List<FireStation> getListFireStationByNb(List<Integer> stations) {
-        return fireStationRepository.findByStationIn(stations);
+        List<FireStation> fireStationList = fireStationRepository.findByStationIn(stations);
+        if(fireStationList.isEmpty()) {
+            throw new EmptyDBException();
+        }
+        return fireStationList;
     }
 
     /**

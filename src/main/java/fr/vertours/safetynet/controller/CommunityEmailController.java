@@ -21,11 +21,17 @@ public class CommunityEmailController {
     @Autowired
     IEmailService iEmailService;
 
+    /**
+     * Endpoint that returns a list of information according to the project requirements.
+     * @param city
+     * @return a list of String with ResponseEntity.
+     */
     @GetMapping("/communityEmail")
     public ResponseEntity<List<String>> getAllEmailForOneCity(
             @RequestParam("city") String city) {
-        List<Person> personList = this.iEmailService.findByCity(city);
         LOGGER.info("call endpoint /communityEmail");
+
+        List<Person> personList = this.iEmailService.findByCity(city);
         return ResponseEntity.accepted().body(personList.stream().
                 map(Person::getEmail).collect(Collectors.toList()));
     }

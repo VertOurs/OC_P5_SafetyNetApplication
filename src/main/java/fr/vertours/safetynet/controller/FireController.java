@@ -20,6 +20,11 @@ public class FireController {
     @Autowired
     IFireService ifireService;
 
+    /**
+     * Endpoint that returns a list of FireDTO according to the requirements of the project
+     * @param address
+     * @return list of FireDTO with ResponseEntity.
+     */
     @GetMapping("/fire")
     public ResponseEntity<List<FireDTO>> getListOfPersonForOneAddressWithFireStation(@RequestParam("address") String address) {
         LOGGER.info("call endpoint /fire");

@@ -42,7 +42,7 @@ public class PersonService {
     }
 
     /**
-     *adds a person to the database
+     *adds a person to the database.
      * @param personDTO
      */
     public void addPerson(PersonDTO personDTO) {
@@ -101,19 +101,36 @@ public class PersonService {
     }
 
 
-
+    /**
+     * Find list of person by city.
+     * @param city
+     * @return list of Person entity.
+     */
     public List<Person> findByCity(String city) {
-        return personRepository.findAllByCity(city);
-    }
-
-    public List<Person> findByAddress(String address) {
-        return personRepository.findByAddress_AddressName(address);
+        List<Person> personList = personRepository.findAllByCity(city);
+        if (personList.isEmpty()) {
+            throw new EmptyDBException();
+        }
+        return personList;
     }
 
     /**
-     *
+     * find list of person by address.
+     * @param address
+     * @return list of Person entity.
+     */
+    public List<Person> findByAddress(String address) {
+        List<Person> personList = personRepository.findByAddress_AddressName(address);
+        if (personList.isEmpty()) {
+            throw new EmptyDBException();
+        }
+        return personList;
+    }
+
+    /**
+     * Find List of person with collection of Address entity.
      * @param addresseCollections
-     * @return
+     * @return A List of Person Entity.
      */
     public List<Person> findByAddressIn(Collection<Address> addresseCollections) {
         List<Person> personList = personRepository.findByAddressIn(addresseCollections);
@@ -182,8 +199,16 @@ public class PersonService {
         return fireStationInfoDTO;
     }
 
+    /**
+     * find a list of personn by their address.
+     * @param address
+     * @return list of Person entity.
+     */
     public List<Person> findListOfPersonByAddress(Address address) {
         List<Person> personList = personRepository.findByAddress_AddressName(address.getAddressName());
+        if (personList.isEmpty()) {
+            throw new EmptyDBException();
+        }
         return personList;
     }
 

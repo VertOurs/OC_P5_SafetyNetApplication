@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.controller;
 
+import fr.vertours.safetynet.dto.FloodDTO;
 import fr.vertours.safetynet.service.IFloodService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +20,13 @@ public class FloodController {
     @Autowired
     IFloodService iFloodService;
 
+    /**
+     * Endpoint that returns a list of FloodDTOs according to the project requirements
+     * @param stationList
+     * @return list of FloodDTO.
+     */
     @GetMapping("/flood/stations")
-    public ResponseEntity<List<?>> endPoint5Flood(@RequestParam("stations") List<Integer> stationList) {
+    public ResponseEntity<List<FloodDTO>> endPoint5Flood(@RequestParam("stations") List<Integer> stationList) {
         LOGGER.info("call endpoint /flood/stations");
         return ResponseEntity.accepted().body(iFloodService.getFloodByListOfStation(stationList));
 

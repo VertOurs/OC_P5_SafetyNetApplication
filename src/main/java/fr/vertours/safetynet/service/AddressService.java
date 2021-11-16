@@ -3,6 +3,7 @@ package fr.vertours.safetynet.service;
 
 import fr.vertours.safetynet.controller.ChildAlertController;
 import fr.vertours.safetynet.model.Address;
+import fr.vertours.safetynet.model.exceptions.AddressNotFoundException;
 import fr.vertours.safetynet.repository.AddressRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -30,7 +32,16 @@ public class AddressService {
 
     }
 
+    /**
+     * Find an address.
+     * @param addressName
+     * @return An Address entity.
+     */
     public Address find(String addressName) {
+        Optional<Address> existingAddress = Optional.ofNullable(addressRepository.findOneByAddressName(addressName));
+        if (existingAddress.isEmpty()) {
+            throw new AddressNotFoundException(addressName);
+        }
         return addressRepository.findOneByAddressName(addressName);
     }
 

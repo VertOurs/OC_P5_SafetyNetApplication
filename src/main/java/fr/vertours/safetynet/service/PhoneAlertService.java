@@ -1,6 +1,5 @@
 package fr.vertours.safetynet.service;
 
-import fr.vertours.safetynet.controller.ChildAlertController;
 import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.FireStation;
 import fr.vertours.safetynet.model.Person;
@@ -23,9 +22,14 @@ public class PhoneAlertService implements IPhoneAlertService {
     @Autowired
     PersonService personService;
 
-
+    /**
+     * find list of person by Station number.
+     * @param station
+     * @return a list of Person entity.
+     */
     @Override
     public List<Person> findByStation(int station) {
+        LOGGER.info("Call findByStation method");
         FireStation fireStation = fireStationService.findOneStation(station);
         Set<Address> addressSet = fireStation.getAddress();
         return personService.findByAddressIn(addressSet);

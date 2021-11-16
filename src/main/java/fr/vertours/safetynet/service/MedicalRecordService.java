@@ -70,9 +70,14 @@ public class MedicalRecordService {
         return medicalRecordList;
     }
 
+    /**
+     * find the list of MedicalRecord with a list of person.
+     * @param personList
+     * @return a list of MedicalRecord.
+     */
     public List<MedicalRecord> getMedicalRecordByListOfPerson(List<Person> personList) {
         LOGGER.info("call getMedicalRecordByListOfPerson Method");
-        List<MedicalRecord> allMedicalRecordList = medicalRecordRepository.findAll();
+        List<MedicalRecord> allMedicalRecordList = getAllMedicalRecord();
         List<MedicalRecord>  medicalRecordList = new ArrayList<>();
         for(Person p : personList) {
             for(MedicalRecord mR : allMedicalRecordList) {
@@ -85,7 +90,7 @@ public class MedicalRecordService {
     }
 
     /**
-     *allows to have access to a Medica Record present in the database.
+     *allows to have access to a Medical Record present in the database.
      * @param firstName
      * @param lastName
      * @return a MedicalRecord entity.
@@ -95,9 +100,18 @@ public class MedicalRecordService {
         return medicalRecordRepository.findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
 
     }
+
+    /**
+     * convert à String in List of FireDTO.
+     * @param address
+     * @return A list of FireDTO.
+     */
     public List<FireDTO> getFireURL(String address) {
         LOGGER.info("call getFireURL Method");
         List<MedicalRecord> medicalRecordList = this.medicalRecordRepository.findByPerson_Address_AddressName(address);
+        if(medicalRecordList.isEmpty()) {
+            throw new EmptyDBException();
+        }
         List<FireDTO> fireDTOList = new ArrayList<>();
         for(MedicalRecord medicalRecord : medicalRecordList) {
             FireDTO fireDTO = new FireDTO();

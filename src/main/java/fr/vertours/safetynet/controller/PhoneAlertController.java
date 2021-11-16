@@ -22,14 +22,14 @@ public class PhoneAlertController {
     IPhoneAlertService iPhoneAlertService;
 
     /**
-     *
+     *Endpoint that allow you to find a list of person in accordance with the project requirements.
      * @param station
-     * @return
+     * @return a list of String with ResponseEntity.
      */
     @GetMapping("/phoneAlert")
     public ResponseEntity<List<String>> getListPhoneNumberByFireStation(@RequestParam("firestation") int station) {
-        List<Person> personList = this.iPhoneAlertService.findByStation(station);
         LOGGER.info("call endpoint /phoneAlert");
+        List<Person> personList = this.iPhoneAlertService.findByStation(station);
         return ResponseEntity.accepted().body(personList.stream().map(Person::getPhone).collect(Collectors.toList()));
     }
 }

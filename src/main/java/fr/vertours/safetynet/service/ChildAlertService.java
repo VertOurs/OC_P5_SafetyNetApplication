@@ -29,8 +29,14 @@ public class ChildAlertService implements IChildAlertService {
     @Autowired
     MedicalRecordService medicalRecordService;
 
+    /**
+     * Create a ChildAlertDTO with an address.
+     * @param address
+     * @return ChildAlertDTO.
+     */
     @Override
     public ChildAlertDTO getChildrenAtThisAdress(String address) {
+        LOGGER.info("call getChildrenAtThisAddress method");
         List<Person> allPersoninAddress =  personService.findByAddress(address);
         List<MedicalRecord> mRList =
                 medicalRecordService.
@@ -50,6 +56,12 @@ public class ChildAlertService implements IChildAlertService {
         return getChildAlertDTOfromTwoList(childs,adults);
     }
 
+    /**
+     * create a ChildAlertDTO.
+     * @param childs
+     * @param adults
+     * @return a ChildAlertDTO.
+     */
     private ChildAlertDTO getChildAlertDTOfromTwoList(List<ChildrenDTO> childs,
                                                       List<AdultDTO> adults) {
         ChildAlertDTO childAlertDTO = new ChildAlertDTO();

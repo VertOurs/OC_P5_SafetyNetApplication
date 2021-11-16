@@ -29,15 +29,25 @@ public class FloodService implements IFloodService {
     @Autowired
     PersonService personService;
 
-
+    /**
+     * converts a list of integers representing the station numbers into a list of FloodDTO.
+     * @param stationList
+     * @return a list of FloodDTO.
+     */
     @Override
     public List<FloodDTO> getFloodByListOfStation(List<Integer> stationList) {
+        LOGGER.info("call getFloodByListOfStation method");
         List<FireStation> fireStationList = fireStationService.getListFireStationByNb(stationList);
         List<FloodDTO> floodDTOList = getListFloodDTOWithFireStationList(fireStationList);
         return floodDTOList;
 
     }
 
+    /**
+     * Convert a list of FireStation in List of FloodDTO
+     * @param fireStationList
+     * @return List of FloodDTO.
+     */
     private List<FloodDTO> getListFloodDTOWithFireStationList(List<FireStation> fireStationList) {
         List<FloodDTO> floodDTOList = new ArrayList<>();
         for (FireStation f: fireStationList) {
