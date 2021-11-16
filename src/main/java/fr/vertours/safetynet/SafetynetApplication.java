@@ -9,12 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SafetynetApplication {
 
-	private static Logger LOGGER = LogManager.getLogger(SafetynetApplication.class);
 
 	public static void main(String[] args) {
-		LOGGER.info("application initialized"); // sa ne marche qu'ici et j'ai pas de log.txt? Pourquoi je le renvoi deux fois?
 		SpringApplication.run(SafetynetApplication.class, args);
-		LOGGER.trace("Exiting application"); //pas de trace final?
+
 	}
 
 }

@@ -4,6 +4,7 @@ import fr.vertours.safetynet.model.Address;
 import fr.vertours.safetynet.model.Person;
 import fr.vertours.safetynet.service.PersonService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,19 +68,20 @@ class PersonControllerTest {
         when(personService.getAllPersons().thenReturn(person));
         mockMvc.perform(get("/person")).andExpect(status().isOk());  //this devant mockMvc?
     }*/
-
+    @Disabled
     @Test
     void getOnePerson() {
-    }
 
+    }
+    @Disabled
     @Test
     void registerNewPerson() {
     }
-
+    @Disabled
     @Test
     void updatePerson() {
     }
-
+    @Disabled
     @Test
     void deletePerson() {
     }

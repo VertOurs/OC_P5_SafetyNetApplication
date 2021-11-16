@@ -92,6 +92,7 @@ public class PersonService {
      * @return a Person Entity
      */
     public Person find(String firstName, String lastName)  {
+
         Optional<Person> existingPerson = Optional.ofNullable(personRepository.findOneByFirstNameAndLastName(firstName, lastName));
 
         if(existingPerson.isEmpty()) {
