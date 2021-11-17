@@ -135,6 +135,7 @@ public class PersonService {
      */
     public List<Person> findByAddressIn(Collection<Address> addresseCollections) {
         List<Person> personList = personRepository.findByAddressIn(addresseCollections);
+
         if(personList.isEmpty()) {
             throw new EmptyDBException();
         }

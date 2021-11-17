@@ -20,6 +20,14 @@ public class PhoneAlertService implements IPhoneAlertService {
     @Autowired
     PersonService personService;
 
+    public PhoneAlertService(PersonService personService, FireStationService fireStationService) {
+        this.personService = personService;
+        this.fireStationService = fireStationService;
+    }
+
+    public PhoneAlertService() {
+    }
+
     /**
      * find list of person by Station number.
      * @param station
@@ -30,6 +38,7 @@ public class PhoneAlertService implements IPhoneAlertService {
 
         FireStation fireStation = fireStationService.findOneStation(station);
         Set<Address> addressSet = fireStation.getAddress();
-        return personService.findByAddressIn(addressSet);
+        List<Person> personList = personService.findByAddressIn(addressSet);
+        return personList;
     }
 }
