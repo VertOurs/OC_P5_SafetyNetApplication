@@ -18,7 +18,14 @@ import java.util.List;
 @Service
 public class FloodService implements IFloodService {
 
+    public FloodService() {
+    }
 
+    public FloodService(FireStationService fireStationService, MedicalRecordService medicalRecordService, PersonService personService) {
+        this.fireStationService = fireStationService;
+        this.medicalRecordService = medicalRecordService;
+        this.personService = personService;
+    }
 
     @Autowired
     FireStationService fireStationService;
@@ -48,7 +55,7 @@ public class FloodService implements IFloodService {
      * @param fireStationList
      * @return List of FloodDTO.
      */
-    private List<FloodDTO> getListFloodDTOWithFireStationList(List<FireStation> fireStationList) {
+    public List<FloodDTO> getListFloodDTOWithFireStationList(List<FireStation> fireStationList) {
         List<FloodDTO> floodDTOList = new ArrayList<>();
         for (FireStation f: fireStationList) {
             for (Address a : f.getAddress()) {

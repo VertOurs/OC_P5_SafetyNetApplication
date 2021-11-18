@@ -19,6 +19,13 @@ public class AllergyService {
     @Autowired
     private AllergyRepository allergyRepository;
 
+    public AllergyService(AllergyRepository allergyRepository) {
+        this.allergyRepository = allergyRepository;
+    }
+
+    public AllergyService() {
+    }
+
     public Allergy find(String allergyName) {
         return allergyRepository.findOneByAllergy(allergyName);
     }

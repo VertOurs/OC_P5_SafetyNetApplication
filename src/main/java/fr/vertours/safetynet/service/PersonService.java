@@ -35,7 +35,12 @@ public class PersonService {
     @Autowired
     MedicalRecordService medicalRecordService;
 
-
+//    public PersonService(PersonRepository personRepository, AddressService addressService, FireStationService fireStationService, MedicalRecordService medicalRecordService) {
+//        this.personRepository = personRepository;
+//        this.addressService = addressService;
+//        this.fireStationService = fireStationService;
+//        this.medicalRecordService = medicalRecordService;
+//    }
 
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;

@@ -32,7 +32,7 @@ class PhoneAlertServiceTest {
     void setUp() {
 
 
-        Address address1 = new Address("5, rue des peuplier");
+        Address address1 = new Address("5, rue des peupliers");
         Address address2 = new Address("48, avenue du posafol");
         addressList.add(address1);
         addressList.add(address2);

@@ -14,6 +14,13 @@ public class PersonInfoService implements IPersonInfoService {
     @Autowired
     PersonService personService;
 
+    public PersonInfoService(PersonService personService) {
+        this.personService = personService;
+    }
+
+    public PersonInfoService() {
+    }
+
     /**
      * find a person in Database.
      * @param firstName

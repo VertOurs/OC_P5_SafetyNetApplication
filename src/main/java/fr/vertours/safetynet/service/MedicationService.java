@@ -20,6 +20,13 @@ public class MedicationService {
     @Autowired
     MedicationRepository medicationRepository;
 
+    public MedicationService(MedicationRepository medicationRepository) {
+        this.medicationRepository = medicationRepository;
+    }
+
+    public MedicationService() {
+    }
+
     public Medication find(String medicationName){
         return medicationRepository.findOneByMedication(medicationName);
     }

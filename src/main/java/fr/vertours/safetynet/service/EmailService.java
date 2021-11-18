@@ -16,6 +16,13 @@ public class EmailService implements IEmailService {
     @Autowired
     PersonService personService;
 
+    public EmailService() {
+    }
+
+    public EmailService(PersonService personService) {
+        this.personService = personService;
+    }
+
     /**
      * find list of person by city.
      * @param city

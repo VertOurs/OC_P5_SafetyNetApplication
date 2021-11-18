@@ -28,6 +28,14 @@ public class ChildAlertService implements IChildAlertService {
     @Autowired
     MedicalRecordService medicalRecordService;
 
+    public ChildAlertService() {
+    }
+
+    public ChildAlertService(PersonService personService, MedicalRecordService medicalRecordService) {
+        this.personService = personService;
+        this.medicalRecordService = medicalRecordService;
+    }
+
     /**
      * Create a ChildAlertDTO with an address.
      * @param address

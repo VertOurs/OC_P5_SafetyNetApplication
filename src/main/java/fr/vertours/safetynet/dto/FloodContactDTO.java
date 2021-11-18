@@ -21,6 +21,22 @@ public class FloodContactDTO {
     private Set<Medication> medications;
     private Set<Allergy> allergies;
 
+    public FloodContactDTO(String firstName,
+                           String lastName,
+                           String phoneNumber,
+                           String age,
+                           Set<Medication> medications,
+                           Set<Allergy> allergies) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.age = age;
+        this.medications = medications;
+        this.allergies = allergies;
+    }
+
+    public FloodContactDTO() {
+    }
 
     public static FloodContactDTO fromPersonandMedicalRecord(
             Person person, MedicalRecord medicalRecord) {

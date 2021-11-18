@@ -17,6 +17,13 @@ public class FireService implements IFireService {
     @Autowired
     MedicalRecordService medicalRecordService;
 
+    public FireService(MedicalRecordService medicalRecordService) {
+        this.medicalRecordService = medicalRecordService;
+    }
+
+    public FireService() {
+    }
+
     /**
      * convert à String in List of FireDTO.
      * @param address

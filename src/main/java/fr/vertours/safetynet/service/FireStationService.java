@@ -36,6 +36,7 @@ public class FireStationService {
         this.fireStationRepository = fireStationRepository;
     }
 
+
     /**
      *  save a FireStation.
      * @param fireStationDTO
