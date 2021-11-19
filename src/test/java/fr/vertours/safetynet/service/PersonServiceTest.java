@@ -17,20 +17,16 @@ import static org.mockito.Mockito.*;
 class PersonServiceTest {
 
 
-//    PersonService personService;
-//
-//    @MockBean
-//    PersonRepository personRepository;
+
 
     PersonRepository personRepository = mock(PersonRepository.class);
     AddressService addressService = mock(AddressService.class);
-    FireStationService fireStationService = mock(FireStationService.class);
 
 
 
     PersonService classUnderTest = new PersonService(personRepository,
-            addressService,
-            fireStationService);
+            addressService
+            );
 
     PersonDTO personDTO1 = new PersonDTO("Roger",
             "Borgne",

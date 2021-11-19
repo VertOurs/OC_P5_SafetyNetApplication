@@ -20,28 +20,21 @@ import java.util.stream.Collectors;
 import static fr.vertours.safetynet.util.CustomTools.calculateAgewithLocalDate;
 
 @Service
-public class PersonService {
+public class PersonService implements IEmailService, IPersonInfoService {
 
 
 
     private final PersonRepository personRepository;
 
-
     private final AddressService addressService;
 
 
-    private final FireStationService fireStationService;
 
 
-
-
-    public PersonService(PersonRepository personRepository, AddressService addressService,
-                         FireStationService fireStationService) {
+    public PersonService(PersonRepository personRepository, AddressService addressService) {
         this.personRepository = personRepository;
         this.addressService = addressService;
-        this.fireStationService = fireStationService;
     }
-
 
 
     /**
@@ -143,16 +136,7 @@ public class PersonService {
         return personList;
     }
 
-    /**
-     * find a list of people in dataBase with a FireStation number.
-     * @param station
-     * @return a list of Person entity.
-     */
-    public List<Person> findByStation(int station) {
-        FireStation fireStation = fireStationService.findOneStation(station);
-        Set<Address> addressSet = fireStation.getAddress();
-        return personRepository.findByAddressIn(addressSet);
-    }
+
 
     /**
      *allows you to modify the values of a person in the database

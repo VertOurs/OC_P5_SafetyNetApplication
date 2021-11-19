@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonInfoService implements IPersonInfoService {
+public class PersonInfoService  {
 
 
 
@@ -27,7 +27,7 @@ public class PersonInfoService implements IPersonInfoService {
      * @param lastName
      * @return a person entity.
      */
-    @Override
+
     public Person find(String firstName, String lastName) {
 
         return personService.find(firstName, lastName);

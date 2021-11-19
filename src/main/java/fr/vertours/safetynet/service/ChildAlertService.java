@@ -1,15 +1,11 @@
 package fr.vertours.safetynet.service;
 
-import fr.vertours.safetynet.controller.ChildAlertController;
+
 import fr.vertours.safetynet.dto.AdultDTO;
 import fr.vertours.safetynet.dto.ChildAlertDTO;
 import fr.vertours.safetynet.dto.ChildrenDTO;
 import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Person;
-import fr.vertours.safetynet.repository.MedicalRecordRepository;
-import fr.vertours.safetynet.repository.PersonRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,22 +40,9 @@ public class ChildAlertService implements IChildAlertService {
     @Override
     public ChildAlertDTO getChildrenAtThisAdress(String address) {
 
-        List<Person> allPersoninAddress =  personService.findByAddress(address);
-        List<MedicalRecord> mRList =
-                medicalRecordService.
-                        getMedicalRecordByListOfPerson(allPersoninAddress);
-        List<ChildrenDTO> childs =
-                mRList.stream().
-                        filter(mr -> calculateAgewithLocalDate(
-                                mr.getBirthDate()) < 18).
-                        map(ChildrenDTO::ChildrenfromMedicalRecord).
-                        collect(Collectors.toList());
-        List<AdultDTO> adults =
-                mRList.stream().
-                        filter(mr -> calculateAgewithLocalDate(
-                                mr.getBirthDate()) >= 18).
-                        map(AdultDTO::AdultfromMedicalRecord).
-                        collect(Collectors.toList());
+        List<MedicalRecord> mRList = medicalRecordsByAddress(address);
+        List<ChildrenDTO> childs = childrenDTOListByMedicalRecordList(mRList);
+        List<AdultDTO> adults = adultDTOListByMedicalRecordList(mRList);
         return getChildAlertDTOfromTwoList(childs,adults);
     }
 
@@ -75,5 +58,29 @@ public class ChildAlertService implements IChildAlertService {
         childAlertDTO.setEnfants(childs);
         childAlertDTO.setAutresMenbresDuFoyer(adults);
         return childAlertDTO;
+    }
+
+    private List<MedicalRecord> medicalRecordsByAddress(String address){
+        List<Person> allPersonInAddress =  personService.findByAddress(address);
+        List<MedicalRecord> medicalRecordList = medicalRecordService.
+                getMedicalRecordByListOfPerson(allPersonInAddress);
+        return medicalRecordList;
+    }
+
+    private List<ChildrenDTO> childrenDTOListByMedicalRecordList(List<MedicalRecord> list) {
+        List<ChildrenDTO> childList = list.stream().
+                filter(mr -> calculateAgewithLocalDate(
+                        mr.getBirthDate()) < 18).
+                map(ChildrenDTO::ChildrenfromMedicalRecord).
+                collect(Collectors.toList());
+        return childList;
+    }
+    private List<AdultDTO> adultDTOListByMedicalRecordList(List<MedicalRecord> list) {
+        List<AdultDTO> adultList = list.stream().
+                filter(mr -> calculateAgewithLocalDate(
+                        mr.getBirthDate()) >= 18).
+                map(AdultDTO::AdultfromMedicalRecord).
+                collect(Collectors.toList());
+        return adultList;
     }
 }

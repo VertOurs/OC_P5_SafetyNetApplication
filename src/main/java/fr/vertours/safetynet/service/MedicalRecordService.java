@@ -21,11 +21,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class MedicalRecordService implements IFireService {
-
-    private final MedicalRecordRepository medicalRecordRepository;
+public class MedicalRecordService  {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+    private final MedicalRecordRepository medicalRecordRepository;
 
     @Autowired
     private PersonService personService;
@@ -99,30 +99,10 @@ public class MedicalRecordService implements IFireService {
 
     }
 
-    /**
-     * convert à String in List of FireDTO.
-     * @param address
-     * @return A list of FireDTO.
-     */
-    public List<FireDTO> getListOfPersonForOneAddressWithFireStation(String address) {
-
-        List<MedicalRecord> medicalRecordList = this.medicalRecordRepository.findByPerson_Address_AddressName(address);
-        if(medicalRecordList.isEmpty()) {
-            throw new EmptyDBException();
-        }
-        List<FireDTO> fireDTOList = new ArrayList<>();
-        for(MedicalRecord medicalRecord : medicalRecordList) {
-            FireDTO fireDTO = new FireDTO();
-            fireDTO.setFirstName(medicalRecord.getPerson().getFirstName());
-            fireDTO.setLastName(medicalRecord.getPerson().getLastName());
-            fireDTO.setPhone(medicalRecord.getPerson().getPhone());
-            fireDTO.setAge(medicalRecord.getBirthDate().toString());
-            fireDTO.setMedicationSet(medicalRecord.getMedications());
-            fireDTO.setAllergySet((medicalRecord.getAllergies()));
-            fireDTOList.add(fireDTO);
-        }
-        return fireDTOList;
+    public List<MedicalRecord> findMedicalRecordListByAddress(String address) {
+        return medicalRecordRepository.findByPerson_Address_AddressName(address);
     }
+
 
     /**
      *save a medicalRecord to a person.

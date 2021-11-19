@@ -1,6 +1,7 @@
 package fr.vertours.safetynet.dto;
 
 import fr.vertours.safetynet.model.Allergy;
+import fr.vertours.safetynet.model.MedicalRecord;
 import fr.vertours.safetynet.model.Medication;
 
 import java.util.Set;
@@ -20,6 +21,18 @@ public class FireDTO {
     public FireDTO(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public static FireDTO createFireDTOFromMedicalRecord(MedicalRecord medicalRecord) {
+        FireDTO fireDTO = new FireDTO();
+        fireDTO.setFirstName(medicalRecord.getPerson().getFirstName());
+        fireDTO.setLastName(medicalRecord.getPerson().getLastName());
+        fireDTO.setPhone(medicalRecord.getPerson().getPhone());
+        fireDTO.setAge(medicalRecord.getBirthDate().toString());
+        fireDTO.setMedicationSet(medicalRecord.getMedications());
+        fireDTO.setAllergySet(medicalRecord.getAllergies());
+        return fireDTO;
+
     }
 
     public String getFirstName() {
