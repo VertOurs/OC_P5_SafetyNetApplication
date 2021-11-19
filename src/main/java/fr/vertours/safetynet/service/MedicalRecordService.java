@@ -21,7 +21,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class MedicalRecordService {
+public class MedicalRecordService implements IFireService {
 
     private final MedicalRecordRepository medicalRecordRepository;
 
@@ -104,7 +104,7 @@ public class MedicalRecordService {
      * @param address
      * @return A list of FireDTO.
      */
-    public List<FireDTO> getFireURL(String address) {
+    public List<FireDTO> getListOfPersonForOneAddressWithFireStation(String address) {
 
         List<MedicalRecord> medicalRecordList = this.medicalRecordRepository.findByPerson_Address_AddressName(address);
         if(medicalRecordList.isEmpty()) {

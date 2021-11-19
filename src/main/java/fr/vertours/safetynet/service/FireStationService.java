@@ -29,8 +29,7 @@ public class FireStationService {
     @Autowired
     AddressService addressService;
 
-    @Autowired
-    PersonService personService;
+
 
     public FireStationService(FireStationRepository fireStationRepository) {
         this.fireStationRepository = fireStationRepository;
@@ -127,21 +126,7 @@ public class FireStationService {
         return fireStationList;
     }
 
-    /**
-     * find a list of people with a FireStation number.
-     * @param station
-     * @return a list of Person entity.
-     */
-    public List<Person> findByStation(int station) {
-        return personService.findByStation(station);
-    }
 
-    public List<PersonForFireInfoDTO> personFromFireStation(List<Person> personList) {
-        return  personService.personFromFireStation(personList);
-    }
-    public FireStationInfoDTO getFireStationInfoDTOFromList( List<PersonForFireInfoDTO> personInfoList, List<Person> personList) {
-        return personService.getFireStationInfoDTOFromList(personInfoList,personList);
-    }
 
 
 

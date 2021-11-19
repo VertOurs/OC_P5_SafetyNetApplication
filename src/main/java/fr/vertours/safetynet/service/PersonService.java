@@ -26,25 +26,23 @@ public class PersonService {
 
     private final PersonRepository personRepository;
 
-    @Autowired
-    AddressService addressService;
 
-    @Autowired
-    FireStationService fireStationService;
+    private final AddressService addressService;
 
-    @Autowired
-    MedicalRecordService medicalRecordService;
 
-//    public PersonService(PersonRepository personRepository, AddressService addressService, FireStationService fireStationService, MedicalRecordService medicalRecordService) {
-//        this.personRepository = personRepository;
-//        this.addressService = addressService;
-//        this.fireStationService = fireStationService;
-//        this.medicalRecordService = medicalRecordService;
-//    }
+    private final FireStationService fireStationService;
 
-    public PersonService(PersonRepository personRepository) {
+
+
+
+    public PersonService(PersonRepository personRepository, AddressService addressService,
+                         FireStationService fireStationService) {
         this.personRepository = personRepository;
+        this.addressService = addressService;
+        this.fireStationService = fireStationService;
     }
+
+
 
     /**
      *adds a person to the database.
@@ -52,10 +50,8 @@ public class PersonService {
      */
     public void addPerson(PersonDTO personDTO) {
         Person person = personDTO.createPerson();
-        Address address = addressService.find(personDTO.getAddress());
-        if(address == null) {
-            address = addressService.save(personDTO.getAddress());
-        }
+        Address address = addressService.findOrCreate(personDTO.getAddress());
+
         person.setAddress(address);
         Optional<Person> existingPerson = Optional.ofNullable(personRepository.findOneByFirstNameAndLastName(person.getFirstName(), person.getLastName()));
         if(existingPerson.isPresent()) {
@@ -165,14 +161,11 @@ public class PersonService {
      * @param personDTO
      */
     public void updatePerson(String firstName, String lastName, PersonDTO personDTO) {
-        Optional<Person> existingPerson = Optional.ofNullable(personRepository.findOneByFirstNameAndLastName(firstName, lastName));
-        if(existingPerson.isEmpty()) {
-            throw new PersonNotFoundException(firstName, lastName);
-        }
-        Person person = personRepository.findOneByFirstNameAndLastName(firstName, lastName);
+        Person person = Optional.ofNullable(personRepository.findOneByFirstNameAndLastName(firstName, lastName))
+                .orElseThrow(()-> new PersonNotFoundException(firstName, lastName));
+
         if(personDTO.getAddress() != null) {
-            Address address = new Address(personDTO.getAddress());
-            addressService.save(address);
+            Address address = addressService.findOrCreate(personDTO.getAddress());
             person.setAddress(address);
         }
         if (personDTO.getCity() != null) {
@@ -192,19 +185,9 @@ public class PersonService {
 
 
 
-    public List<PersonForFireInfoDTO> personFromFireStation(List<Person> personList) {
-       List<PersonForFireInfoDTO> infoDTOS = personList.stream().map(PersonForFireInfoDTO::fromPerson).collect(Collectors.toList());
-      return infoDTOS;
-    }
 
-    public FireStationInfoDTO getFireStationInfoDTOFromList (List<PersonForFireInfoDTO> personInfoList, List<Person> personList) {
 
-        List<MedicalRecord> mRList = medicalRecordService.getMedicalRecordByListOfPerson(personList);
-        int nbAdultes = (int) mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) >= 18).count();
-        int nbEnfants = (int) mRList.stream().filter(mr -> calculateAgewithLocalDate(mr.getBirthDate()) < 18).count();
-        FireStationInfoDTO fireStationInfoDTO = new FireStationInfoDTO(personInfoList, nbEnfants, nbAdultes);
-        return fireStationInfoDTO;
-    }
+
 
     /**
      * find a list of personn by their address.

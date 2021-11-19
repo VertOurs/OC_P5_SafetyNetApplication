@@ -55,19 +55,7 @@ public class FireStationController {
         return ResponseEntity.accepted().body(FireStationDTO.fromFireStation(fireStation));
     }
 
-    /**
-     * Endpoint that allows you to find a list of people in a database.
-     * @param station
-     * @return a list of FireStationInfoDTO entity with ResponseEntity.
-     */
-    @GetMapping("/firestation")
-    public ResponseEntity<FireStationInfoDTO> getPersonFromFireStationWithCount(@RequestParam ("stationNumber") int station) {
-        LOGGER.debug("call endpoint  /firestation");
-        List<Person> personList = firestationService.findByStation(station);
-        List<PersonForFireInfoDTO> personInfoList = firestationService.personFromFireStation(personList);
 
-        return ResponseEntity.accepted().body(firestationService.getFireStationInfoDTOFromList(personInfoList,personList));
-    }
 
     /**
      * Endpoint that allows you to backup a Firestation in a database.

@@ -17,34 +17,33 @@ import static org.mockito.Mockito.*;
 class PersonServiceTest {
 
 
-    PersonService personService;
+//    PersonService personService;
+//
+//    @MockBean
+//    PersonRepository personRepository;
 
-    @MockBean
-    PersonRepository personRepository;
-
-//    PersonRepository personRepository = mock(PersonRepository.class);
-//    AddressService addressService = mock(AddressService.class);
-//    FireStationService fireStationService = mock(FireStationService.class);
-//    MedicalRecordService medicalRecordService =mock(MedicalRecordService.class);
+    PersonRepository personRepository = mock(PersonRepository.class);
+    AddressService addressService = mock(AddressService.class);
+    FireStationService fireStationService = mock(FireStationService.class);
 
 
-//    PersonService classUnderTest = new PersonService(personRepository,
-//            addressService,
-//            fireStationService,
-//            medicalRecordService);
 
-//    PersonDTO personDTO1 = new PersonDTO("Roger",
-//            "Borgne",
-//            "5, rue des peupliers",
-//            "Saint-Lambert",
-//            "45890",
-//            "04 85 74 32 45",
-//            "activeService@gmail.com"
-//            );
-//    Address address = new Address("5, rue des peupliers");
-//    Person person = new Person("Roger","Borgne",address,
-//            "Saint-Lambert","45890","04 85 74 32 45",
-//            "activeService@gmail.com");
+    PersonService classUnderTest = new PersonService(personRepository,
+            addressService,
+            fireStationService);
+
+    PersonDTO personDTO1 = new PersonDTO("Roger",
+            "Borgne",
+            "5, rue des peupliers",
+            "Saint-Lambert",
+            "45890",
+            "04 85 74 32 45",
+            "activeService@gmail.com"
+            );
+    Address address = new Address("5, rue des peupliers");
+    Person person = new Person("Roger","Borgne",address,
+            "Saint-Lambert","45890","04 85 74 32 45",
+            "activeService@gmail.com");
     @BeforeEach
     void setUp() {
 
@@ -53,20 +52,21 @@ class PersonServiceTest {
 
     @Test
     void addPerson() {
-//        when(addressService.find(personDTO1.getAddress())).thenReturn(address);
-//        when(personRepository.findOneByFirstNameAndLastName(
-//                personDTO1.getFirstName(),
-//                personDTO1.getLastName()))
-//                .thenReturn(null);
-//        when(personRepository.save(person)).thenReturn(person);
-//
-//        classUnderTest.addPerson(personDTO1);
-//        verify(personRepository, times(1)).save(person);
-        Person person = new Person();
-        PersonDTO personDTO = new PersonDTO();
+        when(addressService.findOrCreate(personDTO1.getAddress())).thenReturn(address);
+        when(personRepository.findOneByFirstNameAndLastName(
+                personDTO1.getFirstName(),
+                personDTO1.getLastName()))
+                .thenReturn(null);
+        when(personRepository.save(person)).thenReturn(person);
 
-        personService.addPerson(personDTO);
+        classUnderTest.addPerson(personDTO1);
+
         verify(personRepository, times(1)).save(person);
+//        Person person = new Person();
+//        PersonDTO personDTO = new PersonDTO();
+//
+//        personService.addPerson(personDTO);
+//        verify(personRepository, times(1)).save(person);
 
     }
 

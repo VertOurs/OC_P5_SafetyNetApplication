@@ -87,7 +87,7 @@ public class PersonController {
 
         personService.updatePerson(firstName, lastName, personDTO);
 
-        return ResponseEntity.accepted().body(firstName + " " + lastName + "'s have been saved in the database.");
+        return ResponseEntity.accepted().body(firstName + " " + lastName + "modification's have been saved in the database.");
     }
 
     /**
