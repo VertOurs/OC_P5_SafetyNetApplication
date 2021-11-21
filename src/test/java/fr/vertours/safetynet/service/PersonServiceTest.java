@@ -33,7 +33,7 @@ class PersonServiceTest {
             addressService
             );
 
-    PersonService personServiceSpy = Mockito.spy(classUnderTest);
+
 
     PersonDTO personDTO1 = new PersonDTO("Roger",
             "Borgne",
@@ -49,9 +49,11 @@ class PersonServiceTest {
             "Saint-Lambert","45890","04 85 74 32 45",
             "activeService@gmail.com");
     List<Person> personList = new ArrayList<>();
+    List<Address> addressList = new ArrayList<>();
     @BeforeEach
     void setUp() {
         personList.add(person);
+        addressList.add(address);
 
     }
 
@@ -87,18 +89,13 @@ class PersonServiceTest {
 
     @Test
     void deletePerson() {
-
-        /* ESSAI DE SIMULATION DE FIND()*/
-         when(personServiceSpy.find(person.getFirstName(),person.getLastName())).thenReturn(person);
-        //Mockito.doReturn(person).when(personServiceSpy).find(person.getFirstName(),person.getLastName());
-        //doReturn(person).when(personServiceSpy.find(person.getFirstName(),person.getLastName()));
-        //Mockito.doReturn(person).when(personServiceSpy.find(person.getFirstName(),person.getLastName()));
-        //Mockito.when(personServiceSpy).find(person.getFirstName(),person.getLastName())).thenReturn(person);
-
-        /* MOCK DE PERSONREPOSITORY */
+        when(personRepository.findOneByFirstNameAndLastName("Roger", "Borgne"))
+                .thenReturn(person);
         doNothing().when(personRepository).delete(person);
 
-        verify(personServiceSpy,times(1)).find(person.getFirstName(),person.getLastName());
+        classUnderTest.deletePerson("Roger", "Borgne");
+
+        verify(personRepository,times(1)).delete(person);
     }
 
     @Test
@@ -110,33 +107,52 @@ class PersonServiceTest {
 
     @Test
     void findByCity() {
+        when(personRepository.findAllByCity(person.getCity())).thenReturn(personList);
+        classUnderTest.findByCity("Saint-Lambert");
+        verify(personRepository, times(1)).findAllByCity("Saint-Lambert");
     }
 
     @Test
     void findByAddress() {
+        when(personRepository.findByAddress_AddressName(address.getAddressName()))
+                .thenReturn(personList);
+        classUnderTest.findByAddress("5, rue des peupliers");
+        verify(personRepository, times(1))
+                .findByAddress_AddressName("5, rue des peupliers");
     }
 
     @Test
     void findByAddressIn() {
-    }
-
-    @Test
-    void findByStation() {
+        when(personRepository.findByAddressIn(addressList))
+                .thenReturn(personList);
+        classUnderTest.findByAddressIn(addressList);
+        verify(personRepository, times(1))
+                .findByAddressIn(addressList);
     }
 
     @Test
     void updatePerson() {
-    }
+        when(personRepository.findOneByFirstNameAndLastName("Roger", "Borgne"))
+                .thenReturn(person);
+        when(personRepository.save(person)).thenReturn(person);
 
-    @Test
-    void personFromFireStation() {
-    }
+        classUnderTest.updatePerson(person.getFirstName(),
+                person.getLastName(),
+                personDTO1);
 
-    @Test
-    void getFireStationInfoDTOFromList() {
+        verify(personRepository, times(1))
+                .findOneByFirstNameAndLastName("Roger","Borgne");
+        verify(personRepository, times(1)).save(person);
     }
 
     @Test
     void findListOfPersonByAddress() {
+        when(personRepository.findByAddress_AddressName("5, rue des peupliers"))
+                .thenReturn(personList);
+
+        classUnderTest.findListOfPersonByAddress(address);
+
+        verify(personRepository, times(1))
+                .findByAddress_AddressName(address.getAddressName());
     }
 }

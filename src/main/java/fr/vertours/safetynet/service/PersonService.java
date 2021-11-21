@@ -75,7 +75,9 @@ public class PersonService implements IEmailService, IPersonInfoService {
      * @param lastName
      */
     public void deletePerson(String firstName, String lastName) {
-        Person person = find(firstName, lastName);
+        Person person = Optional.ofNullable(
+                personRepository.findOneByFirstNameAndLastName(firstName, lastName))
+                .orElseThrow(()-> new PersonNotFoundException(firstName, lastName));
         personRepository.delete(person);
     }
 
