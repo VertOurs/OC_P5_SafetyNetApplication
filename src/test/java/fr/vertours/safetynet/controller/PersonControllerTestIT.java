@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class PersonControllerTest {
+class PersonControllerTestIT {
 
     @Autowired
     public MockMvc mockMvc;
@@ -75,6 +75,9 @@ class PersonControllerTest {
     }
 
     @Test
-    void deletePerson() {
+    void deletePerson() throws Exception {
+        mockMvc.perform(delete("/person/John/Boyd"))
+                .andExpect(status().isAccepted());
+
     }
 }
