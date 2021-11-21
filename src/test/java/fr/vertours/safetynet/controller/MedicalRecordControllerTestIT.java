@@ -56,7 +56,7 @@ class MedicalRecordControllerTestIT {
                 + "\"medications\": [\"hydrapermazol:100mg\"]\n"
                 + "}";
     }
-    
+
     @Test
     void getListOfMedicalRecord() throws Exception {
         mockMvc.perform(get("/medicalRecord/all"))
