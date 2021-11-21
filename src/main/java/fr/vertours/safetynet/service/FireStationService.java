@@ -25,15 +25,14 @@ public class FireStationService {
 
 
     private final FireStationRepository fireStationRepository;
+    private final AddressService addressService;
 
-    @Autowired
-    AddressService addressService;
-
-
-
-    public FireStationService(FireStationRepository fireStationRepository) {
+    public FireStationService(FireStationRepository fireStationRepository, AddressService addressService) {
         this.fireStationRepository = fireStationRepository;
+        this.addressService = addressService;
     }
+
+
 
 
     /**
@@ -41,10 +40,14 @@ public class FireStationService {
      * @param fireStationDTO
      */
     public void saveOneStation(FireStationDTO fireStationDTO) {
-        Optional<FireStation> existingFireStation = Optional.ofNullable(fireStationRepository.findByStation(fireStationDTO.getStation()));
+        Optional<FireStation> existingFireStation =
+                Optional.ofNullable(
+                        fireStationRepository.findByStation(
+                                fireStationDTO.getStation()));
         if(existingFireStation.isPresent()) {
             throw new FireStationAlreadyPresentException(fireStationDTO.getStation());
         }
+
         Set<Address> addressSet = fireStationDTO.getAddress().stream().map(address -> addressService.findOrCreate(address)).collect(Collectors.toSet());
         FireStation fireStation = fireStationDTO.createFireStation();
         fireStation.setAddress(addressSet);
@@ -79,6 +82,7 @@ public class FireStationService {
         }
         return fireStationRepository.findByStation(fireStation);
     }
+
     public Collection<FireStation> findOneStationByAddress(Address address) {
         return fireStationRepository.findFireStationByAddress(address);
     }
