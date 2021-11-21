@@ -25,20 +25,20 @@ public class MedicalRecordService  {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
+
     private final MedicalRecordRepository medicalRecordRepository;
+    private final PersonService personService;
+    private final MedicationService medicationService;
+    private final AllergyService allergyService;
 
-    @Autowired
-    private PersonService personService;
-
-    @Autowired
-    private MedicationService medicationService;
-
-    @Autowired
-    private AllergyService allergyService;
-
-
-    public MedicalRecordService(MedicalRecordRepository medicalRecordRepository) {
+    public MedicalRecordService(MedicalRecordRepository medicalRecordRepository,
+                                PersonService personService,
+                                MedicationService medicationService,
+                                AllergyService allergyService) {
         this.medicalRecordRepository = medicalRecordRepository;
+        this.personService = personService;
+        this.medicationService = medicationService;
+        this.allergyService = allergyService;
     }
 
     /**
