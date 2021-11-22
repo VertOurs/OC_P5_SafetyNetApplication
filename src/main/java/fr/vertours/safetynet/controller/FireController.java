@@ -28,7 +28,7 @@ public class FireController {
     @GetMapping("/fire")
     public ResponseEntity<List<FireDTO>> getListOfPersonForOneAddressWithFireStation(@RequestParam("address") String address) {
         LOGGER.info("call endpoint /fire");
-        return ResponseEntity.accepted().body(this.ifireService.getListOfPersonForOneAddressWithFireStation(address));
+        return ResponseEntity.ok().body(this.ifireService.getListOfPersonForOneAddressWithFireStation(address));
 
     }
 }

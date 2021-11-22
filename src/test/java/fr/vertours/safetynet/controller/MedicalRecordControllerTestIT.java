@@ -60,14 +60,14 @@ class MedicalRecordControllerTestIT {
     @Test
     void getListOfMedicalRecord() throws Exception {
         mockMvc.perform(get("/medicalRecord/all"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].firstName", is("John")));
     }
 
     @Test
     void getOneMedicalRecord() throws Exception {
         mockMvc.perform(get("/medicalRecord/John/Boyd"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("firstName", is("John")));
     }
 
@@ -77,7 +77,7 @@ class MedicalRecordControllerTestIT {
         mockMvc.perform(post("/medicalRecord")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(createMedicalRecordDTO))
-                .andExpect(status().isAccepted());
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -85,12 +85,12 @@ class MedicalRecordControllerTestIT {
         mockMvc.perform(put("/medicalRecord/John/Boyd")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(updateMedicalRecordDTO))
-                .andExpect(status().isAccepted());
+                .andExpect(status().isOk());
     }
 
     @Test
     void deleteOneMedicalRecord() throws Exception {
         mockMvc.perform(delete("/medicalRecord/John/Boyd"))
-                .andExpect(status().isAccepted());
+                .andExpect(status().isOk());
     }
 }

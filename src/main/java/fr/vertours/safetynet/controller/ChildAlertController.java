@@ -27,6 +27,6 @@ public class ChildAlertController {
     public ResponseEntity<ChildAlertDTO> getListOfChildrenAtThisAddress(
             @RequestParam("address") String address) {
         LOGGER.info("call endpoint /childAlert");
-        return ResponseEntity.accepted().body(iChildAlertService.getChildrenAtThisAdress(address));
+        return ResponseEntity.ok().body(iChildAlertService.getChildrenAtThisAdress(address));
     }
 }

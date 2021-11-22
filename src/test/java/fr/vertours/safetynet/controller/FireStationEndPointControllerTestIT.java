@@ -18,13 +18,11 @@ class FireStationEndPointControllerTestIT {
     @Autowired
     MockMvc mockMvc;
 
-    /*
-    Me demande [Reginold] comme valeur alors que c'est Reginold dans le Json?
-    */
+
     @Test
     void getPersonFromFireStationWithCount() throws Exception {
         mockMvc.perform(get("/firestation?stationNumber=1"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.personList[0].firstName", is("Reginold")));
     }
 }

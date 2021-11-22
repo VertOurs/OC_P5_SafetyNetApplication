@@ -30,6 +30,6 @@ public class PhoneAlertController {
     public ResponseEntity<List<String>> getListPhoneNumberByFireStation(@RequestParam("firestation") int station) {
         LOGGER.info("call endpoint /phoneAlert");
         List<Person> personList = this.iPhoneAlertService.findByStation(station);
-        return ResponseEntity.accepted().body(personList.stream().map(Person::getPhone).collect(Collectors.toList()));
+        return ResponseEntity.ok().body(personList.stream().map(Person::getPhone).collect(Collectors.toList()));
     }
 }

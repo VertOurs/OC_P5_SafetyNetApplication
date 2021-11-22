@@ -28,7 +28,7 @@ public class FloodController {
     @GetMapping("/flood/stations")
     public ResponseEntity<List<FloodDTO>> endPoint5Flood(@RequestParam("stations") List<Integer> stationList) {
         LOGGER.info("call endpoint /flood/stations");
-        return ResponseEntity.accepted().body(iFloodService.getFloodByListOfStation(stationList));
+        return ResponseEntity.ok().body(iFloodService.getFloodByListOfStation(stationList));
 
     }
 }

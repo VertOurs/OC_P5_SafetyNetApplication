@@ -42,14 +42,14 @@ class FireStationControllerTestIT {
     @Test
     void getListFireStation() throws Exception {
         mockMvc.perform(get("/firestation/all"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].station", is(3)));
     }
 
     @Test
     void getStation() throws Exception {
         mockMvc.perform(get("/firestation/1"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("station", is(1)));
     }
 
@@ -58,7 +58,7 @@ class FireStationControllerTestIT {
         mockMvc.perform(post("/firestation")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createFireStationDTO))
-                        .andExpect(status().isAccepted());
+                        .andExpect(status().isOk());
     }
 
     @Test
@@ -66,12 +66,12 @@ class FireStationControllerTestIT {
         mockMvc.perform(put("/firestation/2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(updateFireStationDTO))
-                .andExpect(status().isAccepted());
+                .andExpect(status().isOk());
     }
 
     @Test
     void deleteOneStation() throws Exception {
         mockMvc.perform(delete("/firestation/1"))
-                .andExpect(status().isAccepted());
+                .andExpect(status().isOk());
     }
 }

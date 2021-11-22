@@ -25,11 +25,31 @@ class PersonControllerTestIT {
     @Autowired
     MedicalRecordService medicalRecordService;
 
-    String createPersonDTO;
-    String updatePersonDTO;
+
+
     @BeforeEach
     void setUp() {
-        createPersonDTO = "{\n"
+
+
+    }
+
+    @Test
+    void getListOfPersons() throws Exception {
+        mockMvc.perform(get("/person/all"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].firstName", is("John")));
+    }
+
+    @Test
+    void getOnePerson() throws Exception {
+        mockMvc.perform(get("/person/John/Boyd"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("firstName", is("John")));
+    }
+
+    @Test
+    void registerNewPerson() throws Exception {
+        String  createPersonDTO = "{\n"
                 + "\"firstName\": \"Aymeric\",\n"
                 + "\"lastName\": \"Perrin\",\n"
                 + "\"address\": \"1551, tue Louis Blériot\",\n"
@@ -38,7 +58,15 @@ class PersonControllerTestIT {
                 + "\"phone\": \"06 74 89 65 14\",\n"
                 + "\"email\": \"AymericPer@gmail.com\"\n"
                 + "}";
-        updatePersonDTO = "{\n"
+        mockMvc.perform(post("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createPersonDTO))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void updatePerson() throws Exception {
+        String updatePersonDTO = "{\n"
                 + "\"firstName\": \"John\",\n"
                 + "\"lastName\": \"Boyd\",\n"
                 + "\"address\": \"1509 Culver St\",\n"
@@ -47,43 +75,17 @@ class PersonControllerTestIT {
                 + "\"phone\": \"NO CELLPHONE\",\n"
                 + "\"email\": \"BOBYBOB.JOHNNY@GMAIL.COM\"\n"
                 + "}";
-    }
-
-    @Test
-    void getListOfPersons() throws Exception {
-        mockMvc.perform(get("/person/all"))
-                .andExpect(status().isAccepted())
-                .andExpect(jsonPath("$[0].firstName", is("John")));
-    }
-
-    @Test
-    void getOnePerson() throws Exception {
-        mockMvc.perform(get("/person/John/Boyd"))
-                .andExpect(status().isAccepted())
-                .andExpect(jsonPath("firstName", is("John")));
-    }
-
-    @Test
-    void registerNewPerson() throws Exception {
-        mockMvc.perform(post("/person")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(createPersonDTO))
-                .andExpect(status().isAccepted());
-    }
-
-    @Test
-    void updatePerson() throws Exception {
         mockMvc.perform(put("/person/John/Boyd")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updatePersonDTO))
-                .andExpect(status().isAccepted());
+                .andExpect(status().isOk());
     }
 
     @Test
     void deletePerson() throws Exception {
         medicalRecordService.deleteOneMedicalRecord("John", "Boyd");
         mockMvc.perform(delete("/person/John/Boyd"))
-                .andExpect(status().isAccepted());
+                .andExpect(status().isOk());
 
     }
 }

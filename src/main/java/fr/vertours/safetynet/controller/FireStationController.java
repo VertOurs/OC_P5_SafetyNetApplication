@@ -40,7 +40,7 @@ public class FireStationController {
                 .map(FireStationDTO::fromFireStation)
                 .collect(Collectors.toList());
 
-        return ResponseEntity.accepted().body(fireStationDTOList);
+        return ResponseEntity.ok().body(fireStationDTOList);
     }
 
     /**
@@ -52,7 +52,7 @@ public class FireStationController {
     public ResponseEntity<FireStationDTO> getStation(@PathVariable int station){
         LOGGER.debug("call endpoint  /firestation");
         FireStation fireStation = this.firestationService.findOneStation(station);
-        return ResponseEntity.accepted().body(FireStationDTO.fromFireStation(fireStation));
+        return ResponseEntity.ok().body(FireStationDTO.fromFireStation(fireStation));
     }
 
 
@@ -66,7 +66,7 @@ public class FireStationController {
     public ResponseEntity<String> create(@RequestBody FireStationDTO fireStationDTO) {
         this.firestationService.saveOneStation(fireStationDTO);
         LOGGER.debug("call endpoint POST /firestation");
-        return ResponseEntity.accepted().body("the FireStation has been created in the database.");
+        return ResponseEntity.ok().body("the FireStation has been created in the database.");
     }
 
     /**
@@ -81,7 +81,7 @@ public class FireStationController {
         LOGGER.debug("call endpoint PUT /firestation");
         this.firestationService.updateStationForOneAddress(station, address);
 
-        return ResponseEntity.accepted().body("la station à bien été modifiée.");
+        return ResponseEntity.ok().body("la station à bien été modifiée.");
     }
 
     /**
@@ -94,6 +94,6 @@ public class FireStationController {
         LOGGER.info("call endpoint DEL /firestation");
         this.firestationService.deleteOneFireStation(nbStation);
 
-        return ResponseEntity.accepted().body("the FireStation has been deleted from the database.");
+        return ResponseEntity.ok().body("the FireStation has been deleted from the database.");
     }
 }

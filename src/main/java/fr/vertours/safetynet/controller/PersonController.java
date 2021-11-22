@@ -35,7 +35,7 @@ public class PersonController {
         List<PersonDTO> personDTOList = personList.stream()
                     .map(PersonDTO::fromPerson)
                     .collect(Collectors.toList());
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(personDTOList);
+            return ResponseEntity.ok().body(personDTOList);
     }
 
     /**
@@ -56,7 +56,7 @@ public class PersonController {
                 person.getZip(),
                 person.getPhone(),
                 person.getEmail());
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(personDTO);
+        return ResponseEntity.ok().body(personDTO);
     }
 
     /**
@@ -69,7 +69,7 @@ public class PersonController {
         LOGGER.debug("call endPoint POST/person");
         personService.addPerson(personDTO);
         LOGGER.debug("call endPoint POST /person");
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(personDTO.getFirstName() + " " + personDTO.getFirstName() + " was created in database.");
+        return ResponseEntity.ok().body(personDTO.getFirstName() + " " + personDTO.getFirstName() + " was created in database.");
     }
 
     /**
@@ -87,7 +87,7 @@ public class PersonController {
 
         personService.updatePerson(firstName, lastName, personDTO);
 
-        return ResponseEntity.accepted().body(firstName + " " + lastName + "modification's have been saved in the database.");
+        return ResponseEntity.ok().body(firstName + " " + lastName + "modification's have been saved in the database.");
     }
 
     /**
@@ -101,6 +101,6 @@ public class PersonController {
                              @PathVariable("lastName") String lastName) {
         personService.deletePerson(firstName, lastName);
         LOGGER.info("call endPoint DEL /person");
-        return ResponseEntity.accepted().body(firstName + " " + lastName + " has been deleted from the database.");
+        return ResponseEntity.ok().body(firstName + " " + lastName + " has been deleted from the database.");
     }
 }

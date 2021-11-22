@@ -4100,3 +4100,614 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 2021-11-22 16:22:24.653  WARN 37224 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
 2021-11-22 16:22:24.653  INFO 37224 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-11-22 16:22:24.656  INFO 37224 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:24:50.226  INFO 32672 --- [main] .s.c.FireStationEndPointControllerTestIT : Starting FireStationEndPointControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 32672 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:24:50.227 DEBUG 32672 --- [main] .s.c.FireStationEndPointControllerTestIT : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:24:50.228  INFO 32672 --- [main] .s.c.FireStationEndPointControllerTestIT : No active profile set, falling back to default profiles: default
+2021-11-22 16:24:51.506  INFO 32672 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:24:51.580  INFO 32672 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:24:51.997  INFO 32672 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:24:52.173  INFO 32672 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:24:52.254  INFO 32672 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:24:52.318  INFO 32672 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:24:52.461  INFO 32672 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:24:52.568  INFO 32672 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:24:53.171  INFO 32672 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:24:53.181  INFO 32672 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:24:53.965  WARN 32672 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:24:54.201  INFO 32672 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:24:54.632  INFO 32672 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:24:54.634  INFO 32672 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:24:54.643  INFO 32672 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:24:54.669  INFO 32672 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 32 ms
+2021-11-22 16:24:54.699  INFO 32672 --- [main] .s.c.FireStationEndPointControllerTestIT : Started FireStationEndPointControllerTestIT in 4.743 seconds (JVM running for 5.566)
+2021-11-22 16:24:55.295 DEBUG 32672 --- [main] f.v.s.c.FireStationEndPointController    : call endpoint  /firestation
+2021-11-22 16:24:55.398  INFO 32672 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:24:55.399  INFO 32672 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:24:55.401  WARN 32672 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:24:55.404 ERROR 32672 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:24:55.404  WARN 32672 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:24:55.404 ERROR 32672 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:24:55.404  WARN 32672 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:24:55.405  INFO 32672 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:24:55.407  INFO 32672 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:30:00.101  INFO 2680 --- [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:30:00.102  INFO 2680 --- [Thread-6] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:30:00.318  WARN 2680 --- [Thread-6] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:30:00.321  INFO 2680 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:30:00.323  INFO 2680 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:30:00.422  INFO 2680 --- [restartedMain] f.v.safetynet.SafetynetApplication       : Starting SafetynetApplication using Java 11.0.12 on DESKTOP-RFT6VPG with PID 2680 (C:\PROJETS OC\P5\target\classes started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:30:00.422 DEBUG 2680 --- [restartedMain] f.v.safetynet.SafetynetApplication       : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:30:00.422  INFO 2680 --- [restartedMain] f.v.safetynet.SafetynetApplication       : No active profile set, falling back to default profiles: default
+2021-11-22 16:30:00.701  INFO 2680 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:30:00.732  INFO 2680 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:30:00.786  INFO 41996 --- [main] f.v.s.c.PhoneAlertControllerTestIT       : Starting PhoneAlertControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 41996 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:30:00.787 DEBUG 41996 --- [main] f.v.s.c.PhoneAlertControllerTestIT       : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:30:00.788  INFO 41996 --- [main] f.v.s.c.PhoneAlertControllerTestIT       : No active profile set, falling back to default profiles: default
+2021-11-22 16:30:00.811  INFO 2680 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-22 16:30:00.812  INFO 2680 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-22 16:30:00.812  INFO 2680 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-11-22 16:30:00.828  INFO 2680 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-22 16:30:00.829  INFO 2680 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 405 ms
+2021-11-22 16:30:00.847  INFO 2680 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-11-22 16:30:00.848  INFO 2680 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-11-22 16:30:00.849  INFO 2680 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:30:00.883  INFO 2680 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:30:00.890  INFO 2680 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:30:00.950  INFO 2680 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:30:00.953  INFO 2680 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:30:01.093  WARN 2680 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:30:01.190  INFO 2680 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-11-22 16:30:01.192  INFO 2680 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:30:01.204  INFO 2680 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-22 16:30:01.209  INFO 2680 --- [restartedMain] f.v.safetynet.SafetynetApplication       : Started SafetynetApplication in 0.819 seconds (JVM running for 3567.929)
+2021-11-22 16:30:01.309  INFO 2680 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-11-22 16:30:02.091  INFO 41996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:30:02.162  INFO 41996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:30:02.579  INFO 41996 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:30:02.754  INFO 41996 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:30:02.832  INFO 41996 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:30:02.900  INFO 41996 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:30:03.058  INFO 41996 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:30:03.162  INFO 41996 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:30:03.769  INFO 41996 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:30:03.779  INFO 41996 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:30:04.584  WARN 41996 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:30:04.829  INFO 41996 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:30:05.276  INFO 41996 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:30:05.279  INFO 41996 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:30:05.286  INFO 41996 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:30:05.312  INFO 41996 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 32 ms
+2021-11-22 16:30:05.338  INFO 41996 --- [main] f.v.s.c.PhoneAlertControllerTestIT       : Started PhoneAlertControllerTestIT in 4.851 seconds (JVM running for 5.705)
+2021-11-22 16:30:05.916  INFO 41996 --- [main] f.v.s.controller.PhoneAlertController    : call endpoint /phoneAlert
+2021-11-22 16:30:06.002  INFO 41996 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:30:06.003  INFO 41996 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:30:06.005  WARN 41996 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:30:06.008 ERROR 41996 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:30:06.008  WARN 41996 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:30:06.008 ERROR 41996 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:30:06.008  WARN 41996 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:30:06.009  INFO 41996 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:30:06.011  INFO 41996 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:30:14.298  INFO 38764 --- [main] f.v.s.c.PersonInfoControllerTestIT       : Starting PersonInfoControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 38764 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:30:14.299 DEBUG 38764 --- [main] f.v.s.c.PersonInfoControllerTestIT       : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:30:14.300  INFO 38764 --- [main] f.v.s.c.PersonInfoControllerTestIT       : No active profile set, falling back to default profiles: default
+2021-11-22 16:30:15.574  INFO 38764 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:30:15.646  INFO 38764 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:30:16.058  INFO 38764 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:30:16.228  INFO 38764 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:30:16.301  INFO 38764 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:30:16.361  INFO 38764 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:30:16.504  INFO 38764 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:30:16.624  INFO 38764 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:30:17.196  INFO 38764 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:30:17.206  INFO 38764 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:30:18.008  WARN 38764 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:30:18.256  INFO 38764 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:30:18.708  INFO 38764 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:30:18.711  INFO 38764 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:30:18.720  INFO 38764 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:30:18.749  INFO 38764 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 36 ms
+2021-11-22 16:30:18.776  INFO 38764 --- [main] f.v.s.c.PersonInfoControllerTestIT       : Started PersonInfoControllerTestIT in 4.765 seconds (JVM running for 5.588)
+2021-11-22 16:30:19.336  INFO 38764 --- [main] f.v.s.controller.PersonInfoController    : call endpoint /personInfo
+2021-11-22 16:30:19.413  INFO 38764 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:30:19.414  INFO 38764 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:30:19.415  WARN 38764 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:30:19.418 ERROR 38764 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:30:19.419  WARN 38764 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:30:19.419 ERROR 38764 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:30:19.419  WARN 38764 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:30:19.419  INFO 38764 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:30:19.422  INFO 38764 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:30:28.057  INFO 38492 --- [main] f.v.s.controller.PersonControllerTestIT  : Starting PersonControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 38492 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:30:28.058 DEBUG 38492 --- [main] f.v.s.controller.PersonControllerTestIT  : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:30:28.059  INFO 38492 --- [main] f.v.s.controller.PersonControllerTestIT  : No active profile set, falling back to default profiles: default
+2021-11-22 16:30:29.344  INFO 38492 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:30:29.415  INFO 38492 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:30:29.833  INFO 38492 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:30:30.005  INFO 38492 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:30:30.084  INFO 38492 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:30:30.147  INFO 38492 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:30:30.292  INFO 38492 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:30:30.404  INFO 38492 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:30:30.995  INFO 38492 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:30:31.005  INFO 38492 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:30:31.811  WARN 38492 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:30:32.062  INFO 38492 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:30:32.522  INFO 38492 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:30:32.526  INFO 38492 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:30:32.534  INFO 38492 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:30:32.559  INFO 38492 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 31 ms
+2021-11-22 16:30:32.585  INFO 38492 --- [main] f.v.s.controller.PersonControllerTestIT  : Started PersonControllerTestIT in 4.81 seconds (JVM running for 5.647)
+2021-11-22 16:30:33.171 DEBUG 38492 --- [main] f.v.s.controller.PersonController        : call endPoint PUT /person
+2021-11-22 16:30:33.224  INFO 38492 --- [main] f.v.s.controller.PersonController        : call endPoint DEL /person
+2021-11-22 16:30:33.230 DEBUG 38492 --- [main] f.v.s.controller.PersonController        : call endPoint POST/person
+2021-11-22 16:30:33.234 DEBUG 38492 --- [main] f.v.s.controller.PersonController        : call endPoint POST /person
+2021-11-22 16:30:33.242 DEBUG 38492 --- [main] f.v.s.controller.PersonController        : call endPoint GET /person/
+2021-11-22 16:30:33.254 ERROR 38492 --- [main] f.v.s.c.e.GlobalExceptionHandler         : Handling PersonNotFoundException due to The person "John Boyd", was not found in DataBase.. More informations : [Ljava.lang.StackTraceElement;@35d31e1c
+2021-11-22 16:30:33.266 DEBUG 38492 --- [main] f.v.s.controller.PersonController        : Call endPoint person/all
+2021-11-22 16:30:33.339  INFO 38492 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:30:33.340  INFO 38492 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:30:33.341  WARN 38492 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:30:33.341 ERROR 38492 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:30:33.342  WARN 38492 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:30:33.345 ERROR 38492 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:30:33.345  WARN 38492 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:30:33.345  INFO 38492 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:30:33.348  INFO 38492 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:30:56.621  INFO 42724 --- [main] f.v.s.c.MedicalRecordControllerTestIT    : Starting MedicalRecordControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 42724 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:30:56.622 DEBUG 42724 --- [main] f.v.s.c.MedicalRecordControllerTestIT    : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:30:56.623  INFO 42724 --- [main] f.v.s.c.MedicalRecordControllerTestIT    : No active profile set, falling back to default profiles: default
+2021-11-22 16:30:57.890  INFO 42724 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:30:57.963  INFO 42724 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:30:58.383  INFO 42724 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:30:58.561  INFO 42724 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:30:58.641  INFO 42724 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:30:58.706  INFO 42724 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:30:58.856  INFO 42724 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:30:58.977  INFO 42724 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:30:59.586  INFO 42724 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:30:59.597  INFO 42724 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:31:00.391  WARN 42724 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:31:00.646  INFO 42724 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:31:01.091  INFO 42724 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:31:01.094  INFO 42724 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:31:01.102  INFO 42724 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:31:01.130  INFO 42724 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 34 ms
+2021-11-22 16:31:01.159  INFO 42724 --- [main] f.v.s.c.MedicalRecordControllerTestIT    : Started MedicalRecordControllerTestIT in 4.809 seconds (JVM running for 5.644)
+2021-11-22 16:31:01.757 DEBUG 42724 --- [main] f.v.s.c.MedicalRecordController          : Endpoint : PUT /medicalRecord/firstName/LastName
+2021-11-22 16:31:01.795 DEBUG 42724 --- [main] f.v.s.c.MedicalRecordController          : call endpoint : /medicalRecord/all
+2021-11-22 16:31:01.868 DEBUG 42724 --- [main] f.v.s.c.MedicalRecordController          : endpoint : GET /medicalRecord/firstName/LastName
+2021-11-22 16:31:01.876  INFO 42724 --- [main] f.v.s.c.MedicalRecordController          : Endpoint : DEL /medicalRecord/firstName/LastName
+2021-11-22 16:31:01.896 DEBUG 42724 --- [main] f.v.s.c.MedicalRecordController          : endpoint : POST /medicalRecord
+2021-11-22 16:31:01.913  INFO 42724 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:31:01.914  INFO 42724 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:31:01.915  WARN 42724 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:31:01.916 ERROR 42724 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:31:01.916  WARN 42724 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:31:01.917 ERROR 42724 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:31:01.917  WARN 42724 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:31:01.919  INFO 42724 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:31:01.922  INFO 42724 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:31:26.594  INFO 1300 --- [main] f.v.s.controller.FloodControllerTestIT   : Starting FloodControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 1300 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:31:26.595 DEBUG 1300 --- [main] f.v.s.controller.FloodControllerTestIT   : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:31:26.596  INFO 1300 --- [main] f.v.s.controller.FloodControllerTestIT   : No active profile set, falling back to default profiles: default
+2021-11-22 16:31:27.852  INFO 1300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:31:27.924  INFO 1300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:31:28.338  INFO 1300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:31:28.512  INFO 1300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:31:28.587  INFO 1300 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:31:28.648  INFO 1300 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:31:28.796  INFO 1300 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:31:28.906  INFO 1300 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:31:29.474  INFO 1300 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:31:29.484  INFO 1300 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:31:30.274  WARN 1300 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:31:30.528  INFO 1300 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:31:30.993  INFO 1300 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:31:30.997  INFO 1300 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:31:31.007  INFO 1300 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:31:31.036  INFO 1300 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 37 ms
+2021-11-22 16:31:31.068  INFO 1300 --- [main] f.v.s.controller.FloodControllerTestIT   : Started FloodControllerTestIT in 4.755 seconds (JVM running for 5.565)
+2021-11-22 16:31:31.642  INFO 1300 --- [main] f.v.s.controller.FloodController         : call endpoint /flood/stations
+2021-11-22 16:31:31.763  INFO 1300 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:31:31.764  INFO 1300 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:31:31.766  WARN 1300 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:31:31.768 ERROR 1300 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:31:31.769  WARN 1300 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:31:31.769 ERROR 1300 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:31:31.769  WARN 1300 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:31:31.770  INFO 1300 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:31:31.772  INFO 1300 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:31:43.303  INFO 42124 --- [main] .s.c.FireStationEndPointControllerTestIT : Starting FireStationEndPointControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 42124 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:31:43.304 DEBUG 42124 --- [main] .s.c.FireStationEndPointControllerTestIT : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:31:43.305  INFO 42124 --- [main] .s.c.FireStationEndPointControllerTestIT : No active profile set, falling back to default profiles: default
+2021-11-22 16:31:44.584  INFO 42124 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:31:44.658  INFO 42124 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:31:45.076  INFO 42124 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:31:45.252  INFO 42124 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:31:45.329  INFO 42124 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:31:45.400  INFO 42124 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:31:45.547  INFO 42124 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:31:45.653  INFO 42124 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:31:46.248  INFO 42124 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:31:46.257  INFO 42124 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:31:47.103  WARN 42124 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:31:47.356  INFO 42124 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:31:47.817  INFO 42124 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:31:47.820  INFO 42124 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:31:47.829  INFO 42124 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:31:47.862  INFO 42124 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 41 ms
+2021-11-22 16:31:47.891  INFO 42124 --- [main] .s.c.FireStationEndPointControllerTestIT : Started FireStationEndPointControllerTestIT in 4.858 seconds (JVM running for 5.669)
+2021-11-22 16:31:48.471 DEBUG 42124 --- [main] f.v.s.c.FireStationEndPointController    : call endpoint  /firestation
+2021-11-22 16:31:48.570  INFO 42124 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:31:48.570  INFO 42124 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:31:48.572  WARN 42124 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:31:48.574 ERROR 42124 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:31:48.575  WARN 42124 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:31:48.575 ERROR 42124 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:31:48.575  WARN 42124 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:31:48.575  INFO 42124 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:31:48.578  INFO 42124 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:31:56.469  INFO 41688 --- [main] f.v.s.c.FireStationControllerTestIT      : Starting FireStationControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 41688 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:31:56.470 DEBUG 41688 --- [main] f.v.s.c.FireStationControllerTestIT      : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:31:56.471  INFO 41688 --- [main] f.v.s.c.FireStationControllerTestIT      : No active profile set, falling back to default profiles: default
+2021-11-22 16:31:57.749  INFO 41688 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:31:57.821  INFO 41688 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:31:58.245  INFO 41688 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:31:58.421  INFO 41688 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:31:58.500  INFO 41688 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:31:58.565  INFO 41688 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:31:58.714  INFO 41688 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:31:58.826  INFO 41688 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:31:59.424  INFO 41688 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:31:59.434  INFO 41688 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:00.257  WARN 41688 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:32:00.502  INFO 41688 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:32:00.970  INFO 41688 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:32:00.972  INFO 41688 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:32:00.979  INFO 41688 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:32:01.004  INFO 41688 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 31 ms
+2021-11-22 16:32:01.032  INFO 41688 --- [main] f.v.s.c.FireStationControllerTestIT      : Started FireStationControllerTestIT in 4.834 seconds (JVM running for 5.68)
+2021-11-22 16:32:01.623 DEBUG 41688 --- [main] f.v.s.controller.FireStationController   : call endpoint POST /firestation
+2021-11-22 16:32:01.644 DEBUG 41688 --- [main] f.v.s.controller.FireStationController   : call endpoint  /firestation
+2021-11-22 16:32:01.695 DEBUG 41688 --- [main] f.v.s.controller.FireStationController   : call endpoint /firestation/all
+2021-11-22 16:32:01.713 DEBUG 41688 --- [main] f.v.s.controller.FireStationController   : call endpoint PUT /firestation
+2021-11-22 16:32:01.736  INFO 41688 --- [main] f.v.s.controller.FireStationController   : call endpoint DEL /firestation
+2021-11-22 16:32:01.757  INFO 41688 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:01.758  INFO 41688 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:32:01.759  WARN 41688 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:01.759 ERROR 41688 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:01.760  WARN 41688 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:01.760 ERROR 41688 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:01.760  WARN 41688 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:32:01.763  INFO 41688 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:32:01.766  INFO 41688 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:32:11.692  INFO 34892 --- [main] f.v.s.controller.FireControllerTestIT    : Starting FireControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 34892 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:32:11.693 DEBUG 34892 --- [main] f.v.s.controller.FireControllerTestIT    : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:32:11.694  INFO 34892 --- [main] f.v.s.controller.FireControllerTestIT    : No active profile set, falling back to default profiles: default
+2021-11-22 16:32:12.968  INFO 34892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:32:13.041  INFO 34892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:32:13.467  INFO 34892 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:32:13.646  INFO 34892 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:32:13.735  INFO 34892 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:32:13.802  INFO 34892 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:32:13.951  INFO 34892 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:32:14.062  INFO 34892 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:32:14.656  INFO 34892 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:32:14.666  INFO 34892 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:15.474  WARN 34892 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:32:15.731  INFO 34892 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:32:16.177  INFO 34892 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:32:16.181  INFO 34892 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:32:16.189  INFO 34892 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:32:16.218  INFO 34892 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 36 ms
+2021-11-22 16:32:16.247  INFO 34892 --- [main] f.v.s.controller.FireControllerTestIT    : Started FireControllerTestIT in 4.84 seconds (JVM running for 5.654)
+2021-11-22 16:32:16.825  INFO 34892 --- [main] f.v.safetynet.controller.FireController  : call endpoint /fire
+2021-11-22 16:32:16.919  INFO 34892 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:16.919  INFO 34892 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:32:16.921  WARN 34892 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:16.924 ERROR 34892 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:16.924  WARN 34892 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:16.924 ERROR 34892 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:16.925  WARN 34892 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:32:16.925  INFO 34892 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:32:16.927  INFO 34892 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:32:22.554  INFO 42860 --- [main] f.v.s.c.CommunityEmailControllerTestIT   : Starting CommunityEmailControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 42860 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:32:22.555 DEBUG 42860 --- [main] f.v.s.c.CommunityEmailControllerTestIT   : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:32:22.556  INFO 42860 --- [main] f.v.s.c.CommunityEmailControllerTestIT   : No active profile set, falling back to default profiles: default
+2021-11-22 16:32:23.850  INFO 42860 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:32:23.934  INFO 42860 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:32:24.349  INFO 42860 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:32:24.526  INFO 42860 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:32:24.611  INFO 42860 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:32:24.681  INFO 42860 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:32:24.833  INFO 42860 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:32:24.936  INFO 42860 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:32:25.530  INFO 42860 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:32:25.540  INFO 42860 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:26.336  WARN 42860 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:32:26.589  INFO 42860 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:32:27.048  INFO 42860 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:32:27.050  INFO 42860 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:32:27.058  INFO 42860 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:32:27.085  INFO 42860 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 33 ms
+2021-11-22 16:32:27.113  INFO 42860 --- [main] f.v.s.c.CommunityEmailControllerTestIT   : Started CommunityEmailControllerTestIT in 4.838 seconds (JVM running for 5.66)
+2021-11-22 16:32:27.737  INFO 42860 --- [main] f.v.s.c.CommunityEmailController         : call endpoint /communityEmail
+2021-11-22 16:32:27.813  INFO 42860 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:27.814  INFO 42860 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:32:27.816  WARN 42860 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:27.819 ERROR 42860 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:27.819  WARN 42860 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:27.820 ERROR 42860 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:27.820  WARN 42860 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:32:27.820  INFO 42860 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:32:27.823  INFO 42860 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:32:33.034  INFO 38140 --- [main] f.v.s.c.ChildAlertControllerTestIT       : Starting ChildAlertControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 38140 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:32:33.035 DEBUG 38140 --- [main] f.v.s.c.ChildAlertControllerTestIT       : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:32:33.036  INFO 38140 --- [main] f.v.s.c.ChildAlertControllerTestIT       : No active profile set, falling back to default profiles: default
+2021-11-22 16:32:34.323  INFO 38140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:32:34.401  INFO 38140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:32:34.828  INFO 38140 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:32:35.005  INFO 38140 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:32:35.091  INFO 38140 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:32:35.156  INFO 38140 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:32:35.303  INFO 38140 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:32:35.408  INFO 38140 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:32:36.027  INFO 38140 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:32:36.037  INFO 38140 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:36.843  WARN 38140 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:32:37.102  INFO 38140 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:32:37.561  INFO 38140 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:32:37.564  INFO 38140 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:32:37.573  INFO 38140 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:32:37.598  INFO 38140 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 32 ms
+2021-11-22 16:32:37.625  INFO 38140 --- [main] f.v.s.c.ChildAlertControllerTestIT       : Started ChildAlertControllerTestIT in 4.872 seconds (JVM running for 5.694)
+2021-11-22 16:32:38.208  INFO 38140 --- [main] f.v.s.controller.ChildAlertController    : call endpoint /childAlert
+2021-11-22 16:32:38.302  INFO 38140 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:38.302  INFO 38140 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:32:38.304  WARN 38140 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:38.307 ERROR 38140 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:38.308  WARN 38140 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:38.308 ERROR 38140 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:38.308  WARN 38140 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:32:38.308  INFO 38140 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:32:38.311  INFO 38140 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:32:53.870  INFO 34088 --- [main] f.v.s.controller.PersonControllerTestIT  : Starting PersonControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 34088 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:32:53.871 DEBUG 34088 --- [main] f.v.s.controller.PersonControllerTestIT  : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:32:53.872  INFO 34088 --- [main] f.v.s.controller.PersonControllerTestIT  : No active profile set, falling back to default profiles: default
+2021-11-22 16:32:55.144  INFO 34088 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:32:55.214  INFO 34088 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:32:55.634  INFO 34088 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:32:55.816  INFO 34088 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:32:55.900  INFO 34088 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:32:55.964  INFO 34088 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:32:56.118  INFO 34088 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:32:56.228  INFO 34088 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:32:56.831  INFO 34088 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:32:56.842  INFO 34088 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:57.647  WARN 34088 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:32:57.902  INFO 34088 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:32:58.360  INFO 34088 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:32:58.363  INFO 34088 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:32:58.371  INFO 34088 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:32:58.395  INFO 34088 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 30 ms
+2021-11-22 16:32:58.423  INFO 34088 --- [main] f.v.s.controller.PersonControllerTestIT  : Started PersonControllerTestIT in 4.83 seconds (JVM running for 5.647)
+2021-11-22 16:32:59.023 DEBUG 34088 --- [main] f.v.s.controller.PersonController        : Call endPoint person/all
+2021-11-22 16:32:59.105  INFO 34088 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:32:59.106  INFO 34088 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:32:59.108  WARN 34088 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:59.110 ERROR 34088 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:59.110  WARN 34088 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:32:59.111 ERROR 34088 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:32:59.111  WARN 34088 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:32:59.111  INFO 34088 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:32:59.113  INFO 34088 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:33:05.027  INFO 35792 --- [main] f.v.s.controller.PersonControllerTestIT  : Starting PersonControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 35792 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:33:05.028 DEBUG 35792 --- [main] f.v.s.controller.PersonControllerTestIT  : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:33:05.029  INFO 35792 --- [main] f.v.s.controller.PersonControllerTestIT  : No active profile set, falling back to default profiles: default
+2021-11-22 16:33:06.315  INFO 35792 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:33:06.387  INFO 35792 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:33:06.814  INFO 35792 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:33:07.000  INFO 35792 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:33:07.087  INFO 35792 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:33:07.154  INFO 35792 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:33:07.307  INFO 35792 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:33:07.419  INFO 35792 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:33:08.006  INFO 35792 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:33:08.016  INFO 35792 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:33:08.829  WARN 35792 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:33:09.080  INFO 35792 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:33:09.544  INFO 35792 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:33:09.547  INFO 35792 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:33:09.556  INFO 35792 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:33:09.585  INFO 35792 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 36 ms
+2021-11-22 16:33:09.615  INFO 35792 --- [main] f.v.s.controller.PersonControllerTestIT  : Started PersonControllerTestIT in 4.875 seconds (JVM running for 5.692)
+2021-11-22 16:33:10.227 DEBUG 35792 --- [main] f.v.s.controller.PersonController        : call endPoint GET /person/
+2021-11-22 16:33:10.297  INFO 35792 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:33:10.297  INFO 35792 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:33:10.299  WARN 35792 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:33:10.302 ERROR 35792 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:33:10.302  WARN 35792 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:33:10.302 ERROR 35792 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:33:10.302  WARN 35792 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:33:10.303  INFO 35792 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:33:10.305  INFO 35792 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:33:46.581  INFO 33456 --- [main] f.v.s.controller.PersonControllerTestIT  : Starting PersonControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 33456 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:33:46.582 DEBUG 33456 --- [main] f.v.s.controller.PersonControllerTestIT  : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:33:46.583  INFO 33456 --- [main] f.v.s.controller.PersonControllerTestIT  : No active profile set, falling back to default profiles: default
+2021-11-22 16:33:47.861  INFO 33456 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:33:47.931  INFO 33456 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:33:48.361  INFO 33456 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:33:48.528  INFO 33456 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:33:48.610  INFO 33456 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:33:48.670  INFO 33456 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:33:48.807  INFO 33456 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:33:48.919  INFO 33456 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:33:49.547  INFO 33456 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:33:49.557  INFO 33456 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:33:50.371  WARN 33456 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:33:50.615  INFO 33456 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:33:51.086  INFO 33456 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:33:51.088  INFO 33456 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:33:51.095  INFO 33456 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:33:51.120  INFO 33456 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 30 ms
+2021-11-22 16:33:51.149  INFO 33456 --- [main] f.v.s.controller.PersonControllerTestIT  : Started PersonControllerTestIT in 4.85 seconds (JVM running for 5.688)
+2021-11-22 16:33:51.736 DEBUG 33456 --- [main] f.v.s.controller.PersonController        : call endPoint PUT /person
+2021-11-22 16:33:51.787  INFO 33456 --- [main] f.v.s.controller.PersonController        : call endPoint DEL /person
+2021-11-22 16:33:51.793 DEBUG 33456 --- [main] f.v.s.controller.PersonController        : call endPoint POST/person
+2021-11-22 16:33:51.797 DEBUG 33456 --- [main] f.v.s.controller.PersonController        : call endPoint POST /person
+2021-11-22 16:33:51.806 DEBUG 33456 --- [main] f.v.s.controller.PersonController        : call endPoint GET /person/
+2021-11-22 16:33:51.817 ERROR 33456 --- [main] f.v.s.c.e.GlobalExceptionHandler         : Handling PersonNotFoundException due to The person "John Boyd", was not found in DataBase.. More informations : [Ljava.lang.StackTraceElement;@3c55e9d4
+2021-11-22 16:33:51.829 DEBUG 33456 --- [main] f.v.s.controller.PersonController        : Call endPoint person/all
+2021-11-22 16:33:51.901  INFO 33456 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:33:51.902  INFO 33456 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:33:51.903  WARN 33456 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:33:51.904 ERROR 33456 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:33:51.904  WARN 33456 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:33:51.906 ERROR 33456 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:33:51.907  WARN 33456 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:33:51.907  INFO 33456 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:33:51.909  INFO 33456 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:35:38.467  INFO 39480 --- [main] f.v.s.controller.PersonControllerTestIT  : Starting PersonControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 39480 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:35:38.468 DEBUG 39480 --- [main] f.v.s.controller.PersonControllerTestIT  : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:35:38.469  INFO 39480 --- [main] f.v.s.controller.PersonControllerTestIT  : No active profile set, falling back to default profiles: default
+2021-11-22 16:35:39.754  INFO 39480 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:35:39.828  INFO 39480 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:35:40.262  INFO 39480 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:35:40.437  INFO 39480 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:35:40.515  INFO 39480 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:35:40.577  INFO 39480 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:35:40.719  INFO 39480 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:35:40.827  INFO 39480 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:35:41.399  INFO 39480 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:35:41.409  INFO 39480 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:35:42.218  WARN 39480 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:35:42.458  INFO 39480 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:35:42.917  INFO 39480 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:35:42.919  INFO 39480 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:35:42.927  INFO 39480 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:35:42.953  INFO 39480 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 32 ms
+2021-11-22 16:35:42.979  INFO 39480 --- [main] f.v.s.controller.PersonControllerTestIT  : Started PersonControllerTestIT in 4.786 seconds (JVM running for 5.648)
+2021-11-22 16:35:43.579 DEBUG 39480 --- [main] f.v.s.controller.PersonController        : call endPoint PUT /person
+2021-11-22 16:35:43.632  INFO 39480 --- [main] f.v.s.controller.PersonController        : call endPoint DEL /person
+2021-11-22 16:35:43.638 DEBUG 39480 --- [main] f.v.s.controller.PersonController        : call endPoint POST/person
+2021-11-22 16:35:43.642 DEBUG 39480 --- [main] f.v.s.controller.PersonController        : call endPoint POST /person
+2021-11-22 16:35:43.650 DEBUG 39480 --- [main] f.v.s.controller.PersonController        : call endPoint GET /person/
+2021-11-22 16:35:43.662 ERROR 39480 --- [main] f.v.s.c.e.GlobalExceptionHandler         : Handling PersonNotFoundException due to The person "John Boyd", was not found in DataBase.. More informations : [Ljava.lang.StackTraceElement;@35d31e1c
+2021-11-22 16:35:43.674 DEBUG 39480 --- [main] f.v.s.controller.PersonController        : Call endPoint person/all
+2021-11-22 16:35:43.744  INFO 39480 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:35:43.745  INFO 39480 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:35:43.747  WARN 39480 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:35:43.747 ERROR 39480 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:35:43.748  WARN 39480 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:35:43.750 ERROR 39480 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:35:43.750  WARN 39480 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:35:43.751  INFO 39480 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:35:43.753  INFO 39480 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:36:56.770  INFO 3408 --- [main] f.v.s.controller.PersonControllerTestIT  : Starting PersonControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 3408 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:36:56.771 DEBUG 3408 --- [main] f.v.s.controller.PersonControllerTestIT  : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:36:56.772  INFO 3408 --- [main] f.v.s.controller.PersonControllerTestIT  : No active profile set, falling back to default profiles: default
+2021-11-22 16:36:58.060  INFO 3408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:36:58.132  INFO 3408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:36:58.538  INFO 3408 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:36:58.710  INFO 3408 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:36:58.783  INFO 3408 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:36:58.847  INFO 3408 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:36:58.988  INFO 3408 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:36:59.103  INFO 3408 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:36:59.701  INFO 3408 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:36:59.711  INFO 3408 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:37:00.486  WARN 3408 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:37:00.732  INFO 3408 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:37:01.182  INFO 3408 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:37:01.184  INFO 3408 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:37:01.194  INFO 3408 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:37:01.220  INFO 3408 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 33 ms
+2021-11-22 16:37:01.247  INFO 3408 --- [main] f.v.s.controller.PersonControllerTestIT  : Started PersonControllerTestIT in 4.753 seconds (JVM running for 5.583)
+2021-11-22 16:37:01.849 DEBUG 3408 --- [main] f.v.s.controller.PersonController        : call endPoint PUT /person
+2021-11-22 16:37:01.903  INFO 3408 --- [main] f.v.s.controller.PersonController        : call endPoint DEL /person
+2021-11-22 16:37:01.908 DEBUG 3408 --- [main] f.v.s.controller.PersonController        : call endPoint POST/person
+2021-11-22 16:37:01.912 DEBUG 3408 --- [main] f.v.s.controller.PersonController        : call endPoint POST /person
+2021-11-22 16:37:01.921 DEBUG 3408 --- [main] f.v.s.controller.PersonController        : call endPoint GET /person/
+2021-11-22 16:37:01.934 ERROR 3408 --- [main] f.v.s.c.e.GlobalExceptionHandler         : Handling PersonNotFoundException due to The person "John Boyd", was not found in DataBase.. More informations : [Ljava.lang.StackTraceElement;@4f67d628
+2021-11-22 16:37:01.945 DEBUG 3408 --- [main] f.v.s.controller.PersonController        : Call endPoint person/all
+2021-11-22 16:37:01.979  INFO 3408 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:37:01.980  INFO 3408 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:37:01.982  WARN 3408 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:37:01.982 ERROR 3408 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:37:01.982  WARN 3408 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:37:01.985 ERROR 3408 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:37:01.985  WARN 3408 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:37:01.985  INFO 3408 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:37:01.988  INFO 3408 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-22 16:37:21.337  INFO 41580 --- [main] f.v.s.controller.PersonControllerTestIT  : Starting PersonControllerTestIT using Java 11.0.12 on DESKTOP-RFT6VPG with PID 41580 (started by VertOurs in C:\PROJETS OC\P5)
+2021-11-22 16:37:21.339 DEBUG 41580 --- [main] f.v.s.controller.PersonControllerTestIT  : Running with Spring Boot v2.5.3, Spring v5.3.9
+2021-11-22 16:37:21.339  INFO 41580 --- [main] f.v.s.controller.PersonControllerTestIT  : No active profile set, falling back to default profiles: default
+2021-11-22 16:37:22.612  INFO 41580 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-22 16:37:22.687  INFO 41580 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 6 JPA repository interfaces.
+2021-11-22 16:37:23.120  INFO 41580 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-22 16:37:23.300  INFO 41580 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-22 16:37:23.377  INFO 41580 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-22 16:37:23.438  INFO 41580 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-22 16:37:23.585  INFO 41580 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-22 16:37:23.696  INFO 41580 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-11-22 16:37:24.302  INFO 41580 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-22 16:37:24.312  INFO 41580 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:37:25.096  WARN 41580 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-22 16:37:25.329  INFO 41580 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-11-22 16:37:25.759  INFO 41580 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-11-22 16:37:25.762  INFO 41580 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-11-22 16:37:25.771  INFO 41580 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-22 16:37:25.797  INFO 41580 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 32 ms
+2021-11-22 16:37:25.828  INFO 41580 --- [main] f.v.s.controller.PersonControllerTestIT  : Started PersonControllerTestIT in 4.768 seconds (JVM running for 5.614)
+2021-11-22 16:37:26.434 DEBUG 41580 --- [main] f.v.s.controller.PersonController        : call endPoint PUT /person
+2021-11-22 16:37:26.486  INFO 41580 --- [main] f.v.s.controller.PersonController        : call endPoint DEL /person
+2021-11-22 16:37:26.491 DEBUG 41580 --- [main] f.v.s.controller.PersonController        : call endPoint POST/person
+2021-11-22 16:37:26.496 DEBUG 41580 --- [main] f.v.s.controller.PersonController        : call endPoint POST /person
+2021-11-22 16:37:26.504 DEBUG 41580 --- [main] f.v.s.controller.PersonController        : call endPoint GET /person/
+2021-11-22 16:37:26.515 ERROR 41580 --- [main] f.v.s.c.e.GlobalExceptionHandler         : Handling PersonNotFoundException due to The person "John Boyd", was not found in DataBase.. More informations : [Ljava.lang.StackTraceElement;@1caa1866
+2021-11-22 16:37:26.527 DEBUG 41580 --- [main] f.v.s.controller.PersonController        : Call endPoint person/all
+2021-11-22 16:37:26.563  INFO 41580 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-22 16:37:26.564  INFO 41580 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2021-11-22 16:37:26.566  WARN 41580 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:37:26.566 ERROR 41580 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:37:26.566  WARN 41580 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2021-11-22 16:37:26.569 ERROR 41580 --- [SpringApplicationShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-11-22 16:37:26.569  WARN 41580 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2021-11-22 16:37:26.569  INFO 41580 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-22 16:37:26.572  INFO 41580 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

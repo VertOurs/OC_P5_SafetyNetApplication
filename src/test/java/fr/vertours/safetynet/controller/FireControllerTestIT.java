@@ -22,7 +22,7 @@ class FireControllerTestIT {
     @Test
     void getListOfPersonForOneAddressWithFireStation() throws Exception {
         mockMvc.perform(get("/fire?address=1509 Culver St"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].phone", is("841-874-6512")));
     }
 }

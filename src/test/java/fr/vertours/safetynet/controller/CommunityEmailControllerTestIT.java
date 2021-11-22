@@ -28,7 +28,7 @@ class CommunityEmailControllerTestIT {
     @Test
     void getAllEmailForOneCity() throws Exception {
         mockMvc.perform(get("/communityEmail?city=Culver"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0]", is("jaboyd@email.com")));
     }
 }

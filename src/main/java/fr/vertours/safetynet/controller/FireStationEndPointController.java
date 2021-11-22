@@ -26,6 +26,6 @@ public class FireStationEndPointController {
     @GetMapping("/firestation")
     public ResponseEntity<FireStationInfoDTO> getPersonFromFireStationWithCount(@RequestParam("stationNumber") int station) {
         LOGGER.debug("call endpoint  /firestation");
-        return ResponseEntity.accepted().body(service.getFireStationInfoDTOfromStationNumber(station));
+        return ResponseEntity.ok().body(service.getFireStationInfoDTOfromStationNumber(station));
     }
 }

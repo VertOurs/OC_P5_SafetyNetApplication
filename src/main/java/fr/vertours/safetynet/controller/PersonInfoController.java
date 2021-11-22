@@ -33,6 +33,6 @@ public class PersonInfoController {
         MedicalRecord medicalRecord = new MedicalRecord(person);
         PersonInfoDTO personInfoDTO =  new PersonInfoDTO(person, medicalRecord);
 
-        return ResponseEntity.accepted().body(personInfoDTO);
+        return ResponseEntity.ok().body(personInfoDTO);
     }
 }

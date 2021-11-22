@@ -32,7 +32,7 @@ public class CommunityEmailController {
         LOGGER.info("call endpoint /communityEmail");
 
         List<Person> personList = this.iEmailService.findByCity(city);
-        return ResponseEntity.accepted().body(personList.stream().
+        return ResponseEntity.ok().body(personList.stream().
                 map(Person::getEmail).collect(Collectors.toList()));
     }
 }

@@ -22,7 +22,7 @@ class FloodControllerTestIT {
     @Test
     void endPoint5Flood() throws Exception {
         mockMvc.perform(get("/flood/stations?stations=1&stations=2"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].station", is(1)));
     }
 }

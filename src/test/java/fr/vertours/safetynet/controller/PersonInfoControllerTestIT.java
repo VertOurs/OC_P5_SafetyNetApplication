@@ -22,7 +22,7 @@ class PersonInfoControllerTestIT {
     @Test
     void getNameAddressAgeMailMedicationsAndAllergies() throws Exception {
         mockMvc.perform(get("/personInfo?firstName=John&lastName=Boyd"))
-                .andExpect(status().isAccepted())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is("John")));
     }
 }

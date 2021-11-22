@@ -32,7 +32,7 @@ public class MedicalRecordController {
         LOGGER.debug("call endpoint : /medicalRecord/all");
         List <MedicalRecord> medicalRecordList = medicalRecordService.getAllMedicalRecord();
         List <MedicalRecordDTO> medicalRecordDTOList = medicalRecordList.stream().map(MedicalRecordDTO::fromMedicalRecord).collect(Collectors.toList());
-        return ResponseEntity.accepted().body(medicalRecordDTOList);
+        return ResponseEntity.ok().body(medicalRecordDTOList);
     }
 
     /**
@@ -45,7 +45,7 @@ public class MedicalRecordController {
     public ResponseEntity<MedicalRecordDTO> getOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         LOGGER.debug("endpoint : GET /medicalRecord/firstName/LastName");
         MedicalRecord medicalRecord = medicalRecordService.getOneMedicalRecordByFirstAndLastName(firstName, lastName);
-        return ResponseEntity.accepted().body(MedicalRecordDTO.fromMedicalRecord(medicalRecord));
+        return ResponseEntity.ok().body(MedicalRecordDTO.fromMedicalRecord(medicalRecord));
     }
 
     /**
@@ -57,7 +57,7 @@ public class MedicalRecordController {
     public ResponseEntity<String> registerNewMedicalPerson(@RequestBody MedicalRecordDTO medicalRecordDTO) {
         LOGGER.debug("endpoint : POST /medicalRecord");
         medicalRecordService.save(medicalRecordDTO);
-        return ResponseEntity.accepted().body("the medicalRecord has been saved in the database");
+        return ResponseEntity.ok().body("the medicalRecord has been saved in the database");
     }
 
     /**
@@ -73,7 +73,7 @@ public class MedicalRecordController {
                                     @RequestBody MedicalRecordDTO medicalRecordDTO) {
         LOGGER.debug("Endpoint : PUT /medicalRecord/firstName/LastName");
         medicalRecordService.updateMedicalRecord(firstName, lastName, medicalRecordDTO);
-        return ResponseEntity.accepted().body("The MedicalRecord modification has been saved to the database.");
+        return ResponseEntity.ok().body("The MedicalRecord modification has been saved to the database.");
     }
 
     /**
@@ -86,7 +86,7 @@ public class MedicalRecordController {
     public ResponseEntity<String> deleteOneMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         LOGGER.info("Endpoint : DEL /medicalRecord/firstName/LastName");
         medicalRecordService.deleteOneMedicalRecord(firstName, lastName);
-        return  ResponseEntity.accepted().body("the MedicalRecord has been deleted from the database.");
+        return  ResponseEntity.ok().body("the MedicalRecord has been deleted from the database.");
     }
 
 
