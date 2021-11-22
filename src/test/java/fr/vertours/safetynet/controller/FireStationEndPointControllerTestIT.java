@@ -25,6 +25,6 @@ class FireStationEndPointControllerTestIT {
     void getPersonFromFireStationWithCount() throws Exception {
         mockMvc.perform(get("/firestation?stationNumber=1"))
                 .andExpect(status().isAccepted())
-                .andExpect(jsonPath("$..personList[0].firstName", is("Reginold")));
+                .andExpect(jsonPath("$.personList[0].firstName", is("Reginold")));
     }
 }

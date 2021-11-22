@@ -26,6 +26,6 @@ class ChildAlertControllerTestIT {
     void getListOfChildrenAtThisAddress() throws Exception {
         mockMvc.perform(get("/childAlert?address=1509 Culver St"))
                 .andExpect(status().isAccepted())
-                .andExpect(jsonPath("$..enfants[0].age", is(9)));
+                .andExpect(jsonPath("$.enfants[0].age", is(9)));
     }
 }

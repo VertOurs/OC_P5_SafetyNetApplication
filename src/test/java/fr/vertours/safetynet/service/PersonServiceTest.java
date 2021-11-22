@@ -19,14 +19,8 @@ import static org.mockito.Mockito.*;
 class PersonServiceTest {
 
 
-
-
-
     PersonRepository personRepository = mock(PersonRepository.class);
     AddressService addressService = mock(AddressService.class);
-
-
-
 
 
     PersonService classUnderTest = new PersonService(personRepository,
