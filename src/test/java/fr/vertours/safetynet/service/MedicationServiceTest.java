@@ -80,18 +80,6 @@ class MedicationServiceTest {
 
     assertEquals(ritaline, ritalineTested);
     }
-    @Test
-    void findOrCreateByCreateProbability() {
-//        Medication bobo = new Medication();
-//        bobo.setId((long) 45);
-//        bobo.setMedication("bobo");
-//        when(classUnderTest.find("bobo")).thenReturn(null);
-//        when(classUnderTest.save("bobo")).thenReturn(bobo);
-//
-//        Medication boboTested = classUnderTest.findOrCreate("bobo");
-//        System.out.println(boboTested);
-//        assertEquals(bobo, boboTested);
-    }
 
 
     @Test

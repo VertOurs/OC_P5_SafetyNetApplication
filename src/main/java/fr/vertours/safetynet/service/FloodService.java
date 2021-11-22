@@ -55,7 +55,7 @@ public class FloodService implements IFloodService {
      * @param fireStationList
      * @return List of FloodDTO.
      */
-    public List<FloodDTO> getListFloodDTOWithFireStationList(List<FireStation> fireStationList) {
+    private List<FloodDTO> getListFloodDTOWithFireStationList(List<FireStation> fireStationList) {
         List<FloodDTO> floodDTOList = new ArrayList<>();
         for (FireStation f: fireStationList) {
             for (Address a : f.getAddress()) {

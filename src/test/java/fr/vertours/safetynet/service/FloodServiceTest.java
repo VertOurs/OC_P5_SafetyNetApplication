@@ -17,8 +17,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class FloodServiceTest {
@@ -51,19 +50,15 @@ class FloodServiceTest {
 
     @Test
     void getFloodByListOfStation() {
-//        FloodService instance1 = Mockito.spy(FloodService.class);
-//        when(fireStationService.getListFireStationByNb(integers)).thenReturn(fireStationList);
-//        Mockito.doReturn(floodDTOS).when(instance1).getListFloodDTOWithFireStationList(fireStationList);
-//
-//        List<FloodDTO> floodExpected =  classUnderTest.getFloodByListOfStation(integers);
-//
-//        assertEquals(floodDTOS, floodExpected);
+        when(fireStationService.getListFireStationByNb(integers))
+                .thenReturn(fireStationList);
 
+        classUnderTest.getFloodByListOfStation(integers);
 
-    }
-
-    @Test
-    void getListFloodDTOWithFireStationListTest() {
+        verify(fireStationService, times(1))
+                .getListFireStationByNb(integers);
 
     }
+
+
 }

@@ -40,9 +40,7 @@ class MedicalRecordDTOTest {
         dto.setAllergies(alerSetString);
     }
 
-    @Test
-    void createMedicalRecord() {
-    }
+
 
     @Test
     void fromMedicalRecord() {
