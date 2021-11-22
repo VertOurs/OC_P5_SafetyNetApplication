@@ -75,7 +75,7 @@ public class MedicalRecordService  {
      */
     public List<MedicalRecord> getMedicalRecordByListOfPerson(List<Person> personList) {
 
-        List<MedicalRecord> allMedicalRecordList = getAllMedicalRecord();
+        List<MedicalRecord> allMedicalRecordList = medicalRecordRepository.findAll();
         List<MedicalRecord>  medicalRecordList = new ArrayList<>();
         for(Person p : personList) {
             for(MedicalRecord mR : allMedicalRecordList) {
@@ -214,7 +214,8 @@ public class MedicalRecordService  {
     public void deleteOneMedicalRecord(String firstName, String lastName) {
 
 
-        MedicalRecord medicalRecord = find(firstName, lastName);
+        MedicalRecord medicalRecord = medicalRecordRepository
+                .findOneByPerson_FirstNameAndPerson_LastName(firstName, lastName);
         medicalRecordRepository.delete(medicalRecord);
     }
 
