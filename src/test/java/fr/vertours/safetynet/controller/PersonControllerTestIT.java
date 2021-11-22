@@ -1,5 +1,7 @@
 package fr.vertours.safetynet.controller;
 
+import fr.vertours.safetynet.service.MedicalRecordService;
+import fr.vertours.safetynet.service.PersonService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ class PersonControllerTestIT {
 
     @Autowired
     public MockMvc mockMvc;
+
+    @Autowired
+    MedicalRecordService medicalRecordService;
 
     String createPersonDTO;
     String updatePersonDTO;
@@ -76,6 +81,7 @@ class PersonControllerTestIT {
 
     @Test
     void deletePerson() throws Exception {
+        medicalRecordService.deleteOneMedicalRecord("John", "Boyd");
         mockMvc.perform(delete("/person/John/Boyd"))
                 .andExpect(status().isAccepted());
 

@@ -14,15 +14,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class FloodControllerTest {
+class PhoneAlertControllerTestIT {
 
     @Autowired
     MockMvc mockMvc;
 
     @Test
-    void endPoint5Flood() throws Exception {
-        mockMvc.perform(get("/flood/stations?stations=1&stations=2"))
+    void getListPhoneNumberByFireStation() throws Exception {
+        mockMvc.perform(get("/phoneAlert?firestation=1"))
                 .andExpect(status().isAccepted())
-                .andExpect(jsonPath("$[0].station", is(1)));
+                .andExpect(jsonPath("$[0]", is("841-874-8547")));
     }
 }

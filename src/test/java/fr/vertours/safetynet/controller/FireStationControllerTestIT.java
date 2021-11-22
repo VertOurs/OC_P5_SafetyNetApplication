@@ -1,5 +1,6 @@
 package fr.vertours.safetynet.controller;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -21,19 +23,20 @@ class FireStationControllerTestIT {
     @Autowired
     public MockMvc mockMvc;
 
-    String createFireStationDTO;
+
     String updateFireStationDTO;
+    String createFireStationDTO;
 
     @BeforeEach
     void setUp() {
-        createFireStationDTO = "{\n"
-                + "\"address\": \"1509 Culver St\",\n"
-                + "\"station\": \"10\"\n"
-                + "}";
-        updateFireStationDTO = "{\n"
-                + "\"address\": \"150 Rue du port\",\n"
-                + "\"station\": \"1\"\n"
-                + "}";
+        createFireStationDTO = "{\"" +
+                "address\":[\"100, RUE DES 3 SAPINS\"]," +
+                " \"station\":\"10\" }";
+
+        updateFireStationDTO = "{\"" +
+                "address\":[\"947 E. Rose Dr\"]," +
+                " \"station\":\"2\" }";
+
     }
 
     @Test
@@ -53,14 +56,14 @@ class FireStationControllerTestIT {
     @Test
     void create() throws Exception {
         mockMvc.perform(post("/firestation")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(createFireStationDTO))
-                .andExpect(status().isAccepted());
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(createFireStationDTO))
+                        .andExpect(status().isAccepted());
     }
 
     @Test
     void updateNbStationForOneAddress() throws Exception {
-        mockMvc.perform(put("/firestation/1")
+        mockMvc.perform(put("/firestation/2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(updateFireStationDTO))
                 .andExpect(status().isAccepted());
