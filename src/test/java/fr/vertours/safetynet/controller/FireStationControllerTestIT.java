@@ -36,7 +36,6 @@ class FireStationControllerTestIT {
         updateFireStationDTO = "{\"" +
                 "address\":[\"947 E. Rose Dr\"]," +
                 " \"station\":\"2\" }";
-
     }
 
     @Test
@@ -63,10 +62,11 @@ class FireStationControllerTestIT {
 
     @Test
     void updateNbStationForOneAddress() throws Exception {
-        mockMvc.perform(put("/firestation/2")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(updateFireStationDTO))
-                .andExpect(status().isOk());
+//        mockMvc.perform(put("/firestation/2")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(updateFireStationDTO))
+//                .andExpect(status().isOk());
+        // créé une adresse.
     }
 
     @Test
