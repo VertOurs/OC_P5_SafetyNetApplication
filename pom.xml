@@ -95,7 +95,6 @@
 			<artifactId>jsoniter</artifactId>
 			<version>0.9.19</version>
 		</dependency>
-		<!-- dependance mapstruct -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
@@ -107,23 +106,6 @@
 
 	<build>
 		<plugins>
-			<!-- je metterais bien sa mais je suis pas sur
-			<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.5.1</version>
-    <configuration>
-        <source>1.11</source>
-        <target>1.11</target>
-        <annotationProcessorPaths>
-            <path>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>1.4.2.Final</version>
-            </path>
-        </annotationProcessorPaths>
-    </configuration>
-</plugin>-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -147,7 +129,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										com.parkit.parkingsystem.App
+										fr.vertours.SafetynetApplicationTests
 									</mainClass>
 								</manifest>
 							</archive>
@@ -169,11 +151,7 @@
 						<version>1.2.0</version>
 					</dependency>
 				</dependencies>
-				<configuration>
-					<excludes>
-						<exclude>**/*IT.java</exclude>
-					</excludes>
-				</configuration>
+
 				<executions>
 					<execution>
 						<id>integration-test</id>

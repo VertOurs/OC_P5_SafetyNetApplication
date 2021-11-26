@@ -37,6 +37,9 @@ public class Person {
     @Column (nullable = false)
     private String email;
 
+    @OneToOne(mappedBy = "person", cascade = CascadeType.REMOVE, optional = true)
+    private MedicalRecord medicalRecord;
+
     public Person(String firstName, String lastName,
                   Address address, String city,
                   String zip, String phone, String email) {
@@ -105,6 +108,14 @@ public class Person {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
+    }
+
+    public void setMedicalRecord(MedicalRecord medicalRecord) {
+        this.medicalRecord = medicalRecord;
     }
 
     @Override

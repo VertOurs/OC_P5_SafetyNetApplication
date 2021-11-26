@@ -71,7 +71,7 @@ class FireStationControllerTestIT {
 
     @Test
     void deleteOneStation() throws Exception {
-        mockMvc.perform(delete("/firestation/1"))
+        mockMvc.perform(delete("/firestation/3"))
                 .andExpect(status().isOk());
     }
 }

@@ -50,7 +50,7 @@ class PersonControllerTestIT {
     @Test
     void registerNewPerson() throws Exception {
         String  createPersonDTO = "{\n"
-                + "\"firstName\": \"Aymeric\",\n"
+                + "\"firstName\": \"Bobby\",\n"
                 + "\"lastName\": \"Perrin\",\n"
                 + "\"address\": \"1551, tue Louis Blériot\",\n"
                 + "\"city\": \"Clamart\",\n"
@@ -61,7 +61,8 @@ class PersonControllerTestIT {
         mockMvc.perform(post("/person")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(createPersonDTO))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", is("Bobby Perrin was created in database.")));
     }
 
     @Test
@@ -83,8 +84,7 @@ class PersonControllerTestIT {
 
     @Test
     void deletePerson() throws Exception {
-        medicalRecordService.deleteOneMedicalRecord("John", "Boyd");
-        mockMvc.perform(delete("/person/John/Boyd"))
+        mockMvc.perform(delete("/person/Jacob/Boyd"))
                 .andExpect(status().isOk());
 
     }

@@ -69,7 +69,7 @@ public class PersonController {
         LOGGER.debug("call endPoint POST/person");
         personService.addPerson(personDTO);
         LOGGER.debug("call endPoint POST /person");
-        return ResponseEntity.ok().body(personDTO.getFirstName() + " " + personDTO.getFirstName() + " was created in database.");
+        return ResponseEntity.ok().body(personDTO.getFirstName() + " " + personDTO.getLastName() + " was created in database.");
     }
 
     /**

@@ -27,6 +27,7 @@ public class FireStationEndPointService implements IFireStationEndPointService {
 
 
 
+
     @Override
     public FireStationInfoDTO getFireStationInfoDTOfromStationNumber(int stationNumber) {
          List<Person> personList = findByStation(stationNumber);
