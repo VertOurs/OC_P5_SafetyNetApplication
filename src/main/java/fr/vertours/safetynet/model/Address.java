@@ -25,6 +25,8 @@ public class Address {
         this.addressName = addressName;
         this.fireStation = new HashSet<>();
     }
+
+
     public Address() {
         this.fireStation = new HashSet<>();
     }

@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public class DataLoaderMedicalRecord {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DataLoaderMedicalRecord.class);
+
 
     @Autowired
     MedicalRecordService medicalRecordService;

@@ -60,14 +60,7 @@ class FireStationControllerTestIT {
                         .andExpect(status().isOk());
     }
 
-    @Test
-    void updateNbStationForOneAddress() throws Exception {
-//        mockMvc.perform(put("/firestation/2")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(updateFireStationDTO))
-//                .andExpect(status().isOk());
-        // créé une adresse.
-    }
+
 
     @Test
     void deleteOneStation() throws Exception {

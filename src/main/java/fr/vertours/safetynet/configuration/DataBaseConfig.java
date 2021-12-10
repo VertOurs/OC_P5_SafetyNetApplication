@@ -43,13 +43,15 @@ public class DataBaseConfig {
     CommandLineRunner commandLineRunner() {
         return args -> {
             Map<String, Object> map = deserializeJson();
-
             ObjectMapper objectMapper = new ObjectMapper();
+
+
             Set<Address> addressSet = personLoader.
                     returnSetOfAddressInPersonDTO(map, objectMapper);
             Set<Person> personSet = personLoader.
                     returnSetOfPersonInPersonDTO(map, objectMapper);
             List<Address> addressList = addressService.saveAll(addressSet);
+
 
             personLoader.savePersonAndAddressInDB(map,
                     objectMapper, addressList, personSet);

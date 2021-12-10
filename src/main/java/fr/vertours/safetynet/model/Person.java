@@ -113,7 +113,6 @@ public class Person {
     public MedicalRecord getMedicalRecord() {
         return medicalRecord;
     }
-
     public void setMedicalRecord(MedicalRecord medicalRecord) {
         this.medicalRecord = medicalRecord;
     }
